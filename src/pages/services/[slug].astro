@@ -13,8 +13,6 @@ export async function getStaticPaths() {
 
 const { service } = Astro.props;
 
-// Map each service to a different complementary image so the lead-section
-// has visual variety (no twice the same hero image on one page).
 const sideImageMap: Record<string, string> = {
   'call-a-mechanic': '/images/team-header.jpg',
   'car-check': '/images/car-design-2.jpg',
@@ -23,6 +21,24 @@ const sideImageMap: Record<string, string> = {
   'werkstattfuehrung': '/images/team-header.jpg',
 };
 const sideImage = sideImageMap[service.slug] ?? '/images/team-group.jpg';
+
+// Quick facts under hero
+const quickFacts = [
+  service.price && { label: 'Preis', value: service.price, icon: 'Euro' },
+  { label: 'Buchung', value: 'Online oder Telefon', icon: 'Calendar' },
+  { label: 'Beratung', value: 'Klaus persönlich', icon: 'User' },
+  { label: 'Standort', value: 'Hamburg-Bahrenfeld', icon: 'MapPin' },
+].filter(Boolean) as { label: string; value: string; icon: string }[];
+
+// Klaus quotes per service
+const klausQuotes: Record<string, string> = {
+  'call-a-mechanic': 'Ein Anruf, ein klarer Plan - und Du weißt, was wirklich Sache ist.',
+  'car-check': 'Bevor Du falsch kaufst, lass uns kurz drüber sprechen. Spart Dir Tausende.',
+  'car-design': 'Wir machen aus Deinem Fahrzeug ein Kunstobjekt - so persönlich wie Du selbst.',
+  'call-for-parts': 'TÜV-Eintragung ist kein Glücksspiel. Wir recherchieren, Du weißt Bescheid.',
+  'werkstattfuehrung': 'Bei uns gibt es nichts zu verstecken - komm rein, schau zu, frag los.',
+};
+const quote = klausQuotes[service.slug] ?? 'Wir machen Deinen Fahrzeugtraum wahr.';
 ---
 
 <Layout
@@ -36,7 +52,7 @@ const sideImage = sideImageMap[service.slug] ?? '/images/team-group.jpg';
     lead={service.tagline}
     image={service.image}
     cta={{ label: service.cta, href: telLink, icon: 'Phone' }}
-    secondaryCta={{ label: 'WhatsApp', href: whatsappLink, icon: 'MessageCircle' }}
+    secondaryCta={{ label: 'WhatsApp schreiben', href: whatsappLink, icon: 'MessageCircle' }}
     breadcrumbs={[
       { label: 'Startseite', href: '/' },
       { label: 'Services', href: '/services' },
@@ -44,67 +60,102 @@ const sideImage = sideImageMap[service.slug] ?? '/images/team-group.jpg';
     ]}
   />
 
-  <!-- LEAD - editorial mit Image + Price-Card + Inklusiv-Liste -->
+  <!-- QUICK FACTS STRIP - direct unter Hero -->
+  <section class="section-warm py-8 md:py-10 border-y border-line">
+    <div class="container-r66">
+      <div class={`grid sm:grid-cols-2 lg:grid-cols-${quickFacts.length} gap-6 lg:gap-8`}>
+        {quickFacts.map((f) => (
+          <div class="flex items-center gap-4 group">
+            <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+              <Icon name={f.icon} size={18} strokeWidth={1.8} />
+            </span>
+            <div>
+              <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">{f.label}</p>
+              <p class="font-display text-onyx leading-tight mt-1">{f.value}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD - kurz und stark, Klaus-Quote prominent -->
   <section class="section-light section-padding">
     <div class="container-r66">
-      <!-- Top split: Side image + lead text -->
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
-        <div class="lg:col-span-5 fade-in">
-          <div class="relative">
-            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
-              <img src={sideImage} alt={service.title} class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <!-- Floating Klaus-quote card -->
-            <div class="absolute -bottom-5 -right-5 max-w-[250px] rounded-lg p-5 hidden sm:block" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.18);">
-              <div class="flex items-start gap-3 mb-3">
-                <div class="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-cream-warm">
-                  <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
-                </div>
-                <div>
-                  <p class="font-display text-onyx text-sm font-medium leading-tight">Klaus Borrmann</p>
-                  <p class="text-[0.66rem] text-muted">Inhaber & KFZ-Meister</p>
-                </div>
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-7 fade-in">
+          <p class="num-label">Worum es geht</p>
+          <p class="text-xl md:text-2xl text-onyx leading-relaxed text-pretty mb-10 max-w-2xl">{service.lead}</p>
+
+          <!-- Klaus Quote als prominente Karte -->
+          <div class="rounded-2xl p-8 relative overflow-hidden" style="background: linear-gradient(160deg, #FAF7F0 0%, #F5F0E5 100%); border: 1px solid #E2DBCD;">
+            <Icon name="Quote" size={32} strokeWidth={1.4} class="text-route mb-5" />
+            <p class="font-display text-xl md:text-2xl text-onyx leading-snug text-pretty mb-6 italic">"{quote}"</p>
+            <div class="flex items-center gap-3">
+              <div class="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
+                <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
               </div>
-              <p class="text-onyx text-[0.78rem] leading-snug italic">"Ein Anruf, ein klarer Plan - und Du weißt, was wirklich Sache ist."</p>
+              <div>
+                <p class="font-display text-onyx font-medium leading-tight">Klaus Borrmann</p>
+                <p class="text-muted text-xs mt-0.5">Inhaber & KFZ-Meister</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="lg:col-span-7 fade-in stagger-1">
-          <p class="num-label">Worum es geht</p>
-          <p class="text-xl md:text-2xl text-onyx leading-relaxed text-pretty mb-10">{service.lead}</p>
-
-          <!-- Price + Inklusiv split -->
-          <div class="grid sm:grid-cols-12 gap-5">
+        <div class="lg:col-span-5 fade-in stagger-1">
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+              <img src={sideImage} alt={service.title} class="w-full h-full object-cover" loading="lazy" />
+            </div>
             {service.price && (
-              <div class="sm:col-span-5 rounded-2xl p-7" style="background: linear-gradient(160deg, #111 0%, #1A1A1A 100%); color: #fff;">
-                <p class="text-[0.7rem] tracking-[0.18em] uppercase text-route mb-3 font-medium">Pauschal-Preis</p>
-                <p class="font-display text-4xl text-white leading-none mb-3">{service.price}</p>
-                <p class="text-white/70 text-xs leading-relaxed mb-5">Inkl. MwSt. Fair, transparent, kein Kleingedrucktes.</p>
-                <a href={telLink} class="btn btn-light btn-sm btn-block !rounded-full">
-                  <Icon name="Phone" size={13} strokeWidth={2} />
-                  Direkt anrufen
-                </a>
+              <div class="absolute -top-4 -right-4 w-28 h-28 rounded-full flex flex-col items-center justify-center text-center shadow-xl" style="background: #B91C1C;">
+                <span class="font-display text-[0.6rem] text-white/85 uppercase tracking-widest">Ab</span>
+                <span class="font-display text-xl font-medium text-white leading-none mt-1">{service.price.split(' ')[0]}</span>
+                <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest mt-1">{service.price.includes('EUR') ? 'EUR' : ''}</span>
               </div>
             )}
-            <div class={`${service.price ? 'sm:col-span-7' : 'sm:col-span-12'} rounded-2xl p-7 bg-white border border-line`}>
-              <p class="text-[0.7rem] tracking-[0.18em] uppercase text-route mb-4 font-medium">Das ist inklusive</p>
-              <ul class="space-y-2.5">
-                {service.includes.map((inc) => (
-                  <li class="flex items-start gap-2.5 text-sm">
-                    <Icon name="Check" size={13} strokeWidth={2.5} class="text-route mt-1 flex-shrink-0" />
-                    <span class="text-onyx leading-snug">{inc}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <!-- Floating CTA -->
+            <a href={telLink} class="absolute -bottom-5 -left-5 hidden sm:flex rounded-lg px-5 py-4 items-center gap-3 group transition-all hover:-translate-y-1 hover:shadow-2xl" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.18);">
+              <span class="w-10 h-10 rounded-full bg-route text-white inline-flex items-center justify-center flex-shrink-0">
+                <Icon name="Phone" size={15} strokeWidth={2} />
+              </span>
+              <div>
+                <p class="text-[0.66rem] text-muted uppercase tracking-widest">Direkt mit Klaus</p>
+                <p class="font-display text-onyx font-medium leading-tight">{site.phoneDisplay}</p>
+              </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROCESS STEPS - Premium Timeline mit Connection Line -->
+  <!-- INKLUSIV als Kachel-Grid -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Das ist inklusive</p>
+        <h2 class="heading-xl text-balance">Alles, was Du bekommst.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {service.includes.map((inc, i) => (
+          <div class={`include-tile fade-in stagger-${(i % 3) + 1}`}>
+            <span class="include-num">{String(i + 1).padStart(2, '0')}</span>
+            <div class="flex items-start gap-4">
+              <span class="w-10 h-10 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 transition-colors">
+                <Icon name="Check" size={16} strokeWidth={2.5} />
+              </span>
+              <p class="font-medium text-onyx leading-relaxed">{inc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS STEPS - Premium Timeline -->
   <section class="section-warm section-padding relative overflow-hidden">
     <div class="container-r66 relative">
       <SectionHeading
@@ -152,5 +203,48 @@ const sideImage = sideImageMap[service.slug] ?? '/images/team-group.jpg';
     border-color: rgb(185, 28, 28);
     transform: scale(1.04);
     box-shadow: 0 14px 36px -10px rgba(185,28,28,0.3);
+  }
+
+  /* Include tile - premium card with number watermark */
+  .include-tile {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    padding: 1.75rem;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .include-tile::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: linear-gradient(180deg, rgb(185 28 28), rgba(185, 28, 28, 0.3));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .include-tile:hover {
+    transform: translateY(-4px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.15);
+  }
+  .include-tile:hover::before { transform: scaleY(1); }
+  .include-tile:hover .include-num { color: rgb(185 28 28 / 0.15); }
+  .include-tile:hover span.bg-route\/10 { background: rgb(185 28 28); color: #fff; }
+
+  .include-num {
+    position: absolute;
+    top: 0.75rem; right: 1rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 500;
+    color: rgba(17, 17, 17, 0.05);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    transition: color 0.4s ease;
+    pointer-events: none;
   }
 </style>

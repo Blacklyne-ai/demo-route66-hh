@@ -1,34 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
 import { site, telLink, mailLink } from '../data/site';
 
 const requirements = [
-  'Ausbildung zum Mechaniker oder Mechatroniker',
-  'Quereinsteiger mit Fachkenntnissen sind willkommen',
-  'Selbstständiges, sauberes Arbeiten',
-  'Führerschein ist Voraussetzung',
+  { title: 'Mechaniker oder Mechatroniker', body: 'Abgeschlossene Ausbildung im KFZ-Bereich.', icon: 'Wrench' },
+  { title: 'Quereinsteiger willkommen', body: 'Autodidakten mit Fachkenntnissen passen auch zu uns.', icon: 'Lightbulb' },
+  { title: 'Selbstständiges Arbeiten', body: 'Eigene Entscheidungen treffen, sauber arbeiten.', icon: 'CircleCheck' },
+  { title: 'Führerschein Klasse B', body: 'Voraussetzung für Probefahrten und Werkstatt-Logistik.', icon: 'Car' },
 ];
 
 const tasks = [
-  'Reparatur und Wartung von US-Fahrzeugen',
-  'Motor- und Getriebearbeiten',
-  'Durchführung von Diagnosen und Fehlersuchen',
-  'Unterstützung des Teams im Tagesgeschäft',
+  { title: 'Reparatur & Wartung', body: 'Alles rund um US-Fahrzeuge - vom Oldtimer bis zum Neuwagen.', icon: 'Wrench' },
+  { title: 'Motor & Getriebe', body: 'V8-Motoren, Automatik, Schaltgetriebe - unser tägliches Brot.', icon: 'Cog' },
+  { title: 'Diagnose & Fehlersuche', body: 'Mit Snap-on Testern findest Du jeden Fehler.', icon: 'SearchCheck' },
+  { title: 'Team-Unterstützung', body: 'Du bist Teil eines eingespielten Teams im Tagesgeschäft.', icon: 'Users' },
 ];
 
 const benefits = [
   { title: 'Unbefristeter Arbeitsvertrag', body: 'Wir wollen Dich langfristig im Team haben.', icon: 'FileCheck' },
   { title: 'Vollzeit 40 Std / Woche', body: '5-Tage-Woche, Mo bis Fr.', icon: 'Clock' },
   { title: 'Übertarifliche Bezahlung', body: 'Faire Bezahlung über dem Tarif.', icon: 'Euro' },
-  { title: 'Snap-on Werkzeug & Tester', body: 'Bestes Werkzeug, professionelle Diagnose-Tester.', icon: 'Wrench' },
+  { title: 'Snap-on Werkzeug', body: 'Bestes Werkzeug, professionelle Diagnose-Tester.', icon: 'Wrench' },
   { title: 'Arbeitskleidung gestellt', body: 'Komplette Arbeitskleidung inklusive Pflege.', icon: 'Shield' },
   { title: 'Vermögenswirksame Leistungen', body: 'Wir zahlen mit in Deine Altersvorsorge ein.', icon: 'Banknote' },
   { title: 'Weihnachtsgratifikation', body: 'Jährliche Gratifikation als kleines Extra.', icon: 'Star' },
   { title: 'Pünktlicher Feierabend', body: 'Kein Dauer-Überstunden-Job. Familie geht vor.', icon: 'Check' },
-  { title: 'US-Cars, jeden Tag', body: 'Mustang, Camaro, Corvette, Charger - dein neuer Alltag.', icon: 'Car' },
+  { title: 'US-Cars, jeden Tag', body: 'Mustang, Camaro, Corvette, Charger - Dein neuer Alltag.', icon: 'Car' },
 ];
 ---
 
@@ -47,90 +46,121 @@ const benefits = [
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Jobs', href: '/jobs' }]}
   />
 
+  <!-- QUICK FACTS STRIP -->
   <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 text-center sm:text-left">
-        <div class="flex items-center gap-3 justify-center sm:justify-start">
-          <Icon name="Briefcase" size={18} strokeWidth={1.8} class="text-route" />
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="Briefcase" size={18} strokeWidth={1.8} />
+          </span>
           <div>
-            <p class="text-xs text-muted">Position</p>
-            <p class="font-medium text-onyx">KFZ-Mechaniker</p>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Position</p>
+            <p class="font-display text-onyx leading-tight mt-1">KFZ-Mechaniker</p>
           </div>
         </div>
-        <div class="flex items-center gap-3 justify-center sm:justify-start">
-          <Icon name="MapPin" size={18} strokeWidth={1.8} class="text-route" />
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="MapPin" size={18} strokeWidth={1.8} />
+          </span>
           <div>
-            <p class="text-xs text-muted">Standort</p>
-            <p class="font-medium text-onyx">Hamburg-Bahrenfeld</p>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Standort</p>
+            <p class="font-display text-onyx leading-tight mt-1">Hamburg-Bahrenfeld</p>
           </div>
         </div>
-        <div class="flex items-center gap-3 justify-center sm:justify-start">
-          <Icon name="Clock" size={18} strokeWidth={1.8} class="text-route" />
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="Clock" size={18} strokeWidth={1.8} />
+          </span>
           <div>
-            <p class="text-xs text-muted">Zeitmodell</p>
-            <p class="font-medium text-onyx">40 Std / 5-Tage-Woche</p>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Zeitmodell</p>
+            <p class="font-display text-onyx leading-tight mt-1">40 Std / 5-Tage-Woche</p>
           </div>
         </div>
-        <div class="flex items-center gap-3 justify-center sm:justify-start">
-          <Icon name="FileCheck" size={18} strokeWidth={1.8} class="text-route" />
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="FileCheck" size={18} strokeWidth={1.8} />
+          </span>
           <div>
-            <p class="text-xs text-muted">Vertrag</p>
-            <p class="font-medium text-onyx">Unbefristet</p>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Vertrag</p>
+            <p class="font-display text-onyx leading-tight mt-1">Unbefristet</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section-light section-padding">
-    <div class="container-r66">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-        <div class="lg:col-span-5 fade-in">
-          <div class="relative">
-            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
-              <img src="/images/team-header.jpg" alt="Route 66 Werkstatt Hamburg-Bahrenfeld" class="w-full h-full object-cover" loading="lazy" />
-            </div>
-            <div class="absolute -bottom-5 -right-5 max-w-[260px] rounded-lg p-5 hidden sm:block" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.18);">
-              <p class="text-onyx text-sm leading-snug italic mb-3">"Bei uns ist jeder Tag anders. Was zählt: ehrlich, sauber, mit V8 im Herzen."</p>
-              <p class="text-[0.66rem] uppercase tracking-widest text-route font-medium">Klaus Borrmann</p>
+  <!-- Klaus-Zitat-Banner -->
+  <section class="section-light py-20 relative overflow-hidden">
+    <div class="container-r66 relative">
+      <div class="max-w-4xl mx-auto fade-in">
+        <div class="rounded-2xl p-8 md:p-12 grid md:grid-cols-12 gap-8 items-center" style="background: linear-gradient(160deg, #FAF7F0 0%, #F5F0E5 100%); border: 1px solid #E2DBCD;">
+          <div class="md:col-span-3 flex justify-center">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-xl">
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
             </div>
           </div>
-        </div>
-
-        <div class="lg:col-span-7 fade-in stagger-1">
-          <p class="eyebrow">Anforderungen</p>
-          <h2 class="heading-lg mb-6">Das solltest Du mitbringen.</h2>
-          <ul class="space-y-3.5 mb-12">
-            {requirements.map((r) => (
-              <li class="flex items-start gap-3 group">
-                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
-                  <Icon name="Check" size={12} strokeWidth={2.5} />
-                </span>
-                <span class="text-onyx">{r}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p class="eyebrow">Deine Aufgaben</p>
-          <h2 class="heading-lg mb-6">Das erwartet Dich.</h2>
-          <ul class="space-y-3.5">
-            {tasks.map((t) => (
-              <li class="flex items-start gap-3 group">
-                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
-                  <Icon name="Wrench" size={11} strokeWidth={2.2} />
-                </span>
-                <span class="text-onyx">{t}</span>
-              </li>
-            ))}
-          </ul>
+          <div class="md:col-span-9 text-center md:text-left">
+            <Icon name="Quote" size={28} strokeWidth={1.4} class="text-route mb-3 mx-auto md:mx-0" />
+            <p class="font-display text-xl md:text-2xl text-onyx leading-snug italic mb-5">
+              "Bei uns ist jeder Tag anders. Was zählt: ehrlich, sauber, mit V8 im Herzen."
+            </p>
+            <p class="font-display text-onyx font-medium">Klaus Borrmann</p>
+            <p class="text-muted text-xs uppercase tracking-widest mt-1">Inhaber & KFZ-Meister - Hamburg seit 1989</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ANFORDERUNGEN als 4-Kachel-Grid -->
   <section class="section-white section-padding">
     <div class="container-r66">
-      <div class="max-w-2xl mb-16 fade-in">
+      <div class="max-w-2xl mb-14 fade-in">
+        <p class="eyebrow">Anforderungen</p>
+        <h2 class="heading-xl text-balance">Das solltest Du mitbringen.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {requirements.map((r, i) => (
+          <div class={`job-tile fade-in stagger-${i + 1}`}>
+            <span class="job-icon">
+              <Icon name={r.icon} size={20} strokeWidth={1.8} />
+            </span>
+            <h3 class="heading-md mt-5 mb-2 leading-tight">{r.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{r.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AUFGABEN als 4-Kachel-Grid mit Werkstatt-Bild Background hint -->
+  <section class="section-warm section-padding relative overflow-hidden">
+    <div class="container-r66 relative">
+      <div class="max-w-2xl mb-14 fade-in">
+        <p class="eyebrow">Deine Aufgaben</p>
+        <h2 class="heading-xl text-balance">Das erwartet Dich.</h2>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {tasks.map((t, i) => (
+          <div class={`job-tile fade-in stagger-${i + 1}`}>
+            <span class="job-icon">
+              <Icon name={t.icon} size={20} strokeWidth={1.8} />
+            </span>
+            <h3 class="heading-md mt-5 mb-2 leading-tight">{t.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{t.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS 3x3 Grid -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="max-w-2xl mb-14 fade-in">
         <p class="eyebrow">Was wir bieten</p>
         <h2 class="heading-xl text-balance">Mehr als nur Gehalt.</h2>
         <p class="mt-5 text-muted leading-relaxed text-lg">Neun Gründe, warum sich Werkstatt-Profis bei uns wohlfühlen.</p>
@@ -138,11 +168,11 @@ const benefits = [
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {benefits.map((b, i) => (
-          <div class={`card fade-in stagger-${(i % 3) + 1}`}>
-            <span class="w-12 h-12 rounded-lg bg-route/10 text-route inline-flex items-center justify-center mb-5">
+          <div class={`job-tile fade-in stagger-${(i % 3) + 1}`}>
+            <span class="job-icon">
               <Icon name={b.icon} size={20} strokeWidth={1.8} />
             </span>
-            <h3 class="heading-md mb-2 leading-tight">{b.title}</h3>
+            <h3 class="heading-md mt-5 mb-2 leading-tight">{b.title}</h3>
             <p class="text-muted text-sm leading-relaxed">{b.body}</p>
           </div>
         ))}
@@ -150,6 +180,7 @@ const benefits = [
     </div>
   </section>
 
+  <!-- Final CTA mit Klaus' Portrait -->
   <section class="section-dark section-padding relative overflow-hidden">
     <div class="absolute inset-0 z-0" aria-hidden="true">
       <img src="/images/klaus-borrmann.jpg" alt="" class="w-full h-full object-cover opacity-20 ken-burns" loading="lazy" />
@@ -185,3 +216,46 @@ const benefits = [
     </div>
   </section>
 </Layout>
+
+<style>
+  /* Job tile - same premium style as include-tile */
+  .job-tile {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    padding: 1.85rem;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .job-tile::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgb(185 28 28);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .job-tile:hover {
+    transform: translateY(-4px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.18);
+  }
+  .job-tile:hover::before { transform: scaleX(1); }
+  .job-tile:hover .job-icon { background: rgb(185 28 28); color: #fff; transform: rotate(-4deg); }
+
+  .job-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(185, 28, 28, 0.08);
+    color: rgb(185 28 28);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+</style>
