@@ -7,12 +7,12 @@ import CtaBand from '../components/CtaBand.astro';
 import { site, telLink, whatsappLink } from '../data/site';
 
 const steps = [
-  { num: '01', title: 'Wunschfahrzeug finden', body: 'Du suchst ein bestimmtes Modell? Wir finden es. Ob aus unseren Bestaenden oder als Direkt-Import aus den USA.', icon: 'Search' },
-  { num: '02', title: 'Beratung & Angebot', body: 'Klaus persoenlich oder das Team berechnet realistische Importkosten - Fahrzeug, Zoll, TUEV, Transport, Papiere.', icon: 'MessageSquare' },
-  { num: '03', title: 'Kauf in den USA', body: 'Wir uebernehmen Verhandlung, Kauf und logistische Abwicklung beim US-Haendler oder Privatverkauf.', icon: 'Handshake' },
+  { num: '01', title: 'Wunschfahrzeug finden', body: 'Du suchst ein bestimmtes Modell? Wir finden es. Ob aus unseren Beständen oder als Direkt-Import aus den USA.', icon: 'Search' },
+  { num: '02', title: 'Beratung & Angebot', body: 'Klaus persönlich oder das Team berechnet realistische Importkosten - Fahrzeug, Zoll, TÜV, Transport, Papiere.', icon: 'MessageSquare' },
+  { num: '03', title: 'Kauf in den USA', body: 'Wir übernehmen Verhandlung, Kauf und logistische Abwicklung beim US-Haendler oder Privatverkauf.', icon: 'Handshake' },
   { num: '04', title: 'Zollabfertigung', body: 'Komplette Zollabwicklung in Deutschland - inklusive aller Papiere und Steuerbescheinigungen.', icon: 'Ship' },
-  { num: '05', title: 'TUEV-Umruestung', body: 'TUEV-Abnahme nach Paragraf 21 StVZO. Unsere KFZ-Meister-Werkstatt erfuellt alle Anforderungen.', icon: 'ShieldCheck' },
-  { num: '06', title: 'Deutsche Papiere', body: 'Erstellung der deutschen Fahrzeugpapiere. Zulassung wenn gewuenscht direkt durch uns.', icon: 'FileCheck' },
+  { num: '05', title: 'TÜV-Umruestung', body: 'TÜV-Abnahme nach Paragraf 21 StVZO. Unsere KFZ-Meister-Werkstatt erfüllt alle Anforderungen.', icon: 'ShieldCheck' },
+  { num: '06', title: 'Deutsche Papiere', body: 'Erstellung der deutschen Fahrzeugpapiere. Zulassung wenn gewünscht direkt durch uns.', icon: 'FileCheck' },
 ];
 
 const expertise = [
@@ -27,13 +27,13 @@ const expertise = [
 
 <Layout
   title="US-Cars kaufen - Route 66 Hamburg | Klaus Borrmann Import"
-  description="US-Cars kaufen bei Route 66 Borrmann Motors Hamburg. Komplette Import-Abwicklung von Zoll bis TUEV. Klaus Borrmann - bekannt aus Cash fuer Chrom."
+  description="US-Cars kaufen bei Route 66 Borrmann Motors Hamburg. Komplette Import-Abwicklung von Zoll bis TÜV. Klaus Borrmann - bekannt aus Cash für Chrom."
   current="/us-cars-kaufen"
 >
   <PageHero
     eyebrow="US-Cars kaufen"
     title="Dein Traum auf vier Raedern"
-    lead="Wenn US-Cars auch 'Dein Ding' ist, Du US-Cars kaufen und Dir Deine Traeume verwirklichen willst, dann bist Du bei den Profis von Route 66 Borrmann Motors KG genau richtig."
+    lead="Wenn US-Cars auch 'Dein Ding' ist, Du US-Cars kaufen und Dir Deine Träume verwirklichen willst, dann bist Du bei den Profis von Route 66 Borrmann Motors KG genau richtig."
     image="/images/klaus-borrmann.jpg"
     cta={{ label: 'Aktuelle Fahrzeuge ansehen', href: site.external.autoscout24, icon: 'Car' }}
     secondaryCta={{ label: site.phoneDisplay, href: telLink, icon: 'Phone' }}
@@ -69,7 +69,7 @@ const expertise = [
       <SectionHeading
         eyebrow="So funktioniert's"
         title="In 6 Schritten zu Deinem US-Car"
-        lead="Wir uebernehmen die komplette Abwicklung fuer Dich - von der ersten Anfrage bis zur deutschen Zulassung."
+        lead="Wir übernehmen die komplette Abwicklung für Dich - von der ersten Anfrage bis zur deutschen Zulassung."
         align="center"
         light
       />
@@ -110,6 +110,6 @@ const expertise = [
 
   <CtaBand
     title="Du hast Dein Wunschfahrzeug gefunden?"
-    lead="Schau es Dir an, teste es! Frag auch gern nach unserem Abholservice. Klaus und sein Team sind fuer Dich da."
+    lead="Schau es Dir an, teste es! Frag auch gern nach unserem Abholservice. Klaus und sein Team sind für Dich da."
   />
 </Layout>

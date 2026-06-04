@@ -11,8 +11,8 @@ import { site, telLink, telRendsburgLink, mailLink, mailWorkshopLink, whatsappLi
 const contactTiles = [
   { title: 'WhatsApp', body: 'Schnelle Anfragen, Fotos, Voice-Memo - direkt aufs Handy.', cta: 'Chat starten', href: whatsappLink, icon: 'MessageCircle', external: true },
   { title: 'Telefon Hamburg', body: site.phoneDisplay + ' (Mo-Fr 9-15 Uhr telefonisch)', cta: 'Anrufen', href: telLink, icon: 'Phone' },
-  { title: 'Telefon Rendsburg', body: site.phoneRendsburgDisplay + ' (Bjoern direkt)', cta: 'Anrufen', href: telRendsburgLink, icon: 'Phone' },
-  { title: 'E-Mail allgemein', body: site.email + ' - fuer Anfragen aller Art.', cta: 'Mail schreiben', href: mailLink, icon: 'Mail' },
+  { title: 'Telefon Rendsburg', body: site.phoneRendsburgDisplay + ' (Björn direkt)', cta: 'Anrufen', href: telRendsburgLink, icon: 'Phone' },
+  { title: 'E-Mail allgemein', body: site.email + ' - für Anfragen aller Art.', cta: 'Mail schreiben', href: mailLink, icon: 'Mail' },
   { title: 'Werkstatt E-Mail', body: site.emailWorkshop + ' - direkt zu Fred und Team.', cta: 'Werkstatt anschreiben', href: mailWorkshopLink, icon: 'Wrench' },
   { title: 'Werkstatt vor Ort', body: site.address.street + ' - direkt vorbeikommen.', cta: 'Route planen', href: site.googleDirectionsUrl, icon: 'MapPin', external: true },
 ];
@@ -20,13 +20,13 @@ const contactTiles = [
 
 <Layout
   title="Kontakt - Route 66 Borrmann Motors KG Hamburg & Rendsburg"
-  description="Kontakt zu Route 66 Borrmann Motors KG. Hamburg-Bahrenfeld (Kieler Strasse 271) und Zweigstelle Rendsburg (Bjoern). Telefon, WhatsApp, E-Mail oder vor Ort."
+  description="Kontakt zu Route 66 Borrmann Motors KG. Hamburg-Bahrenfeld (Kieler Straße 271) und Zweigstelle Rendsburg (Björn). Telefon, WhatsApp, E-Mail oder vor Ort."
   current="/kontakt"
 >
   <PageHero
     eyebrow="Kontakt"
     title="Lass uns reden."
-    lead="Klaus, Michel, Fred in Hamburg. Bjoern in Rendsburg. Such Dir Deinen Weg aus - wir antworten schnell und ehrlich."
+    lead="Klaus, Michel, Fred in Hamburg. Björn in Rendsburg. Such Dir Deinen Weg aus - wir antworten schnell und ehrlich."
     image="/images/team-group.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Kontakt', href: '/kontakt' }]}
   />
@@ -87,7 +87,7 @@ const contactTiles = [
           phone={site.phoneRendsburgDisplay}
           phoneIntl={site.phoneRendsburgIntl}
           email={site.emailRendsburg}
-          hours={['Termine nach Absprache', 'Geleitet von Bjoern - V8 im Herzen', 'Eigene Webseite: www.route66-sh.de']}
+          hours={['Termine nach Absprache', 'Geleitet von Björn - V8 im Herzen', 'Eigene Webseite: www.route66-sh.de']}
         />
       </div>
     </div>

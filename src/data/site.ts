@@ -7,10 +7,10 @@ export const site = {
   name: 'Route 66 Borrmann Motors',
   shortName: 'Route 66 HH',
   legalName: 'Route 66 Borrmann Motors KG',
-  tagline: 'Dein Spezialist fuer US-Cars',
-  taglineFull: 'Dein Spezialist fuer US-Cars, Classic Cars, Oldtimer, Youngtimer und Neuwagen',
+  tagline: 'Dein Spezialist für US-Cars',
+  taglineFull: 'Dein Spezialist für US-Cars, Classic Cars, Oldtimer, Youngtimer und Neuwagen',
   description:
-    'Route 66 Borrmann Motors KG Hamburg - All American Cars, US-Car-Spezialist und KFZ-Meisterbetrieb, Import/Verkauf amerikanischer Oldtimer, Youngtimer inklusive Zollabfertigung und Neuwagen. Kieler Strasse 271, D-22525 Hamburg.',
+    'Route 66 Borrmann Motors KG Hamburg - All American Cars, US-Car-Spezialist und KFZ-Meisterbetrieb, Import/Verkauf amerikanischer Oldtimer, Youngtimer inklusive Zollabfertigung und Neuwagen. Kieler Straße 271, D-22525 Hamburg.',
   url: 'https://demo-route66-hh.pages.dev',
 
   // Hamburg headquarters
@@ -19,7 +19,7 @@ export const site = {
   phoneIntl: '+4940541095',
   phoneDigits: '4940541095',
 
-  // Rendsburg branch (Bjoern)
+  // Rendsburg branch (Björn)
   phoneRendsburg: '+49 172 5623198',
   phoneRendsburgDisplay: '+49 (172) 56 23 198',
   phoneRendsburgIntl: '+491725623198',
@@ -33,8 +33,8 @@ export const site = {
   whatsappMessage: 'Hallo Route 66 Team, ich habe eine Anfrage zu meinem US-Car bzw. Wunschfahrzeug.',
 
   address: {
-    street: 'Kieler Strasse 271',
-    streetDetail: 'Ecke Uwestrasse',
+    street: 'Kieler Straße 271',
+    streetDetail: 'Ecke Uwestraße',
     postal: '22525',
     city: 'Hamburg',
     region: 'Hamburg',
@@ -45,7 +45,7 @@ export const site = {
   },
 
   addressRendsburg: {
-    street: 'Lundener Strasse 12-14',
+    street: 'Lundener Straße 12-14',
     postal: '24768',
     city: 'Rendsburg',
     region: 'Schleswig-Holstein',
@@ -98,20 +98,20 @@ export const site = {
   external: {
     autoscout24: 'https://www.autoscout24.de/haendler/route-66-borrmann-motors-kg-hamburg',
     partsShop: 'https://www.route66-hh.shop',
-    cashFuerChrom: 'https://www.dmax.de/sendungen/cash-fuer-chrom',
+    cashFürChrom: 'https://www.dmax.de/sendungen/cash-für-chrom',
   },
 
   // Google Maps embed - address-query based
   googleMapsEmbed:
-    'https://www.google.com/maps?q=Kieler+Strasse+271,+22525+Hamburg,+Germany&z=15&output=embed',
+    'https://www.google.com/maps?q=Kieler+Straße+271,+22525+Hamburg,+Germany&z=15&output=embed',
   googleMapsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Kieler+Strasse+271+22525+Hamburg',
+    'https://www.google.com/maps/search/?api=1&query=Kieler+Straße+271+22525+Hamburg',
   googleDirectionsUrl:
-    'https://www.google.com/maps/dir/?api=1&destination=Kieler+Strasse+271+22525+Hamburg',
+    'https://www.google.com/maps/dir/?api=1&destination=Kieler+Straße+271+22525+Hamburg',
   googleMapsEmbedRendsburg:
-    'https://www.google.com/maps?q=Lundener+Strasse+12,+24768+Rendsburg,+Germany&z=15&output=embed',
+    'https://www.google.com/maps?q=Lundener+Straße+12,+24768+Rendsburg,+Germany&z=15&output=embed',
   googleMapsUrlRendsburg:
-    'https://www.google.com/maps/search/?api=1&query=Lundener+Strasse+12+24768+Rendsburg',
+    'https://www.google.com/maps/search/?api=1&query=Lundener+Straße+12+24768+Rendsburg',
 };
 
 // Link helpers
@@ -147,8 +147,8 @@ export const nav: NavItem[] = [
       { href: '/services/call-a-mechanic', label: 'Call a Mechanic' },
       { href: '/services/car-check', label: 'Car Check' },
       { href: '/services/car-design', label: 'Car Design' },
-      { href: '/services/call-for-parts', label: 'TUEV & Ersatzteile' },
-      { href: '/services/werkstattfuehrung', label: 'Private Werkstattfuehrung' },
+      { href: '/services/call-for-parts', label: 'TÜV & Ersatzteile' },
+      { href: '/services/werkstattführung', label: 'Private Werkstattführung' },
     ],
   },
   { href: '/team', label: 'Team' },
@@ -166,7 +166,7 @@ export const legalNav = [
 
 // Trust signals
 export const trustSignals = [
-  'Bekannt aus Cash fuer Chrom',
+  'Bekannt aus Cash für Chrom',
   'Official Shelby Service Partner',
   'KFZ-Meisterbetrieb',
   'EST. 1989',
@@ -181,6 +181,6 @@ export const fullServiceLeistungen = [
   'Reparatur US-Cars - Oldtimer, Youngtimer und Neuwagen',
   'Restaurierung US-Cars - Oldtimer',
   'Zulassungen',
-  'TUEV-Abnahmen',
+  'TÜV-Abnahmen',
   'Ersatzteile',
 ];

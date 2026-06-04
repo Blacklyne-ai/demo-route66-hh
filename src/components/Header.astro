@@ -8,28 +8,27 @@ const isActive = (item: typeof nav[number]) =>
   (item.children && item.href !== '/' && current.startsWith(item.href));
 ---
 
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50">
-  <div
-    id="nav-shell"
-    class="w-full transition-all duration-300"
-    style="background: rgba(250, 247, 240, 0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.04);"
-  >
-    <div class="container-r66 flex items-center justify-between gap-4 py-4 md:py-5">
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 px-3 md:px-6 pt-3 md:pt-5 transition-all duration-300">
+  <div class="container-r66 !px-0">
+    <div
+      id="nav-shell"
+      class="nav-pill flex items-center justify-between gap-4 pl-4 pr-3 md:pl-6 md:pr-3 py-2.5 md:py-3 transition-all duration-300"
+    >
       <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="Route 66 Borrmann Motors KG Hamburg">
-        <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors" width="180" height="180" class="h-11 md:h-12 w-auto" />
+        <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors" width="180" height="180" class="h-10 md:h-11 w-auto" />
         <span class="hidden md:flex flex-col leading-tight">
-          <span class="font-display text-base font-medium text-onyx leading-none">Route 66</span>
-          <span class="text-[0.68rem] text-muted leading-none mt-1 tracking-wide">Borrmann Motors Hamburg</span>
+          <span class="font-display text-[0.95rem] font-medium text-onyx leading-none">Route 66</span>
+          <span class="text-[0.66rem] text-muted leading-none mt-1 tracking-wide">Borrmann Motors Hamburg</span>
         </span>
       </a>
 
-      <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
+      <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
         {nav.map((item) =>
           item.children ? (
             <div class="nav-dd relative">
-              <a href={item.href} class={`nav-link-main inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
+              <a href={item.href} class={`nav-pill-item inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
                 {item.label}
-                <Icon name="ChevronDown" size={13} strokeWidth={2} class="nav-dd-chev" />
+                <Icon name="ChevronDown" size={11} strokeWidth={2} class="nav-dd-chev" />
               </a>
               <div class="nav-dd-panel" role="menu">
                 {item.children.map((c) => (
@@ -38,30 +37,30 @@ const isActive = (item: typeof nav[number]) =>
               </div>
             </div>
           ) : (
-            <a href={item.href} class={`nav-link-main ${isActive(item) ? 'active' : ''}`}>{item.label}</a>
+            <a href={item.href} class={`nav-pill-item ${isActive(item) ? 'active' : ''}`}>{item.label}</a>
           )
         )}
       </nav>
 
-      <div class="flex items-center gap-3">
-        <span id="live-status" class="hidden 2xl:inline-flex items-center gap-2 text-[0.78rem] text-muted whitespace-nowrap">
+      <div class="flex items-center gap-2">
+        <span id="live-status" class="hidden 2xl:inline-flex items-center gap-2 text-[0.74rem] text-muted whitespace-nowrap mr-1">
           <span id="live-dot" class="status-dot status-dot-closed"></span>
-          <span id="live-text">Pruefe Zeiten...</span>
+          <span id="live-text">Prüfe Zeiten...</span>
         </span>
 
-        <a href={telLink} class="btn btn-primary btn-sm hidden md:inline-flex" aria-label={`Anrufen ${site.phoneDisplay}`}>
+        <a href={telLink} class="btn btn-primary btn-sm hidden md:inline-flex !rounded-full !px-4" aria-label={`Anrufen ${site.phoneDisplay}`}>
           <Icon name="Phone" size={13} strokeWidth={2} />
           <span class="font-medium">{site.phoneDisplay}</span>
         </a>
 
-        <button id="menu-toggle" class="lg:hidden p-2 rounded transition" style="color: #111;" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mobile-menu">
+        <button id="menu-toggle" class="lg:hidden p-2.5 rounded-full transition" style="color: #111;" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
           <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
       </div>
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden lg:hidden mx-3 mt-2 rounded-lg overflow-hidden" style="background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.18);">
+  <div id="mobile-menu" class="hidden lg:hidden mx-3 mt-2 rounded-2xl overflow-hidden" style="background: rgba(255,255,255,0.96); backdrop-filter: blur(20px); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.18);">
     <nav class="flex flex-col p-4" aria-label="Mobile">
       {nav.map((item) => (
         <Fragment>
@@ -88,6 +87,32 @@ const isActive = (item: typeof nav[number]) =>
 </header>
 
 <style>
+  .nav-pill {
+    background: rgba(250, 247, 240, 0.72);
+    backdrop-filter: blur(18px) saturate(180%);
+    -webkit-backdrop-filter: blur(18px) saturate(180%);
+    border: 1px solid rgba(17, 17, 17, 0.06);
+    border-radius: 999px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03), 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+  }
+  #site-header.scrolled .nav-pill {
+    background: rgba(255, 254, 251, 0.92);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 20px 48px -12px rgba(0, 0, 0, 0.18);
+  }
+  #site-header.scrolled { padding-top: 0.5rem; }
+
+  .nav-pill-item {
+    position: relative;
+    color: rgba(17, 17, 17, 0.78);
+    font-weight: 500;
+    font-size: 0.88rem;
+    padding: 0.45rem 0.85rem;
+    border-radius: 999px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .nav-pill-item:hover { color: rgb(17, 17, 17); background: rgba(17, 17, 17, 0.04); }
+  .nav-pill-item.active { color: #B91C1C; background: rgba(185, 28, 28, 0.08); }
+
   .hamburger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 22px; height: 22px; }
   .hamburger span { display: block; width: 22px; height: 1.5px; background: #111; transition: transform 0.35s ease, opacity 0.25s ease; transform-origin: center; }
   .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -96,9 +121,10 @@ const isActive = (item: typeof nav[number]) =>
 
   .nav-dd-panel {
     position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(4px);
-    min-width: 240px; padding: 0.65rem; border-radius: 10px;
-    background: #fff; border: 1px solid rgba(0,0,0,0.06);
-    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.2);
+    min-width: 230px; padding: 0.5rem; border-radius: 16px;
+    background: rgba(255,255,255,0.96); border: 1px solid rgba(0,0,0,0.06);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.18);
     opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease;
     z-index: 60;
   }
@@ -107,7 +133,7 @@ const isActive = (item: typeof nav[number]) =>
   .nav-dd:focus-within .nav-dd-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   .nav-dd:hover .nav-dd-chev { transform: rotate(180deg); }
   .nav-dd-item {
-    display: block; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.92rem; font-weight: 400;
+    display: block; padding: 0.6rem 0.85rem; border-radius: 10px; font-size: 0.88rem; font-weight: 500;
     color: rgba(17,17,17,0.78); transition: background 0.2s ease, color 0.2s ease;
   }
   .nav-dd-item:hover { background: rgba(185,28,28,0.06); color: #B91C1C; }
@@ -119,7 +145,6 @@ const isActive = (item: typeof nav[number]) =>
   (function () {
     var toggle = document.getElementById('menu-toggle');
     var menu = document.getElementById('mobile-menu');
-    var shell = document.getElementById('nav-shell');
     var header = document.getElementById('site-header');
     var burger = toggle ? toggle.querySelector('.hamburger') : null;
 
@@ -130,7 +155,7 @@ const isActive = (item: typeof nav[number]) =>
       if (burger) burger.classList.toggle('open', open);
       if (toggle) {
         toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        toggle.setAttribute('aria-label', open ? 'Menue schliessen' : 'Menue oeffnen');
+        toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
       }
       document.body.style.overflow = open ? 'hidden' : '';
     }
@@ -151,10 +176,7 @@ const isActive = (item: typeof nav[number]) =>
       ticking = true;
       requestAnimationFrame(function () {
         var y = window.scrollY;
-        if (shell) {
-          if (y > 20) { shell.style.background = 'rgba(250, 247, 240, 0.98)'; shell.style.boxShadow = '0 4px 16px -8px rgba(0,0,0,0.10)'; }
-          else { shell.style.background = 'rgba(250, 247, 240, 0.92)'; shell.style.boxShadow = 'none'; }
-        }
+        if (header) header.classList.toggle('scrolled', y > 20);
         ticking = false;
       });
     });
@@ -172,11 +194,11 @@ const isActive = (item: typeof nav[number]) =>
         msg = 'Mo-Do 8-17 Uhr';
       } else if (day === 5) {
         if (mins < OPEN) msg = 'Heute ab 8:00 Uhr';
-        else if (mins < CLOSE_FR) { open = true; msg = 'Geoeffnet bis 15:00'; }
+        else if (mins < CLOSE_FR) { open = true; msg = 'Geöffnet bis 15:00'; }
         else msg = 'Mo-Do 8-17 Uhr';
       } else {
         if (mins < OPEN) msg = 'Heute ab 8:00 Uhr';
-        else if (mins < CLOSE_WK) { open = true; msg = 'Geoeffnet bis 17:00'; }
+        else if (mins < CLOSE_WK) { open = true; msg = 'Geöffnet bis 17:00'; }
         else msg = 'Morgen ab 8:00 Uhr';
       }
       text.textContent = msg;

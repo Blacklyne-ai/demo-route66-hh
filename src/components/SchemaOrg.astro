@@ -26,7 +26,7 @@ const business = {
     '@type': 'Person',
     name: 'Klaus-Peter Borrmann',
     jobTitle: 'Inhaber, KFZ-Meister',
-    description: 'Bekannt aus Cash fuer Chrom (DMAX). US-Car Spezialist seit 1989.',
+    description: 'Bekannt aus Cash für Chrom (DMAX). US-Car Spezialist seit 1989.',
   },
   address: {
     '@type': 'PostalAddress',
@@ -52,8 +52,8 @@ const business = {
   ],
   knowsAbout: [
     'US-Cars', 'Muscle Cars', 'Classic Cars', 'Oldtimer', 'Youngtimer',
-    'Shelby Service', 'Fahrzeugimport USA', 'TUEV-Abnahmen', 'Zollabfertigung',
-    'KFZ-Restaurierung', 'Cash fuer Chrom',
+    'Shelby Service', 'Fahrzeugimport USA', 'TÜV-Abnahmen', 'Zollabfertigung',
+    'KFZ-Restaurierung', 'Cash für Chrom',
   ],
   makesOffer: services.map((s) => ({
     '@type': 'Offer',
@@ -68,10 +68,10 @@ const klausSchema = {
   givenName: 'Klaus-Peter',
   familyName: 'Borrmann',
   jobTitle: 'Inhaber Route 66 Borrmann Motors KG',
-  description: 'Klaus Borrmann - KFZ-Meister, US-Car Importeur und TV-Persoenlichkeit (Cash fuer Chrom, DMAX). Gruender von Route 66 Borrmann Motors in Hamburg.',
+  description: 'Klaus Borrmann - KFZ-Meister, US-Car Importeur und TV-Persönlichkeit (Cash für Chrom, DMAX). Gründer von Route 66 Borrmann Motors in Hamburg.',
   worksFor: { '@id': site.url + '#business' },
   image: site.url + '/images/klaus-borrmann.jpg',
-  sameAs: [site.external.cashFuerChrom, site.social.instagram, site.social.facebook],
+  sameAs: [site.external.cashFürChrom, site.social.instagram, site.social.facebook],
 };
 ---
 <script type="application/ld+json" set:html={JSON.stringify(business)} />
