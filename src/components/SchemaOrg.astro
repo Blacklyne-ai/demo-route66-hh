@@ -1,0 +1,79 @@
+---
+import { site } from '../data/site';
+import { services } from '../data/services';
+
+interface Props { schema?: object | null; }
+const { schema = null } = Astro.props;
+
+const business = {
+  '@context': 'https://schema.org',
+  '@type': ['AutomotiveBusiness', 'AutoDealer', 'AutoRepair', 'LocalBusiness'],
+  '@id': site.url + '#business',
+  name: site.legalName,
+  alternateName: site.name,
+  description: site.description,
+  url: site.url,
+  telephone: site.phoneIntl,
+  email: site.email,
+  image: site.url + '/images/klaus-borrmann.jpg',
+  logo: site.url + '/images/route66-logo.png',
+  priceRange: 'EUR EUR EUR',
+  currenciesAccepted: 'EUR',
+  paymentAccepted: ['Cash', 'Bank Transfer', 'EC Card'],
+  slogan: site.taglineFull,
+  foundingDate: '1989',
+  founder: {
+    '@type': 'Person',
+    name: 'Klaus-Peter Borrmann',
+    jobTitle: 'Inhaber, KFZ-Meister',
+    description: 'Bekannt aus Cash fuer Chrom (DMAX). US-Car Spezialist seit 1989.',
+  },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    postalCode: site.address.postal,
+    addressCountry: site.address.countryCode,
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: site.address.lat, longitude: site.address.lng },
+  hasMap: site.googleMapsUrl,
+  sameAs: [site.social.instagram, site.social.facebook, site.social.youtube, site.external.autoscout24],
+  areaServed: [
+    { '@type': 'Place', name: 'Hamburg' },
+    { '@type': 'Place', name: 'Bahrenfeld' },
+    { '@type': 'Place', name: 'Schleswig-Holstein' },
+    { '@type': 'Place', name: 'Rendsburg' },
+    { '@type': 'Place', name: 'Deutschland' },
+  ],
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday'], opens: '08:00', closes: '17:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Friday'], opens: '08:00', closes: '15:00' },
+  ],
+  knowsAbout: [
+    'US-Cars', 'Muscle Cars', 'Classic Cars', 'Oldtimer', 'Youngtimer',
+    'Shelby Service', 'Fahrzeugimport USA', 'TUEV-Abnahmen', 'Zollabfertigung',
+    'KFZ-Restaurierung', 'Cash fuer Chrom',
+  ],
+  makesOffer: services.map((s) => ({
+    '@type': 'Offer',
+    itemOffered: { '@type': 'Service', name: s.title, description: s.tagline },
+  })),
+};
+
+const klausSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Klaus Borrmann',
+  givenName: 'Klaus-Peter',
+  familyName: 'Borrmann',
+  jobTitle: 'Inhaber Route 66 Borrmann Motors KG',
+  description: 'Klaus Borrmann - KFZ-Meister, US-Car Importeur und TV-Persoenlichkeit (Cash fuer Chrom, DMAX). Gruender von Route 66 Borrmann Motors in Hamburg.',
+  worksFor: { '@id': site.url + '#business' },
+  image: site.url + '/images/klaus-borrmann.jpg',
+  sameAs: [site.external.cashFuerChrom, site.social.instagram, site.social.facebook],
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(business)} />
+<script type="application/ld+json" set:html={JSON.stringify(klausSchema)} />
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

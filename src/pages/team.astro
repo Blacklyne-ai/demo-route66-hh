@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import TeamCard from '../components/TeamCard.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { team } from '../data/team';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Team - Klaus, Michel, Fred & Bjoern | Route 66 Hamburg"
+  description="Das Team hinter Route 66 Borrmann Motors KG Hamburg - Klaus Borrmann (Cash fuer Chrom), Michel Schmidt (40 Jahre Ersatzteile), Fred Fiedler (KFZ-Meister), Bjoern (Rendsburg)."
+  current="/team"
+>
+  <PageHero
+    eyebrow="Unser Team"
+    title="Die Gesichter hinter Route 66"
+    lead="Vier Charaktere. Ueber 110 Jahre kombinierte Erfahrung an US-Cars. Klaus, Michel und Fred in Hamburg, Bjoern in Rendsburg - alle mit Diesel im Blut und V8 im Herzen."
+    image="/images/team-group.jpg"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Team', href: '/team' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {team.map((m, i) => (
+          <div class={`fade-in stagger-${i + 1}`}>
+            <TeamCard member={m} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KLAUS STORY -->
+  <section class="section-anthracite py-20 md:py-28">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-5 fade-in">
+          <div class="rounded-lg overflow-hidden border border-white/10">
+            <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann Portrait" class="w-full h-auto" loading="lazy" />
+          </div>
+        </div>
+        <div class="lg:col-span-7 fade-in stagger-1">
+          <p class="eyebrow eyebrow-light mb-5">Klaus Borrmann Story</p>
+          <h2 class="heading-xl text-white text-balance mb-6">Vom V8-Fan zum US-Car-Importeur</h2>
+          <div class="space-y-4 text-white/80 text-pretty leading-relaxed">
+            <p>
+              Seit 1989 ist Klaus Borrmann das Gesicht der Hamburger US-Car-Szene. Was als Werkstatt fuer amerikanische Klassiker begann, ist heute eine Institution: Importeur, Tuner, Service-Partner - und Official Shelby Service Partner.
+            </p>
+            <p>
+              Mit "Cash fuer Chrom" auf DMAX wurde Klaus deutschlandweit bekannt. Seine Leidenschaft fuer den V8, sein Auge fuer den richtigen Schrotthaufen mit Potenzial - das hat ihn zur TV-Persoenlichkeit gemacht. Aber wer ihn kennt, weiss: Klaus bleibt Klaus. KFZ-Meister durch und durch.
+            </p>
+            <p>
+              Die Werkstatt in Hamburg-Bahrenfeld ist Werkstatt geblieben. Hier wird geschraubt, geschwitzt, gefluchtt und gefeiert. Klaus, Michel, Fred und Bjoern leben das jeden Tag.
+            </p>
+          </div>
+          <a href={site.external.cashFuerChrom} target="_blank" rel="noopener" class="arrow-link arrow-link-light mt-8">
+            Cash fuer Chrom auf DMAX ansehen
+            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Lerne uns persoenlich kennen"
+    lead="Schau in der Werkstatt vorbei, ruf Klaus an, schreib Michel eine Mail oder buche eine Private Werkstattfuehrung - wir freuen uns auf Dich."
+  />
+</Layout>

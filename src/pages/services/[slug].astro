@@ -1,0 +1,90 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Icon from '../../components/Icon.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services } from '../../data/services';
+import { telLink, whatsappLink, site } from '../../data/site';
+
+export async function getStaticPaths() {
+  return services.map((s) => ({ params: { slug: s.slug }, props: { service: s } }));
+}
+
+const { service } = Astro.props;
+---
+
+<Layout
+  title={`${service.title} - Route 66 Hamburg | Klaus Borrmann`}
+  description={service.tagline}
+  current={`/services/${service.slug}`}
+>
+  <PageHero
+    eyebrow={service.eyebrow}
+    title={service.title}
+    lead={service.tagline}
+    image={service.image}
+    cta={{ label: service.cta, href: telLink, icon: 'Phone' }}
+    secondaryCta={{ label: 'WhatsApp', href: whatsappLink, icon: 'MessageCircle' }}
+    breadcrumbs={[
+      { label: 'Startseite', href: '/' },
+      { label: 'Services', href: '/services' },
+      { label: service.title, href: `/services/${service.slug}` },
+    ]}
+  />
+
+  <!-- LEAD + PRICE -->
+  <section class="section-cream py-20">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-7 fade-in">
+          <p class="text-xl text-onyx leading-relaxed text-pretty mb-6">{service.lead}</p>
+        </div>
+        <div class="lg:col-span-5 fade-in stagger-1">
+          {service.price && (
+            <div class="card mb-4">
+              <p class="eyebrow mb-3">Preis</p>
+              <p class="font-display text-3xl font-bold text-onyx mb-2">{service.price}</p>
+              <p class="text-muted text-sm">Inkl. MwSt. - faires Pauschal-Modell.</p>
+            </div>
+          )}
+          <div class="card-cream">
+            <p class="eyebrow mb-3">Inklusive</p>
+            <ul class="space-y-2">
+              {service.includes.map((inc) => (
+                <li class="flex items-start gap-2 text-sm">
+                  <Icon name="Check" size={14} strokeWidth={2.6} class="text-route mt-1 flex-shrink-0" />
+                  <span class="text-onyx">{inc}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section-white py-20 md:py-28">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="So funktioniert's"
+        title="In 4 Schritten zum Ergebnis"
+        align="center"
+      />
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {service.features.map((f, i) => (
+          <div class={`card-feature fade-in stagger-${i + 1}`}>
+            <span class="w-10 h-10 rounded-md bg-onyx text-route inline-flex items-center justify-center mb-4">
+              <Icon name={f.icon} size={18} strokeWidth={2} />
+            </span>
+            <h3 class="font-display text-base font-bold uppercase tracking-wider text-onyx mb-2">{f.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{f.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

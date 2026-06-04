@@ -1,0 +1,20 @@
+---
+import Icon from './Icon.astro';
+import { trustSignals } from '../data/site';
+
+interface Props {
+  light?: boolean;
+}
+const { light = false } = Astro.props;
+---
+<div class={`flex flex-wrap items-center justify-center gap-x-6 gap-y-3 ${light ? 'text-white/75' : 'text-muted'}`}>
+  {trustSignals.map((s, i) => (
+    <Fragment>
+      <span class="inline-flex items-center gap-2 text-xs md:text-sm font-display font-semibold uppercase tracking-wider whitespace-nowrap">
+        <Icon name="Check" size={14} strokeWidth={2.6} class={light ? 'text-route' : 'text-route'} />
+        {s}
+      </span>
+      {i < trustSignals.length - 1 && <span class={`hidden md:inline w-1 h-1 rounded-full ${light ? 'bg-white/30' : 'bg-onyx/20'}`}></span>}
+    </Fragment>
+  ))}
+</div>

@@ -1,0 +1,19 @@
+---
+import { telLink, mailWorkshopLink, whatsappLink, site } from '../data/site';
+import Icon from './Icon.astro';
+---
+<div class="floating-mobile fixed bottom-3 left-0 right-0 z-40 px-3 gap-2 pointer-events-none">
+  <a href={telLink} class="btn btn-dark pointer-events-auto flex-1 !px-2 !gap-1.5" style="padding-top:0.8rem;padding-bottom:0.8rem;" aria-label={`Anrufen ${site.phoneDisplay}`}>
+    <Icon name="Phone" size={15} strokeWidth={2.3} />
+    <span class="flex flex-col items-start leading-none">
+      <span class="text-[0.58rem] uppercase tracking-wider opacity-70">Hamburg</span>
+      <span class="text-[0.74rem] font-semibold tracking-wide">{site.phoneDisplay}</span>
+    </span>
+  </a>
+  <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp pointer-events-auto !px-3.5" style="padding-top:0.8rem;padding-bottom:0.8rem;" aria-label="WhatsApp">
+    <Icon name="MessageCircle" size={19} strokeWidth={2.2} />
+  </a>
+  <a href={mailWorkshopLink} class="btn btn-primary pointer-events-auto !px-3.5" style="padding-top:0.8rem;padding-bottom:0.8rem;" aria-label="Werkstatt-Email">
+    <Icon name="Mail" size={19} strokeWidth={2.2} />
+  </a>
+</div>

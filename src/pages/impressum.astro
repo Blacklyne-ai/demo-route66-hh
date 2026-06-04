@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="Impressum - Route 66 Borrmann Motors KG Hamburg"
+  description="Impressum Route 66 Borrmann Motors KG - Klaus-Peter Borrmann, HRA 84233, USt-IdNr DE118039307, Kieler Strasse 271, Hamburg."
+  current="/impressum"
+  noindex
+>
+  <PageHero
+    eyebrow="Pflichtangaben"
+    title="Impressum"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Impressum', href: '/impressum' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-narrow">
+      <article class="legal-prose">
+        <h2>Angaben gemaess Paragraf 5 TMG</h2>
+        <p>
+          <strong>{site.legalName}</strong><br />
+          KFZ-Meisterbetrieb<br />
+          {site.address.street}, {site.address.streetDetail}<br />
+          {site.address.postal} {site.address.city}<br />
+          {site.address.country}
+        </p>
+
+        <h2>Vertreten durch</h2>
+        <p>
+          <strong>Persoenlich haftender Gesellschafter:</strong><br />
+          {site.legal.gesellschafter}
+        </p>
+
+        <h2>Kontakt</h2>
+        <p>
+          Telefon: <a href={`tel:${site.phoneIntl}`}>{site.phoneDisplay}</a><br />
+          E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          Werkstatt: <a href={`mailto:${site.emailWorkshop}`}>{site.emailWorkshop}</a>
+        </p>
+
+        <h2>Registereintrag</h2>
+        <p>
+          <strong>Handelsregister:</strong> {site.legal.hra}<br />
+          <strong>Registergericht:</strong> {site.legal.gerichtsstand}
+        </p>
+
+        <h2>Umsatzsteuer-ID</h2>
+        <p>
+          Umsatzsteuer-Identifikationsnummer gemaess Paragraf 27a Umsatzsteuergesetz:<br />
+          <strong>{site.legal.ustIdNr}</strong>
+        </p>
+
+        <h2>Standort Rendsburg</h2>
+        <p>
+          <strong>Zweigstelle Rendsburg</strong><br />
+          {site.addressRendsburg.street}<br />
+          {site.addressRendsburg.postal} {site.addressRendsburg.city}<br />
+          Telefon: <a href={`tel:${site.phoneRendsburgIntl}`}>{site.phoneRendsburgDisplay}</a><br />
+          E-Mail: <a href={`mailto:${site.emailRendsburg}`}>{site.emailRendsburg}</a><br />
+          Web: <a href={site.addressRendsburg.web} target="_blank" rel="noopener">{site.addressRendsburg.web}</a>
+        </p>
+
+        <h2>Berufsbezeichnung und berufsrechtliche Regelungen</h2>
+        <p>
+          <strong>Berufsbezeichnung:</strong> KFZ-Meisterbetrieb<br />
+          <strong>Verliehen in:</strong> Bundesrepublik Deutschland<br />
+          Es gelten die Bestimmungen der Handwerksordnung (HwO) sowie die Berufs- und Gebuehrenordnung des KFZ-Handwerks. Diese koennen bei der Handwerkskammer Hamburg eingesehen werden.
+        </p>
+
+        <h2>Streitschlichtung</h2>
+        <p>
+          Die Europaeische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>. Unsere E-Mail-Adresse findest Du oben im Impressum.
+        </p>
+        <p>
+          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+        </p>
+
+        <h2>Haftung fuer Inhalte</h2>
+        <p>
+          Als Diensteanbieter sind wir gemaess Paragraf 7 Abs.1 TMG fuer eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach Paragrafen 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, uebermittelte oder gespeicherte fremde Informationen zu ueberwachen oder nach Umstaenden zu forschen, die auf eine rechtswidrige Taetigkeit hinweisen.
+        </p>
+
+        <h2>Haftung fuer Links</h2>
+        <p>
+          Unser Angebot enthaelt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb koennen wir fuer diese fremden Inhalte auch keine Gewaehr uebernehmen. Fuer die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+        </p>
+
+        <h2>Urheberrecht</h2>
+        <p>
+          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Logos, Bilder und Texte sind Eigentum von Route 66 Borrmann Motors KG. Die Vervielfaeltigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechtes beduerfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>

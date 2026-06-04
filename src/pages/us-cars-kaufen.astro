@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, telLink, whatsappLink } from '../data/site';
+
+const steps = [
+  { num: '01', title: 'Wunschfahrzeug finden', body: 'Du suchst ein bestimmtes Modell? Wir finden es. Ob aus unseren Bestaenden oder als Direkt-Import aus den USA.', icon: 'Search' },
+  { num: '02', title: 'Beratung & Angebot', body: 'Klaus persoenlich oder das Team berechnet realistische Importkosten - Fahrzeug, Zoll, TUEV, Transport, Papiere.', icon: 'MessageSquare' },
+  { num: '03', title: 'Kauf in den USA', body: 'Wir uebernehmen Verhandlung, Kauf und logistische Abwicklung beim US-Haendler oder Privatverkauf.', icon: 'Handshake' },
+  { num: '04', title: 'Zollabfertigung', body: 'Komplette Zollabwicklung in Deutschland - inklusive aller Papiere und Steuerbescheinigungen.', icon: 'Ship' },
+  { num: '05', title: 'TUEV-Umruestung', body: 'TUEV-Abnahme nach Paragraf 21 StVZO. Unsere KFZ-Meister-Werkstatt erfuellt alle Anforderungen.', icon: 'ShieldCheck' },
+  { num: '06', title: 'Deutsche Papiere', body: 'Erstellung der deutschen Fahrzeugpapiere. Zulassung wenn gewuenscht direkt durch uns.', icon: 'FileCheck' },
+];
+
+const expertise = [
+  { title: 'US-Cars Oldtimer', body: 'Klassiker aus den 50ern, 60ern, 70ern - vom V8 Camaro bis zum Mustang.', icon: 'Car' },
+  { title: 'Muscle Cars', body: 'Charger, Challenger, Corvette - die ganze Welt der amerikanischen Muskelkraft.', icon: 'Flag' },
+  { title: 'Youngtimer', body: 'US-Fahrzeuge der 80er bis 2000er - bezahlbarer Einstieg in die US-Welt.', icon: 'Sparkles' },
+  { title: 'Neuwagen-Import', body: 'Aktuelle US-Modelle direkt aus den Staaten - inklusive Sondermodelle.', icon: 'Award' },
+  { title: 'Shelby Service Partner', body: 'Official Shelby Service Partner Deutschland - Original-Teile und Werks-Knowhow.', icon: 'Trophy' },
+  { title: 'Restaurierung', body: 'Komplette Restaurierungen bis zum Concours-Niveau. Eigene Werkstatt.', icon: 'Wrench' },
+];
+---
+
+<Layout
+  title="US-Cars kaufen - Route 66 Hamburg | Klaus Borrmann Import"
+  description="US-Cars kaufen bei Route 66 Borrmann Motors Hamburg. Komplette Import-Abwicklung von Zoll bis TUEV. Klaus Borrmann - bekannt aus Cash fuer Chrom."
+  current="/us-cars-kaufen"
+>
+  <PageHero
+    eyebrow="US-Cars kaufen"
+    title="Dein Traum auf vier Raedern"
+    lead="Wenn US-Cars auch 'Dein Ding' ist, Du US-Cars kaufen und Dir Deine Traeume verwirklichen willst, dann bist Du bei den Profis von Route 66 Borrmann Motors KG genau richtig."
+    image="/images/klaus-borrmann.jpg"
+    cta={{ label: 'Aktuelle Fahrzeuge ansehen', href: site.external.autoscout24, icon: 'Car' }}
+    secondaryCta={{ label: site.phoneDisplay, href: telLink, icon: 'Phone' }}
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'US-Cars kaufen', href: '/us-cars-kaufen' }]}
+  />
+
+  <!-- IMPORT EXPERTISE -->
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="Unsere Expertise"
+        title="Welche US-Cars wir importieren"
+        lead="Vom Oldtimer-Klassiker bis zum aktuellen Neuwagen - wir kennen den US-Markt aus dem ff."
+        align="center"
+      />
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {expertise.map((e, i) => (
+          <div class={`card-feature fade-in stagger-${(i % 4) + 1}`}>
+            <span class="w-12 h-12 rounded-md bg-route text-white inline-flex items-center justify-center mb-4">
+              <Icon name={e.icon} size={22} strokeWidth={2} />
+            </span>
+            <h3 class="heading-md mb-3">{e.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{e.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- IMPORT PROCESS -->
+  <section class="section-anthracite py-20 md:py-28">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="So funktioniert's"
+        title="In 6 Schritten zu Deinem US-Car"
+        lead="Wir uebernehmen die komplette Abwicklung fuer Dich - von der ersten Anfrage bis zur deutschen Zulassung."
+        align="center"
+        light
+      />
+      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {steps.map((s, i) => (
+          <div class={`card-dark fade-in stagger-${(i % 3) + 1}`}>
+            <div class="flex items-start gap-4 mb-4">
+              <span class="font-display text-3xl font-bold text-route leading-none">{s.num}</span>
+              <span class="tile-icon">
+                <Icon name={s.icon} size={20} strokeWidth={2} />
+              </span>
+            </div>
+            <h3 class="font-display text-lg font-bold uppercase tracking-wide text-white mb-2">{s.title}</h3>
+            <p class="text-white/65 text-sm leading-relaxed">{s.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTOSCOUT24 CTA -->
+  <section class="section-cream-warm py-20">
+    <div class="container-r66">
+      <div class="rounded-lg p-10 md:p-14 text-center" style="background: linear-gradient(180deg, #FAFAF7 0%, #F5F1E8 100%); border: 1px solid #E5DDD0;">
+        <p class="eyebrow eyebrow-center mb-5">Cars for Sale</p>
+        <h2 class="heading-xl text-balance mb-4 max-w-3xl mx-auto">Unsere aktuellen Fahrzeuge auf AutoScout24</h2>
+        <p class="text-muted leading-relaxed max-w-2xl mx-auto mb-8">
+          Den vollstaendigen Bestand pflegen wir auf AutoScout24 - mit Bildern, Spec-Sheets und Preisen. Schau dort rein und finde Dein Wunschfahrzeug.
+        </p>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          <Icon name="Car" size={16} strokeWidth={2.2} />
+          Aktuelle Fahrzeuge bei AutoScout24
+          <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Du hast Dein Wunschfahrzeug gefunden?"
+    lead="Schau es Dir an, teste es! Frag auch gern nach unserem Abholservice. Klaus und sein Team sind fuer Dich da."
+  />
+</Layout>

@@ -1,0 +1,57 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  image?: string;
+  imageAlt?: string;
+  cta?: { label: string; href: string; icon?: string };
+  secondaryCta?: { label: string; href: string; icon?: string };
+  breadcrumbs?: { label: string; href: string }[];
+}
+const { eyebrow, title, lead, image, imageAlt = '', cta, secondaryCta, breadcrumbs = [] } = Astro.props;
+---
+<section class="relative section-dark pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+  {image && (
+    <div class="absolute inset-0 -z-0">
+      <img src={image} alt={imageAlt} class="w-full h-full object-cover opacity-40" loading="eager" />
+      <div class="absolute inset-0 hero-overlay"></div>
+    </div>
+  )}
+  <div class="container-r66 relative z-10">
+    {breadcrumbs.length > 0 && (
+      <nav class="mb-6 flex items-center gap-2 text-xs text-white/60 font-display uppercase tracking-wider" aria-label="Breadcrumb">
+        {breadcrumbs.map((b, i) => (
+          <Fragment>
+            <a href={b.href} class="hover:text-route transition">{b.label}</a>
+            {i < breadcrumbs.length - 1 && <Icon name="ChevronRight" size={11} strokeWidth={2.2} />}
+          </Fragment>
+        ))}
+      </nav>
+    )}
+    <div class="max-w-3xl">
+      {eyebrow && <p class="eyebrow eyebrow-light mb-5">{eyebrow}</p>}
+      <h1 class="heading-display text-white text-balance hero-text-shadow">{title}</h1>
+      {lead && <p class="mt-6 text-lg md:text-xl text-white/85 leading-relaxed max-w-2xl text-pretty">{lead}</p>}
+      {(cta || secondaryCta) && (
+        <div class="mt-8 flex flex-wrap gap-3">
+          {cta && (
+            <a href={cta.href} class="btn btn-primary btn-lg">
+              {cta.icon && <Icon name={cta.icon} size={16} strokeWidth={2.2} />}
+              {cta.label}
+              <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
+            </a>
+          )}
+          {secondaryCta && (
+            <a href={secondaryCta.href} class="btn btn-outline-light btn-lg">
+              {secondaryCta.icon && <Icon name={secondaryCta.icon} size={16} strokeWidth={2.2} />}
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>

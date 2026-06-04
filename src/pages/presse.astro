@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site } from '../data/site';
+
+const pressItems = [
+  {
+    type: 'TV',
+    title: 'Cash fuer Chrom',
+    publisher: 'DMAX',
+    description: 'Klaus Borrmann ist in der DMAX-Sendung "Cash fuer Chrom" zu sehen - die Show, die Schrottplaetzen ihren wahren Wert gibt. Klaus hat zahlreiche Auftritte und ist eines der bekanntesten Gesichter der Sendung.',
+    link: site.external.cashFuerChrom,
+    linkText: 'Cash fuer Chrom auf DMAX',
+    icon: 'Tv',
+  },
+  {
+    type: 'Print',
+    title: 'CHROM & FLAMMEN',
+    publisher: 'Dezember-Ausgabe',
+    description: 'Mehrseitiges Feature ueber Route 66 als Institution der Hamburger US-Car-Szene. Frank Mundus eroeffnet: "Im Prinzip ist alles wie vorher, aber irgendwie auch ganz anders."',
+    icon: 'Newspaper',
+  },
+  {
+    type: 'Print',
+    title: 'Playboy "Mein Schlitten & Ich"',
+    publisher: 'Januar 2020',
+    description: 'Klaus Borrmann im Playboy-Interview ueber seine Leidenschaft fuer Cars, insbesondere seine 499 PS Corvette ZHZ.',
+    icon: 'Newspaper',
+  },
+  {
+    type: 'Digital',
+    title: 'Liqui Moly Car-Care',
+    publisher: 'Brand-Kollaboration',
+    description: 'Klaus arbeitet mit Liqui Moly an automotiven Pflege-Inhalten - die richtige Wahl von Oelen und Pflegeprodukten ist auch fuer US-Car-Fans Pflicht.',
+    icon: 'Trophy',
+  },
+];
+---
+
+<Layout
+  title="Presse - Route 66 in Medien | Klaus Borrmann Cash fuer Chrom"
+  description="Route 66 Borrmann Motors in den Medien - Cash fuer Chrom (DMAX), CHROM & FLAMMEN, Playboy, Liqui Moly. Klaus Borrmann TV und Print."
+  current="/presse"
+>
+  <PageHero
+    eyebrow="Presse"
+    title="Route 66 in den Medien"
+    lead="Cash fuer Chrom auf DMAX, CHROM & FLAMMEN Print, Playboy-Interview - Klaus Borrmann und Route 66 sind seit Jahren Stammgaeste in der US-Car-Berichterstattung."
+    image="/images/klaus-borrmann.jpg"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Presse', href: '/presse' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <div class="grid md:grid-cols-2 gap-5">
+        {pressItems.map((p, i) => (
+          <article class={`card-feature fade-in stagger-${(i % 3) + 1}`}>
+            <div class="flex items-start gap-4 mb-4">
+              <span class="w-12 h-12 rounded-md bg-route text-white inline-flex items-center justify-center flex-shrink-0">
+                <Icon name={p.icon} size={20} strokeWidth={2} />
+              </span>
+              <div class="flex-1">
+                <span class="inline-block px-2 py-0.5 rounded text-[0.65rem] font-display font-bold uppercase tracking-wider bg-cream-warm border border-line text-onyx mb-2">{p.type}</span>
+                <h3 class="heading-md mb-1">{p.title}</h3>
+                <p class="text-xs text-muted-light uppercase tracking-wider font-semibold">{p.publisher}</p>
+              </div>
+            </div>
+            <p class="text-muted text-sm leading-relaxed mb-4">{p.description}</p>
+            {p.link && (
+              <a href={p.link} target="_blank" rel="noopener" class="arrow-link inline-flex">
+                {p.linkText} <Icon name="ExternalLink" size={12} strokeWidth={2.2} />
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    title="Presse-Anfrage?"
+    lead="Du arbeitest fuer ein Magazin, Sender oder Online-Portal und moechtest mit Klaus sprechen? Ruf direkt durch oder schreib uns eine E-Mail."
+  />
+</Layout>

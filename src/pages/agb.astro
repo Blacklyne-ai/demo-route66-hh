@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import { site } from '../data/site';
+---
+
+<Layout
+  title="AGB - Route 66 Borrmann Motors KG Hamburg"
+  description="Allgemeine Geschaeftsbedingungen Route 66 Borrmann Motors KG Hamburg - Werkstatt, Beratung, Importe."
+  current="/agb"
+  noindex
+>
+  <PageHero
+    eyebrow="Allgemeine Geschaeftsbedingungen"
+    title="AGB"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'AGB', href: '/agb' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-narrow">
+      <article class="legal-prose">
+        <h2>1. Geltungsbereich</h2>
+        <p>
+          Diese AGB gelten fuer alle Vertraege zwischen {site.legalName} (im Folgenden "Route 66") und ihren Kunden ueber Werkstattleistungen, Beratungs-Services (Call a Mechanic, Car Check, Call for Parts), Fahrzeug-Imports und Werkstattfuehrungen.
+        </p>
+
+        <h2>2. Vertragsschluss</h2>
+        <p>
+          Vertraege kommen durch ausdrueckliche Auftragserteilung (telefonisch, schriftlich, persoenlich) oder durch Buchung eines Online-Service-Slots zustande. Online-Buchungen werden per E-Mail bestaetigt.
+        </p>
+
+        <h2>3. Service-Preise</h2>
+        <p>
+          Aktuelle Pauschal-Preise unserer Beratungs-Services:
+        </p>
+        <ul>
+          <li><strong>Call a Mechanic:</strong> 175 EUR inkl. MwSt. pro angefangene 45-Minuten-Einheit</li>
+          <li><strong>Car Check (EU-Fahrzeuge):</strong> 275 EUR pauschal inkl. MwSt. bis max. 1,5 Stunden; Mehraufwand 165 EUR pro angefangene Stunde</li>
+          <li><strong>Call for Parts / TUEV-Recherche:</strong> 175 EUR inkl. MwSt. pro Anfrage</li>
+          <li><strong>Private Werkstattfuehrung:</strong> 300 EUR pro Fuehrung inkl. MwSt., Kaffee und Wasser; max. 3-4 Personen, ca. 45 Minuten</li>
+        </ul>
+        <p>
+          Servicegebuehren gelten nicht fuer Bestandskunden. Werkstattleistungen werden nach Auftrag und Aufwand individuell kalkuliert.
+        </p>
+
+        <h2>4. Zahlung</h2>
+        <p>
+          Beratungs-Services sind vorab online ueber "pay now" zu zahlen. Werkstattleistungen werden nach Abnahme in Rechnung gestellt. Akzeptierte Zahlungsmethoden: Barzahlung, EC-Karte, Banktransfer.
+        </p>
+
+        <h2>5. Termine und Rueckruf</h2>
+        <p>
+          Telefon-Termine werden innerhalb des gebuchten Zeitfensters durchgefuehrt. Wir bemuehen uns um die Einhaltung der vereinbarten Zeiten. Bei Verzoegerungen informieren wir umgehend per Telefon oder E-Mail.
+        </p>
+
+        <h2>6. Stornierung</h2>
+        <p>
+          Kostenlose Stornierung bis 24 Stunden vor dem Termin. Bei spaeterer Stornierung oder Nichterscheinen kann die volle Servicegebuehr berechnet werden.
+        </p>
+
+        <h2>7. Gewaehrleistung</h2>
+        <p>
+          Es gelten die gesetzlichen Gewaehrleistungsregelungen. Bei Werkstattleistungen gilt die handwerksrechtliche Gewaehrleistungsfrist.
+        </p>
+
+        <h2>8. Haftung</h2>
+        <p>
+          Route 66 haftet unbeschraenkt bei Vorsatz und grober Fahrlaessigkeit. Bei einfacher Fahrlaessigkeit haften wir nur bei Verletzung wesentlicher Vertragspflichten und begrenzt auf den vorhersehbaren, vertragstypischen Schaden.
+        </p>
+
+        <h2>9. Datenschutz</h2>
+        <p>
+          Die Verarbeitung personenbezogener Daten erfolgt gemaess unserer <a href="/datenschutz">Datenschutzerklaerung</a>.
+        </p>
+
+        <h2>10. Schlussbestimmungen</h2>
+        <p>
+          Es gilt deutsches Recht. Gerichtsstand ist - sofern gesetzlich zulaessig - {site.address.city}. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der uebrigen unberuehrt.
+        </p>
+
+        <p>Stand: 04.06.2026</p>
+      </article>
+    </div>
+  </section>
+</Layout>

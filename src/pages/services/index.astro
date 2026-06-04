@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { services } from '../../data/services';
+---
+
+<Layout
+  title="Services - Werkstatt, Beratung, Restauration | Route 66 Hamburg"
+  description="Alle Services von Route 66 Borrmann Motors Hamburg - Call a Mechanic, Car Check, Car Design, TUEV-Recherchen, Private Werkstattfuehrung. KFZ-Meisterbetrieb in Bahrenfeld."
+  current="/services"
+>
+  <PageHero
+    eyebrow="Alle Services"
+    title="Werkstatt. Beratung. Erlebnis."
+    lead="Vom Telefon-Termin bis zur exklusiven Werkstattfuehrung - hier findest Du alle Services im Ueberblick. Buchungen direkt online."
+    image="/images/car-check-hero.jpg"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Services', href: '/services' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {services.map((s, i) => (
+          <div class={`fade-in stagger-${(i % 3) + 1}`}>
+            <ServiceCard service={s} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

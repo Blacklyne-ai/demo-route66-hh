@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { site, telLink, mailLink } from '../data/site';
+
+const requirements = [
+  'Ausbildung zum Mechaniker/Mechatroniker',
+  'Quereinsteiger (Autodidakten) mit Fachkenntnissen willkommen',
+  'Selbststaendiges Arbeiten',
+  'Fuehrerschein ist Voraussetzung',
+];
+
+const tasks = [
+  'Reparatur und Wartung von US-Fahrzeugen',
+  'Motor- und Getriebearbeiten',
+  'Durchfuehrung von Diagnosen und Fehlersuchen',
+  'Unterstuetzung des Teams',
+];
+
+const benefits = [
+  { title: 'Unbefristeter Arbeitsvertrag', icon: 'FileCheck' },
+  { title: 'Vollzeit 40 Std / Woche', icon: 'Clock' },
+  { title: '5-Tage-Woche Mo - Fr', icon: 'Calendar' },
+  { title: 'Uebertarifliche Bezahlung', icon: 'Euro' },
+  { title: 'Bestes Werkzeug, Snap-on Tools, Tester', icon: 'Wrench' },
+  { title: 'Arbeitskleidung', icon: 'Shield' },
+  { title: 'Vermoegenswirksame Leistungen', icon: 'Banknote' },
+  { title: 'Weihnachtsgratifikation', icon: 'Star' },
+  { title: 'Puenktlicher Feierabend', icon: 'Check' },
+];
+---
+
+<Layout
+  title="Jobs - KFZ-Mechaniker / Mechatroniker | Route 66 Hamburg"
+  description="Route 66 Borrmann Motors KG Hamburg stellt ein per sofort: KFZ-Mechaniker / Mechatroniker (m/w/d). Unbefristet, Snap-on Tools, uebertarifliche Bezahlung."
+  current="/jobs"
+>
+  <PageHero
+    eyebrow="Wir stellen ein per sofort"
+    title="KFZ-Mechaniker / Mechatroniker (m/w/d)"
+    lead="Du brennst fuer US-Cars? Du willst in einem Team arbeiten, das taeglich Cash-fuer-Chrom-Material auf der Buehne hat? Komm zu Route 66 Hamburg."
+    image="/images/team-header.jpg"
+    cta={{ label: 'Klaus anrufen', href: telLink, icon: 'Phone' }}
+    secondaryCta={{ label: 'Bewerbung per Mail', href: mailLink, icon: 'Mail' }}
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Jobs', href: '/jobs' }]}
+  />
+
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div class="fade-in">
+          <p class="eyebrow mb-4">Anforderungen</p>
+          <h2 class="heading-lg mb-6">Das solltest Du mitbringen</h2>
+          <ul class="space-y-3">
+            {requirements.map((r) => (
+              <li class="flex items-start gap-3 text-onyx">
+                <Icon name="Check" size={18} strokeWidth={2.6} class="text-route mt-0.5 flex-shrink-0" />
+                <span>{r}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="eyebrow mb-4 mt-10">Aufgaben</p>
+          <h2 class="heading-lg mb-6">Das erwartet Dich</h2>
+          <ul class="space-y-3">
+            {tasks.map((t) => (
+              <li class="flex items-start gap-3 text-onyx">
+                <Icon name="Wrench" size={16} strokeWidth={2.4} class="text-route mt-1 flex-shrink-0" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="fade-in stagger-1">
+          <p class="eyebrow mb-4">Was wir bieten</p>
+          <h2 class="heading-lg mb-6">Mehr als nur Gehalt</h2>
+          <div class="grid sm:grid-cols-2 gap-3">
+            {benefits.map((b) => (
+              <div class="card flex items-start gap-3">
+                <span class="w-10 h-10 rounded-md bg-route text-white inline-flex items-center justify-center flex-shrink-0">
+                  <Icon name={b.icon} size={18} strokeWidth={2} />
+                </span>
+                <span class="font-display text-sm font-bold uppercase tracking-wide text-onyx mt-2">{b.title}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 p-10 rounded-lg" style="background: #0A0A0A;">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <p class="eyebrow eyebrow-light mb-4">Jetzt bewerben</p>
+            <h2 class="heading-lg text-white mb-3">Ein Anruf reicht.</h2>
+            <p class="text-white/75 leading-relaxed">Ruf einfach durch oder komm persoenlich vorbei. Wir freuen uns, Dich kennenzulernen.</p>
+          </div>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <a href={telLink} class="btn btn-primary btn-lg">
+              <Icon name="Phone" size={16} strokeWidth={2.2} />
+              {site.phoneDisplay}
+            </a>
+            <a href={mailLink} class="btn btn-outline-light btn-lg">
+              <Icon name="Mail" size={16} strokeWidth={2.2} />
+              Bewerbung
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

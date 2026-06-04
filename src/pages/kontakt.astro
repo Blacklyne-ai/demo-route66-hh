@@ -1,0 +1,97 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import MapBlock from '../components/MapBlock.astro';
+import OpeningHours from '../components/OpeningHours.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { site, telLink, telRendsburgLink, mailLink, mailWorkshopLink, whatsappLink } from '../data/site';
+
+const contactTiles = [
+  { title: 'WhatsApp', body: 'Schnelle Anfragen, Fotos, Voice-Memo - direkt aufs Handy.', cta: 'Chat starten', href: whatsappLink, icon: 'MessageCircle', external: true },
+  { title: 'Telefon Hamburg', body: site.phoneDisplay + ' (Mo-Fr 9-15 Uhr telefonisch)', cta: 'Anrufen', href: telLink, icon: 'Phone' },
+  { title: 'Telefon Rendsburg', body: site.phoneRendsburgDisplay + ' (Bjoern direkt)', cta: 'Anrufen', href: telRendsburgLink, icon: 'Phone' },
+  { title: 'E-Mail allgemein', body: site.email + ' - fuer Anfragen aller Art.', cta: 'Mail schreiben', href: mailLink, icon: 'Mail' },
+  { title: 'Werkstatt E-Mail', body: site.emailWorkshop + ' - direkt zu Fred und Team.', cta: 'Werkstatt anschreiben', href: mailWorkshopLink, icon: 'Wrench' },
+  { title: 'Werkstatt vor Ort', body: site.address.street + ' - direkt vorbeikommen.', cta: 'Route planen', href: site.googleDirectionsUrl, icon: 'MapPin', external: true },
+];
+---
+
+<Layout
+  title="Kontakt - Route 66 Borrmann Motors KG Hamburg & Rendsburg"
+  description="Kontakt zu Route 66 Borrmann Motors KG. Hamburg-Bahrenfeld (Kieler Strasse 271) und Zweigstelle Rendsburg (Bjoern). Telefon, WhatsApp, E-Mail oder vor Ort."
+  current="/kontakt"
+>
+  <PageHero
+    eyebrow="Kontakt"
+    title="Lass uns reden."
+    lead="Klaus, Michel, Fred in Hamburg. Bjoern in Rendsburg. Such Dir Deinen Weg aus - wir antworten schnell und ehrlich."
+    image="/images/team-group.jpg"
+    breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Kontakt', href: '/kontakt' }]}
+  />
+
+  <!-- CONTACT TILES (NO FORMULAR - explizit per Brief) -->
+  <section class="section-cream py-20 md:py-28">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="So erreichst Du uns"
+        title="Sechs Wege, ein Team"
+        lead="Wir haben bewusst kein Kontaktformular - sondern direkte Kontaktwege auf denen Du sofort eine Antwort bekommst."
+        align="center"
+      />
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {contactTiles.map((t, i) => (
+          <a
+            href={t.href}
+            target={t.external ? '_blank' : undefined}
+            rel={t.external ? 'noopener' : undefined}
+            class={`tile fade-in stagger-${(i % 3) + 1}`}
+          >
+            <span class="tile-icon">
+              <Icon name={t.icon} size={20} strokeWidth={2} />
+            </span>
+            <h3 class="font-display text-base font-bold uppercase tracking-wider text-onyx">{t.title}</h3>
+            <p class="text-muted text-sm leading-relaxed flex-1">{t.body}</p>
+            <span class="arrow-link mt-2">{t.cta} <Icon name="ArrowRight" size={13} strokeWidth={2.2} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDORTE -->
+  <section class="section-cream-warm py-20 md:py-28 border-y border-line">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="Unsere Standorte"
+        title="Hamburg HQ - Zweigstelle Rendsburg"
+        align="center"
+      />
+      <div class="mt-14 grid lg:grid-cols-2 gap-6">
+        <MapBlock
+          title="Hamburg - Hauptstandort"
+          embedUrl={site.googleMapsEmbed}
+          address={`${site.address.street}, ${site.address.streetDetail}, ${site.address.postal} ${site.address.city}`}
+          directionsUrl={site.googleDirectionsUrl}
+          phone={site.phoneDisplay}
+          phoneIntl={site.phoneIntl}
+          email={site.email}
+          hours={['Mo - Do: 8 - 17 Uhr', 'Fr: 8 - 15 Uhr', 'Sa: Nach Vereinbarung', 'Telefonisch Mo - Fr 9 - 15 Uhr']}
+        />
+        <MapBlock
+          title="Rendsburg - Zweigstelle"
+          embedUrl={site.googleMapsEmbedRendsburg}
+          address={`${site.addressRendsburg.street}, ${site.addressRendsburg.postal} ${site.addressRendsburg.city}`}
+          directionsUrl={site.googleMapsUrlRendsburg}
+          phone={site.phoneRendsburgDisplay}
+          phoneIntl={site.phoneRendsburgIntl}
+          email={site.emailRendsburg}
+          hours={['Termine nach Absprache', 'Geleitet von Bjoern - V8 im Herzen', 'Eigene Webseite: www.route66-sh.de']}
+        />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Layout>

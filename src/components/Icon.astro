@@ -1,0 +1,42 @@
+---
+// Lucide icon map (uses @lucide/astro 1.16+ named imports).
+import {
+  Car, Wrench, Hammer, PaintBucket, Brush, SprayCan, Palette, Pencil,
+  Settings, Cog, Lightbulb, Layers, PanelTop, LayoutGrid, Flag,
+  ShieldCheck, Award, BadgeCheck, Shield, Clock, MapPin, MapPinned,
+  Truck, Search, SearchCheck, CircleCheck, CircleDot, Check, CheckCheck,
+  Handshake, FileText, MessageCircle, Phone, PhoneCall, Mail, Star,
+  ArrowRight, ArrowUpRight, ArrowLeft, Menu, X, ChevronRight, ChevronDown, ChevronUp,
+  Navigation, ExternalLink, Building, Building2, Store, Users, UsersRound, User,
+  Zap, Disc, Battery, Sparkles, Gauge, ThumbsUp, Tag, Package, Boxes, Box,
+  Calendar, ShoppingCart, Banknote, Wallet, Receipt, Info, Plus, Minus, Quote,
+  Tv, Tv2, Newspaper, Camera, Image as ImageIcon, FileCheck, FileSearch,
+  MessageSquare, Euro, Compass, KeyRound, Ship, Anchor, Trophy,
+  Briefcase, Heart, Tags, Sticker, Coffee, Beer, Crown, Hand,
+} from '@lucide/astro';
+
+const MAP: Record<string, any> = {
+  Car, Wrench, Hammer, PaintBucket, Brush, SprayCan, Palette, Pencil,
+  Settings, Cog, Lightbulb, Layers, PanelTop, LayoutGrid, Flag,
+  ShieldCheck, Award, BadgeCheck, Shield, Clock, MapPin, MapPinned,
+  Truck, Search, SearchCheck, CircleCheck, CircleDot, Check, CheckCheck,
+  Handshake, FileText, MessageCircle, Phone, PhoneCall, Mail, Star,
+  ArrowRight, ArrowUpRight, ArrowLeft, Menu, X, ChevronRight, ChevronDown, ChevronUp,
+  Navigation, ExternalLink, Building, Building2, Store, Users, UsersRound, User,
+  Zap, Disc, Battery, Sparkles, Gauge, ThumbsUp, Tag, Package, Boxes, Box,
+  Calendar, ShoppingCart, Banknote, Wallet, Receipt, Info, Plus, Minus, Quote,
+  Tv, Tv2, Newspaper, Camera, ImageIcon, FileCheck, FileSearch,
+  MessageSquare, Euro, Compass, KeyRound, Ship, Anchor, Trophy,
+  Briefcase, Heart, Tags, Sticker, Coffee, Beer, Crown, Hand,
+};
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  strokeWidth?: number;
+}
+const { name, size = 24, class: className = '', strokeWidth = 1.75 } = Astro.props;
+const Cmp = MAP[name] ?? CircleDot;
+---
+<Cmp size={size} class={className} stroke-width={strokeWidth} />

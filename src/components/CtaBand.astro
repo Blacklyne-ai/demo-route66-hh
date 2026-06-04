@@ -1,0 +1,41 @@
+---
+import { telLink, whatsappLink, mailWorkshopLink, site } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  title?: string;
+  lead?: string;
+  signoff?: string;
+}
+const {
+  title = 'Dein US-Car. Dein Klaus.',
+  lead = 'Du suchst ein bestimmtes Fahrzeug und bist noch nicht fuendig geworden? Du brauchst einen Spezialisten fuer US-Cars? Es gibt zahlreiche gute Gruende uns zu kontaktieren.',
+  signoff = 'Kontaktiere uns - wir machen Deinen Fahrzeugtraum wahr! Herzliche Gruesse, Dein Klaus Borrmann',
+} = Astro.props;
+---
+<section class="section-dark py-20 md:py-28 relative overflow-hidden">
+  <div class="container-r66 relative">
+    <div class="max-w-4xl">
+      <p class="eyebrow eyebrow-light mb-5">Final Lap</p>
+      <h2 class="heading-xl text-white text-balance mb-6">{title}</h2>
+      <p class="text-lg text-white/80 leading-relaxed mb-8 text-pretty max-w-2xl">{lead}</p>
+
+      <div class="grid sm:grid-cols-3 gap-3 max-w-2xl mb-8">
+        <a href={telLink} class="btn btn-primary btn-lg">
+          <Icon name="Phone" size={16} strokeWidth={2.2} />
+          {site.phoneDisplay}
+        </a>
+        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+          <Icon name="MessageCircle" size={16} strokeWidth={2.2} />
+          WhatsApp
+        </a>
+        <a href={mailWorkshopLink} class="btn btn-outline-light btn-lg">
+          <Icon name="Mail" size={16} strokeWidth={2.2} />
+          Werkstatt
+        </a>
+      </div>
+
+      <p class="text-white/70 text-base italic max-w-2xl">"{signoff}"</p>
+    </div>
+  </div>
+</section>
