@@ -3,33 +3,32 @@ import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
-import CtaBand from '../components/CtaBand.astro';
 import { site, telLink, mailLink } from '../data/site';
 
 const requirements = [
-  'Ausbildung zum Mechaniker/Mechatroniker',
-  'Quereinsteiger (Autodidakten) mit Fachkenntnissen willkommen',
-  'Selbststaendiges Arbeiten',
-  'Fuehrerschein ist Voraussetzung',
+  'Ausbildung zum Mechaniker oder Mechatroniker',
+  'Quereinsteiger mit Fachkenntnissen sind willkommen',
+  'Selbstständiges, sauberes Arbeiten',
+  'Führerschein ist Voraussetzung',
 ];
 
 const tasks = [
   'Reparatur und Wartung von US-Fahrzeugen',
   'Motor- und Getriebearbeiten',
   'Durchführung von Diagnosen und Fehlersuchen',
-  'Unterstuetzung des Teams',
+  'Unterstützung des Teams im Tagesgeschäft',
 ];
 
 const benefits = [
-  { title: 'Unbefristeter Arbeitsvertrag', icon: 'FileCheck' },
-  { title: 'Vollzeit 40 Std / Woche', icon: 'Clock' },
-  { title: '5-Tage-Woche Mo - Fr', icon: 'Calendar' },
-  { title: 'Übertarifliche Bezahlung', icon: 'Euro' },
-  { title: 'Bestes Werkzeug, Snap-on Tools, Tester', icon: 'Wrench' },
-  { title: 'Arbeitskleidung', icon: 'Shield' },
-  { title: 'Vermögenswirksame Leistungen', icon: 'Banknote' },
-  { title: 'Weihnachtsgratifikation', icon: 'Star' },
-  { title: 'Puenktlicher Feierabend', icon: 'Check' },
+  { title: 'Unbefristeter Arbeitsvertrag', body: 'Wir wollen Dich langfristig im Team haben.', icon: 'FileCheck' },
+  { title: 'Vollzeit 40 Std / Woche', body: '5-Tage-Woche, Mo bis Fr.', icon: 'Clock' },
+  { title: 'Übertarifliche Bezahlung', body: 'Faire Bezahlung über dem Tarif.', icon: 'Euro' },
+  { title: 'Snap-on Werkzeug & Tester', body: 'Bestes Werkzeug, professionelle Diagnose-Tester.', icon: 'Wrench' },
+  { title: 'Arbeitskleidung gestellt', body: 'Komplette Arbeitskleidung inklusive Pflege.', icon: 'Shield' },
+  { title: 'Vermögenswirksame Leistungen', body: 'Wir zahlen mit in Deine Altersvorsorge ein.', icon: 'Banknote' },
+  { title: 'Weihnachtsgratifikation', body: 'Jährliche Gratifikation als kleines Extra.', icon: 'Star' },
+  { title: 'Pünktlicher Feierabend', body: 'Kein Dauer-Überstunden-Job. Familie geht vor.', icon: 'Check' },
+  { title: 'US-Cars, jeden Tag', body: 'Mustang, Camaro, Corvette, Charger - dein neuer Alltag.', icon: 'Car' },
 ];
 ---
 
@@ -40,73 +39,146 @@ const benefits = [
 >
   <PageHero
     eyebrow="Wir stellen ein per sofort"
-    title="KFZ-Mechaniker / Mechatroniker (m/w/d)"
-    lead="Du brennst für US-Cars? Du willst in einem Team arbeiten, das taeglich Cash-für-Chrom-Material auf der Buehne hat? Komm zu Route 66 Hamburg."
-    image="/images/team-header.jpg"
+    title="KFZ-Mechaniker / Mechatroniker (m/w/d)."
+    lead="Du brennst für US-Cars? Du willst in einem Team arbeiten, das täglich Cash-für-Chrom-Material auf der Bühne hat? Komm zu Route 66 Hamburg - und werde Teil der bekanntesten US-Car-Werkstatt Deutschlands."
+    image="/images/team-group.jpg"
     cta={{ label: 'Klaus anrufen', href: telLink, icon: 'Phone' }}
     secondaryCta={{ label: 'Bewerbung per Mail', href: mailLink, icon: 'Mail' }}
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Jobs', href: '/jobs' }]}
   />
 
-  <section class="section-cream py-20 md:py-28">
+  <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
-      <div class="grid lg:grid-cols-2 gap-10">
-        <div class="fade-in">
-          <p class="eyebrow mb-4">Anforderungen</p>
-          <h2 class="heading-lg mb-6">Das solltest Du mitbringen</h2>
-          <ul class="space-y-3">
-            {requirements.map((r) => (
-              <li class="flex items-start gap-3 text-onyx">
-                <Icon name="Check" size={18} strokeWidth={2.6} class="text-route mt-0.5 flex-shrink-0" />
-                <span>{r}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p class="eyebrow mb-4 mt-10">Aufgaben</p>
-          <h2 class="heading-lg mb-6">Das erwartet Dich</h2>
-          <ul class="space-y-3">
-            {tasks.map((t) => (
-              <li class="flex items-start gap-3 text-onyx">
-                <Icon name="Wrench" size={16} strokeWidth={2.4} class="text-route mt-1 flex-shrink-0" />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10 text-center sm:text-left">
+        <div class="flex items-center gap-3 justify-center sm:justify-start">
+          <Icon name="Briefcase" size={18} strokeWidth={1.8} class="text-route" />
+          <div>
+            <p class="text-xs text-muted">Position</p>
+            <p class="font-medium text-onyx">KFZ-Mechaniker</p>
+          </div>
         </div>
-
-        <div class="fade-in stagger-1">
-          <p class="eyebrow mb-4">Was wir bieten</p>
-          <h2 class="heading-lg mb-6">Mehr als nur Gehalt</h2>
-          <div class="grid sm:grid-cols-2 gap-3">
-            {benefits.map((b) => (
-              <div class="card flex items-start gap-3">
-                <span class="w-10 h-10 rounded-md bg-route text-white inline-flex items-center justify-center flex-shrink-0">
-                  <Icon name={b.icon} size={18} strokeWidth={2} />
-                </span>
-                <span class="font-display text-sm font-bold uppercase tracking-wide text-onyx mt-2">{b.title}</span>
-              </div>
-            ))}
+        <div class="flex items-center gap-3 justify-center sm:justify-start">
+          <Icon name="MapPin" size={18} strokeWidth={1.8} class="text-route" />
+          <div>
+            <p class="text-xs text-muted">Standort</p>
+            <p class="font-medium text-onyx">Hamburg-Bahrenfeld</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 justify-center sm:justify-start">
+          <Icon name="Clock" size={18} strokeWidth={1.8} class="text-route" />
+          <div>
+            <p class="text-xs text-muted">Zeitmodell</p>
+            <p class="font-medium text-onyx">40 Std / 5-Tage-Woche</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 justify-center sm:justify-start">
+          <Icon name="FileCheck" size={18} strokeWidth={1.8} class="text-route" />
+          <div>
+            <p class="text-xs text-muted">Vertrag</p>
+            <p class="font-medium text-onyx">Unbefristet</p>
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="mt-16 p-10 rounded-lg" style="background: #0A0A0A;">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-          <div>
-            <p class="eyebrow eyebrow-light mb-4">Jetzt bewerben</p>
-            <h2 class="heading-lg text-white mb-3">Ein Anruf reicht.</h2>
-            <p class="text-white/75 leading-relaxed">Ruf einfach durch oder komm persönlich vorbei. Wir freuen uns, Dich kennenzulernen.</p>
+  <section class="section-light section-padding">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <div class="lg:col-span-5 fade-in">
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+              <img src="/images/team-header.jpg" alt="Route 66 Werkstatt Hamburg-Bahrenfeld" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <div class="absolute -bottom-5 -right-5 max-w-[260px] rounded-lg p-5 hidden sm:block" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.18);">
+              <p class="text-onyx text-sm leading-snug italic mb-3">"Bei uns ist jeder Tag anders. Was zählt: ehrlich, sauber, mit V8 im Herzen."</p>
+              <p class="text-[0.66rem] uppercase tracking-widest text-route font-medium">Klaus Borrmann</p>
+            </div>
           </div>
-          <div class="grid sm:grid-cols-2 gap-3">
-            <a href={telLink} class="btn btn-primary btn-lg">
-              <Icon name="Phone" size={16} strokeWidth={2.2} />
+        </div>
+
+        <div class="lg:col-span-7 fade-in stagger-1">
+          <p class="eyebrow">Anforderungen</p>
+          <h2 class="heading-lg mb-6">Das solltest Du mitbringen.</h2>
+          <ul class="space-y-3.5 mb-12">
+            {requirements.map((r) => (
+              <li class="flex items-start gap-3 group">
+                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
+                  <Icon name="Check" size={12} strokeWidth={2.5} />
+                </span>
+                <span class="text-onyx">{r}</span>
+              </li>
+            ))}
+          </ul>
+
+          <p class="eyebrow">Deine Aufgaben</p>
+          <h2 class="heading-lg mb-6">Das erwartet Dich.</h2>
+          <ul class="space-y-3.5">
+            {tasks.map((t) => (
+              <li class="flex items-start gap-3 group">
+                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
+                  <Icon name="Wrench" size={11} strokeWidth={2.2} />
+                </span>
+                <span class="text-onyx">{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Was wir bieten</p>
+        <h2 class="heading-xl text-balance">Mehr als nur Gehalt.</h2>
+        <p class="mt-5 text-muted leading-relaxed text-lg">Neun Gründe, warum sich Werkstatt-Profis bei uns wohlfühlen.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {benefits.map((b, i) => (
+          <div class={`card fade-in stagger-${(i % 3) + 1}`}>
+            <span class="w-12 h-12 rounded-lg bg-route/10 text-route inline-flex items-center justify-center mb-5">
+              <Icon name={b.icon} size={20} strokeWidth={1.8} />
+            </span>
+            <h3 class="heading-md mb-2 leading-tight">{b.title}</h3>
+            <p class="text-muted text-sm leading-relaxed">{b.body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark section-padding relative overflow-hidden">
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img src="/images/klaus-borrmann.jpg" alt="" class="w-full h-full object-cover opacity-20 ken-burns" loading="lazy" />
+      <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(8,8,8,0.94) 0%, rgba(8,8,8,0.8) 50%, rgba(8,8,8,0.6) 100%);"></div>
+    </div>
+
+    <div class="container-r66 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7">
+          <p class="eyebrow eyebrow-light">Ein Anruf reicht</p>
+          <h2 class="heading-xl text-white text-balance mb-7">Komm vorbei. Bring Deine Geschichten mit.</h2>
+          <p class="text-lg text-white/80 leading-relaxed mb-10 max-w-xl">
+            Bewerbung per Mail oder direkt durchrufen - wir freuen uns auf Dich. Oder komm einfach in die Werkstatt: Kieler Straße 271, Hamburg-Bahrenfeld.
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href={telLink} class="btn btn-primary btn-lg group">
+              <Icon name="Phone" size={16} strokeWidth={2} />
               {site.phoneDisplay}
+              <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
             </a>
             <a href={mailLink} class="btn btn-outline-light btn-lg">
-              <Icon name="Mail" size={16} strokeWidth={2.2} />
-              Bewerbung
+              <Icon name="Mail" size={16} strokeWidth={2} />
+              Bewerbung per Mail
             </a>
+          </div>
+        </div>
+        <div class="lg:col-span-5 hidden lg:block">
+          <div class="rounded-xl overflow-hidden aspect-[4/5] bg-onyx-900 border border-white/10">
+            <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann - Dein neuer Chef" class="w-full h-full object-cover" loading="lazy" />
           </div>
         </div>
       </div>

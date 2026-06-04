@@ -26,7 +26,7 @@ export const services: Service[] = [
     title: 'Call a Mechanic',
     navLabel: 'Call a Mechanic',
     icon: 'Phone',
-    image: '/images/car-check-hero.jpg',
+    image: '/images/klaus-borrmann.jpg',
     eyebrow: 'Telefon-Beratung vom Spezialisten',
     tagline: 'Du brauchst Tipps und Tricks zu Deinem Lieblingsfahrzeug?',
     lead:
@@ -56,21 +56,21 @@ export const services: Service[] = [
     icon: 'SearchCheck',
     image: '/images/car-check-hero.jpg',
     eyebrow: 'Fahrzeug-Prüfung vor dem Kauf',
-    tagline: 'Du liebaeugelst mit dem Kauf eines Fahrzeuges, bist Dir aber noch nicht sicher?',
+    tagline: 'Du liebäugelst mit dem Kauf eines Fahrzeuges, bist Dir aber noch nicht sicher?',
     lead:
       'Wir checken Dein Wunschfahrzeug professionell und ehrlich. Pauschal-Preis bis 1,5 Stunden - egal ob US-Car Import oder EU-Fahrzeug. Bei USA-Fahrzeugen bitte vorab E-Mail senden.',
     features: [
       { title: 'Online buchen', body: 'CAR-CHECK online buchen und Pauschal-Preis sichern.', icon: 'Calendar' },
       { title: '275 EUR pauschal', body: 'Inkl. MwSt. bis max. 1,5 Stunden Prüfdauer.', icon: 'Euro' },
       { title: 'Fahrzeug-Infos senden', body: 'Sende uns alle Infos und Inserate-Links zum Wunschfahrzeug.', icon: 'FileText' },
-      { title: 'Klaus ruft zurück', body: 'Klaus klaert mit Dir alle Details und macht den Termin.', icon: 'PhoneCall' },
+      { title: 'Klaus ruft zurück', body: 'Klaus klärt mit Dir alle Details und macht den Termin.', icon: 'PhoneCall' },
     ],
     includes: [
       'Visuelle Inspektion (Lack, Rost, Schweißarbeiten)',
       'Technik-Check (Motor, Getriebe, Bremsen)',
-      'Originalitaets-Prüfung Oldtimer',
+      'Originalitäts-Prüfung Oldtimer',
       'Papier-Check (KFZ-Brief, Servicehefte)',
-      'Marktwert-Einschaetzung',
+      'Marktwert-Einschätzung',
       'Mehraufwand 165 EUR pro Stunde',
     ],
     cta: 'Car Check buchen',
@@ -88,10 +88,10 @@ export const services: Service[] = [
     lead:
       'Du möchtest Deinem Auto ein neues Design verpassen? Lass Dich inspirieren, Deiner Fantasie und Kreativität freien Lauf. Und wenn Du es wirklich willst, dass wir Dein Fahrzeug in ein Kunstobjekt verwandeln, dann melde Dich gerne bei uns!',
     features: [
-      { title: 'Customisation', body: 'Vom dezenten Streifen bis zur vollstaendigen Fahrzeug-Folierung.', icon: 'Brush' },
-      { title: 'Bodywork & Spachtelarbeit', body: 'Eigene Werkstatt für aufwaendige Karosserie-Anpassungen.', icon: 'Hammer' },
+      { title: 'Customisation', body: 'Vom dezenten Streifen bis zur vollständigen Fahrzeug-Folierung.', icon: 'Brush' },
+      { title: 'Bodywork & Spachtelarbeit', body: 'Eigene Werkstatt für aufwändige Karosserie-Anpassungen.', icon: 'Hammer' },
       { title: 'Race-Design', body: 'Borrmann Motors Racing - 66 Branding für Track Cars und Show Builds.', icon: 'Flag' },
-      { title: 'Inspirations-Gespraech', body: 'Erstgespraech ist kostenfrei - bring Deine Vision mit und wir machen daraus ein Konzept.', icon: 'Lightbulb' },
+      { title: 'Inspirations-Gespräch', body: 'Erstgespräch ist kostenfrei - bring Deine Vision mit und wir machen daraus ein Konzept.', icon: 'Lightbulb' },
     ],
     includes: [
       'Vollfolierung & Teilfolierung',
@@ -132,12 +132,12 @@ export const services: Service[] = [
     price: '175 EUR / Recherche',
   },
   {
-    slug: 'werkstattführung',
-    href: '/services/werkstattführung',
+    slug: 'werkstattfuehrung',
+    href: '/services/werkstattfuehrung',
     title: 'Private Werkstattführung',
     navLabel: 'Werkstattführung',
     icon: 'Compass',
-    image: '/images/klaus-borrmann.jpg',
+    image: '/images/team-group.jpg',
     eyebrow: 'Neu - Ein Erlebnis für Enthusiasten',
     tagline: 'Ein Blick hinter die Kulissen - dort, wo Leidenschaft auf Motoren trifft.',
     lead:
@@ -145,7 +145,7 @@ export const services: Service[] = [
     features: [
       { title: 'Max. 3-4 Personen', body: 'Klein und persönlich, damit jeder Zeit für seine Fragen hat.', icon: 'Users' },
       { title: 'Ca. 45 Minuten', body: 'Genug Zeit für Projekte, Anekdoten und Cash-für-Chrom-Geschichten.', icon: 'Clock' },
-      { title: 'Ab Mai 2026 buchbar', body: 'Termine nach Verfügbarkeit - melde Dich am besten frueh.', icon: 'Calendar' },
+      { title: 'Ab Mai 2026 buchbar', body: 'Termine nach Verfügbarkeit - melde Dich am besten früh.', icon: 'Calendar' },
       { title: '300 EUR pro Führung', body: 'Inkl. MwSt., Kaffee und Wasser für die ganze Gruppe.', icon: 'Euro' },
     ],
     includes: [

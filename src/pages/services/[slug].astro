@@ -12,6 +12,17 @@ export async function getStaticPaths() {
 }
 
 const { service } = Astro.props;
+
+// Map each service to a different complementary image so the lead-section
+// has visual variety (no twice the same hero image on one page).
+const sideImageMap: Record<string, string> = {
+  'call-a-mechanic': '/images/team-header.jpg',
+  'car-check': '/images/car-design-2.jpg',
+  'car-design': '/images/car-design-2.jpg',
+  'call-for-parts': '/images/car-design-1.jpg',
+  'werkstattfuehrung': '/images/team-header.jpg',
+};
+const sideImage = sideImageMap[service.slug] ?? '/images/team-group.jpg';
 ---
 
 <Layout
@@ -33,59 +44,59 @@ const { service } = Astro.props;
     ]}
   />
 
-  <!-- LEAD + PRICE - editorial split -->
+  <!-- LEAD - editorial mit Image + Price-Card + Inklusiv-Liste -->
   <section class="section-light section-padding">
     <div class="container-r66">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
-        <div class="lg:col-span-7 fade-in">
-          <p class="num-label">Worum es geht</p>
-          <p class="text-xl md:text-2xl text-onyx leading-relaxed text-pretty">{service.lead}</p>
-
-          <div class="mt-12 pt-10 border-t border-line">
-            <p class="num-label mb-4">Das ist inklusive</p>
-            <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3.5">
-              {service.includes.map((inc) => (
-                <li class="flex items-start gap-3 group">
-                  <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
-                    <Icon name="Check" size={12} strokeWidth={2.5} />
-                  </span>
-                  <span class="text-onyx text-sm">{inc}</span>
-                </li>
-              ))}
-            </ul>
+      <!-- Top split: Side image + lead text -->
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-20">
+        <div class="lg:col-span-5 fade-in">
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+              <img src={sideImage} alt={service.title} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <!-- Floating Klaus-quote card -->
+            <div class="absolute -bottom-5 -right-5 max-w-[250px] rounded-lg p-5 hidden sm:block" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.18);">
+              <div class="flex items-start gap-3 mb-3">
+                <div class="w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-cream-warm">
+                  <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <p class="font-display text-onyx text-sm font-medium leading-tight">Klaus Borrmann</p>
+                  <p class="text-[0.66rem] text-muted">Inhaber & KFZ-Meister</p>
+                </div>
+              </div>
+              <p class="text-onyx text-[0.78rem] leading-snug italic">"Ein Anruf, ein klarer Plan - und Du weißt, was wirklich Sache ist."</p>
+            </div>
           </div>
         </div>
-        <div class="lg:col-span-5 fade-in stagger-1">
-          {service.price && (
-            <div class="rounded-2xl p-8 mb-5" style="background: linear-gradient(160deg, #111 0%, #1A1A1A 100%); color: #fff;">
-              <p class="text-[0.72rem] tracking-[0.18em] uppercase text-route mb-3 font-medium">Pauschal-Preis</p>
-              <p class="font-display text-5xl text-white leading-none mb-3">{service.price}</p>
-              <p class="text-white/70 text-sm mb-6">Inkl. MwSt. - fair, transparent, kein Kleingedrucktes.</p>
-              <a href={telLink} class="btn btn-light btn-block !rounded-full">
-                <Icon name="Phone" size={14} strokeWidth={2} />
-                Direkt anrufen
-              </a>
-            </div>
-          )}
-          <div class="card !p-7">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-10 h-10 rounded-full bg-route/10 text-route inline-flex items-center justify-center">
-                <Icon name="Phone" size={16} strokeWidth={2} />
-              </span>
-              <div>
-                <p class="font-display text-onyx font-medium leading-tight">Lieber direkt sprechen?</p>
-                <p class="text-muted text-xs mt-0.5">Ruf Klaus an, schreib uns auf WhatsApp.</p>
+
+        <div class="lg:col-span-7 fade-in stagger-1">
+          <p class="num-label">Worum es geht</p>
+          <p class="text-xl md:text-2xl text-onyx leading-relaxed text-pretty mb-10">{service.lead}</p>
+
+          <!-- Price + Inklusiv split -->
+          <div class="grid sm:grid-cols-12 gap-5">
+            {service.price && (
+              <div class="sm:col-span-5 rounded-2xl p-7" style="background: linear-gradient(160deg, #111 0%, #1A1A1A 100%); color: #fff;">
+                <p class="text-[0.7rem] tracking-[0.18em] uppercase text-route mb-3 font-medium">Pauschal-Preis</p>
+                <p class="font-display text-4xl text-white leading-none mb-3">{service.price}</p>
+                <p class="text-white/70 text-xs leading-relaxed mb-5">Inkl. MwSt. Fair, transparent, kein Kleingedrucktes.</p>
+                <a href={telLink} class="btn btn-light btn-sm btn-block !rounded-full">
+                  <Icon name="Phone" size={13} strokeWidth={2} />
+                  Direkt anrufen
+                </a>
               </div>
-            </div>
-            <div class="space-y-2 pt-4 border-t border-line">
-              <a href={telLink} class="flex items-center justify-between text-sm hover:text-route transition group">
-                <span class="text-muted">Hamburg</span>
-                <span class="font-medium text-onyx group-hover:text-route">{site.phoneDisplay}</span>
-              </a>
-              <a href={whatsappLink} target="_blank" rel="noopener" class="flex items-center justify-between text-sm hover:text-route transition group">
-                <span class="text-muted">WhatsApp</span>
-                <span class="font-medium text-onyx group-hover:text-route inline-flex items-center gap-1">Direkt schreiben <Icon name="ArrowUpRight" size={12} strokeWidth={2} /></span>
-              </a>
+            )}
+            <div class={`${service.price ? 'sm:col-span-7' : 'sm:col-span-12'} rounded-2xl p-7 bg-white border border-line`}>
+              <p class="text-[0.7rem] tracking-[0.18em] uppercase text-route mb-4 font-medium">Das ist inklusive</p>
+              <ul class="space-y-2.5">
+                {service.includes.map((inc) => (
+                  <li class="flex items-start gap-2.5 text-sm">
+                    <Icon name="Check" size={13} strokeWidth={2.5} class="text-route mt-1 flex-shrink-0" />
+                    <span class="text-onyx leading-snug">{inc}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
@@ -103,13 +114,11 @@ const { service } = Astro.props;
       />
 
       <div class="mt-16 relative">
-        <!-- Connecting line on desktop -->
         <div class="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-px" style="background: repeating-linear-gradient(90deg, rgba(185,28,28,0.4) 0px, rgba(185,28,28,0.4) 6px, transparent 6px, transparent 14px);" aria-hidden="true"></div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
           {service.features.map((f, i) => (
             <div class={`step-card fade-in stagger-${i + 1}`}>
-              <!-- Step number badge -->
               <div class="relative inline-flex mb-6">
                 <span class="step-num w-24 h-24 rounded-full bg-white border-2 border-line inline-flex items-center justify-center relative z-10 transition-all duration-500" style="box-shadow: 0 8px 24px -8px rgba(0,0,0,0.12);">
                   <span class="font-display text-4xl text-onyx font-medium leading-none">{String(i + 1).padStart(2, '0')}</span>
