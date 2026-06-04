@@ -147,7 +147,7 @@ export const nav: NavItem[] = [
   { href: '/', label: 'Startseite' },
   {
     href: 'https://www.autoscout24.de/haendler/route-66-borrmann-motors-kg-hamburg',
-    label: 'Cars for Sale',
+    label: 'Fahrzeuge',
     external: true,
   },
   {
@@ -155,11 +155,11 @@ export const nav: NavItem[] = [
     label: 'Services',
     children: [
       { href: '/services', label: 'Alle Services' },
-      { href: '/services/call-a-mechanic', label: 'Call a Mechanic' },
-      { href: '/services/car-check', label: 'Car Check' },
-      { href: '/services/car-design', label: 'Car Design' },
-      { href: '/services/call-for-parts', label: 'TÜV & Ersatzteile' },
-      { href: '/services/werkstattführung', label: 'Private Werkstattführung' },
+      { href: '/services/call-a-mechanic', label: 'Mechaniker-Beratung' },
+      { href: '/services/car-check', label: 'Fahrzeug-Check' },
+      { href: '/services/car-design', label: 'Tuning & Design' },
+      { href: '/services/call-for-parts', label: 'Teile & TÜV-Beratung' },
+      { href: '/services/werkstattfuehrung', label: 'Private Werkstattführung' },
     ],
   },
   {

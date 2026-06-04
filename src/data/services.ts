@@ -23,8 +23,8 @@ export const services: Service[] = [
   {
     slug: 'call-a-mechanic',
     href: '/services/call-a-mechanic',
-    title: 'Call a Mechanic',
-    navLabel: 'Call a Mechanic',
+    title: 'Mechaniker-Beratung',
+    navLabel: 'Mechaniker-Beratung',
     icon: 'Phone',
     image: '/images/klaus-borrmann.jpg',
     eyebrow: 'Telefon-Beratung vom Spezialisten',
@@ -51,8 +51,8 @@ export const services: Service[] = [
   {
     slug: 'car-check',
     href: '/services/car-check',
-    title: 'Car Check',
-    navLabel: 'Car Check',
+    title: 'Fahrzeug-Check',
+    navLabel: 'Fahrzeug-Check',
     icon: 'SearchCheck',
     image: '/images/car-check-hero.jpg',
     eyebrow: 'Fahrzeug-Prüfung vor dem Kauf',
@@ -60,7 +60,7 @@ export const services: Service[] = [
     lead:
       'Wir checken Dein Wunschfahrzeug professionell und ehrlich. Pauschal-Preis bis 1,5 Stunden - egal ob US-Car Import oder EU-Fahrzeug. Bei USA-Fahrzeugen bitte vorab E-Mail senden.',
     features: [
-      { title: 'Online buchen', body: 'CAR-CHECK online buchen und Pauschal-Preis sichern.', icon: 'Calendar' },
+      { title: 'Online buchen', body: 'Fahrzeug-Check online buchen und Pauschal-Preis sichern.', icon: 'Calendar' },
       { title: '275 EUR pauschal', body: 'Inkl. MwSt. bis max. 1,5 Stunden Prüfdauer.', icon: 'Euro' },
       { title: 'Fahrzeug-Infos senden', body: 'Sende uns alle Infos und Inserate-Links zum Wunschfahrzeug.', icon: 'FileText' },
       { title: 'Klaus ruft zurück', body: 'Klaus klärt mit Dir alle Details und macht den Termin.', icon: 'PhoneCall' },
@@ -73,14 +73,14 @@ export const services: Service[] = [
       'Marktwert-Einschätzung',
       'Mehraufwand 165 EUR pro Stunde',
     ],
-    cta: 'Car Check buchen',
+    cta: 'Fahrzeug-Check buchen',
     price: '275 EUR pauschal',
   },
   {
     slug: 'car-design',
     href: '/services/car-design',
-    title: 'Car Design',
-    navLabel: 'Car Design',
+    title: 'Tuning & Design',
+    navLabel: 'Tuning & Design',
     icon: 'Palette',
     image: '/images/car-design-1.jpg',
     eyebrow: 'Tuning, Veredelung, Kunstwerk',
@@ -106,12 +106,12 @@ export const services: Service[] = [
   {
     slug: 'call-for-parts',
     href: '/services/call-for-parts',
-    title: 'TÜV-Fragen & Ersatzteile',
-    navLabel: 'TÜV & Ersatzteile',
+    title: 'Teile & TÜV-Beratung',
+    navLabel: 'Teile & TÜV',
     icon: 'Wrench',
     image: '/images/car-design-2.jpg',
-    eyebrow: 'Call for Parts - Professionelle Beratung',
-    tagline: 'Mit CALL FOR PARTS geben wir Dir die Möglichkeit, Dich professionell zu Ersatzteilen und TÜV-Fragen für Dein Fahrzeug beraten zu lassen.',
+    eyebrow: 'Ersatzteile & TÜV - Professionelle Beratung',
+    tagline: 'Mit unserer Teile- und TÜV-Beratung lassen wir Dich nicht im Stich - wir recherchieren professionell zu Ersatzteilen und TÜV-Fragen für Dein Fahrzeug.',
     lead:
       'Die Fakten zur Zulassung und Eintragung zusammen zu tragen kostet Zeit und Nerven. Wir recherchieren für Dich das richtige Ersatzteil und prüfen die TÜV-Verträglichkeit vor dem Kauf - damit Dein Umbau auch im KFZ-Schein landet.',
     features: [
