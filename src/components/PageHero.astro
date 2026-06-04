@@ -2,6 +2,22 @@
 import Icon from './Icon.astro';
 import Route66Shield from './Route66Shield.astro';
 
+interface QuickStat {
+  label: string;
+  value: string;
+  icon: string;
+}
+
+interface FloatingBadge {
+  position: 'tl' | 'tr' | 'bl' | 'br';
+  variant?: 'red-round' | 'white-card' | 'shelby-stamp';
+  topLabel?: string;
+  value?: string;
+  bottomLabel?: string;
+  icon?: string;
+  imageSrc?: string;
+}
+
 interface Props {
   eyebrow?: string;
   title: string;
@@ -12,8 +28,13 @@ interface Props {
   secondaryCta?: { label: string; href: string; icon?: string };
   breadcrumbs?: { label: string; href: string }[];
   variant?: 'light' | 'dark';
-  trustPills?: { label: string; icon: string }[];
+  quickStats?: QuickStat[];
+  badges?: FloatingBadge[];
+  captionTitle?: string;
+  captionValue?: string;
+  captionLabel?: string;
 }
+
 const {
   eyebrow,
   title,
@@ -24,22 +45,26 @@ const {
   secondaryCta,
   breadcrumbs = [],
   variant = 'light',
-  trustPills = [
-    { label: 'Seit 1989', icon: 'Award' },
-    { label: 'Cash für Chrom', icon: 'Tv' },
-    { label: 'Shelby Partner', icon: 'Trophy' },
+  quickStats = [
+    { label: 'Erfahrung', value: 'Seit 1989', icon: 'Award' },
+    { label: 'Bekannt aus', value: 'Cash für Chrom', icon: 'Tv' },
+    { label: 'Werkstatt', value: 'Hamburg-Bahrenfeld', icon: 'MapPin' },
   ],
+  badges = [],
+  captionTitle = 'Werkstatt',
+  captionValue = 'Hamburg-Bahrenfeld',
+  captionLabel = 'Seit 1989',
 } = Astro.props;
 ---
-<section class={`relative ${variant === 'dark' ? 'section-dark' : 'section-light'} pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden`}>
-  <!-- Route 66 Shield Watermark - immer als dezenter Background -->
-  <div class="absolute -right-32 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block" aria-hidden="true">
-    <Route66Shield class={variant === 'dark' ? 'text-white' : 'text-onyx'} size={580} opacity={variant === 'dark' ? 0.05 : 0.04} />
+<section class={`relative ${variant === 'dark' ? 'section-dark' : 'section-light'} pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden`}>
+  <!-- Route 66 Shield Watermark dezent im Background -->
+  <div class="absolute -right-40 top-1/3 -translate-y-1/2 pointer-events-none hidden lg:block" aria-hidden="true">
+    <Route66Shield class={variant === 'dark' ? 'text-white' : 'text-onyx'} size={620} opacity={variant === 'dark' ? 0.05 : 0.04} />
   </div>
 
   <div class="container-r66 relative z-10">
     {breadcrumbs.length > 0 && (
-      <nav class={`mb-10 flex items-center gap-2 text-[0.78rem] ${variant === 'dark' ? 'text-white/55' : 'text-muted'}`} aria-label="Breadcrumb">
+      <nav class={`mb-8 flex items-center gap-2 text-[0.78rem] ${variant === 'dark' ? 'text-white/55' : 'text-muted'}`} aria-label="Breadcrumb">
         {breadcrumbs.map((b, i) => (
           <Fragment>
             <a href={b.href} class="hover:text-route transition">{b.label}</a>
@@ -49,19 +74,25 @@ const {
       </nav>
     )}
     <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+      <!-- LEFT: Text + Stats + CTAs -->
       <div class="lg:col-span-7">
         {eyebrow && <p class={`eyebrow ${variant === 'dark' ? 'eyebrow-light' : ''}`}>{eyebrow}</p>}
         <h1 class={`heading-display text-balance ${variant === 'dark' ? 'text-white' : 'text-onyx'}`}>{title}</h1>
         {lead && <p class={`mt-7 text-lg md:text-xl leading-relaxed max-w-2xl text-pretty ${variant === 'dark' ? 'text-white/80' : 'text-muted'}`}>{lead}</p>}
 
-        <!-- Trust-Pills um die linke Spalte zu füllen -->
-        {trustPills && trustPills.length > 0 && (
-          <div class="mt-8 flex flex-wrap gap-2.5">
-            {trustPills.map((p) => (
-              <span class={`hero-pill ${variant === 'dark' ? 'hero-pill-dark' : ''}`}>
-                <Icon name={p.icon} size={13} strokeWidth={1.8} class="text-route" />
-                {p.label}
-              </span>
+        {/* Quick Stats Grid 3-Spalten */}
+        {quickStats && quickStats.length > 0 && (
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-2xl">
+            {quickStats.map((s) => (
+              <div class={`hero-stat ${variant === 'dark' ? 'hero-stat-dark' : ''}`}>
+                <span class="hero-stat-icon">
+                  <Icon name={s.icon} size={14} strokeWidth={1.8} />
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class={`text-[0.6rem] tracking-[0.16em] uppercase leading-none ${variant === 'dark' ? 'text-white/55' : 'text-muted'}`}>{s.label}</p>
+                  <p class={`font-display text-sm font-medium leading-tight mt-1 ${variant === 'dark' ? 'text-white' : 'text-onyx'}`}>{s.value}</p>
+                </div>
+              </div>
             ))}
           </div>
         )}
@@ -84,23 +115,83 @@ const {
           </div>
         )}
       </div>
+
+      {/* RIGHT: Image with Floating Cards/Badges */}
       {image && (
         <div class="lg:col-span-5">
           <div class="relative">
             <div class="rounded-xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] bg-cream-warm">
               <img src={image} alt={imageAlt} class="w-full h-full object-cover ken-burns" loading="eager" />
             </div>
-            <!-- Floating Caption Card (image-Bottom) -->
-            <div class="absolute bottom-4 left-4 right-4 hidden sm:flex items-center gap-3 rounded-lg p-3 pr-4" style="background: rgba(255,254,251,0.96); backdrop-filter: blur(14px); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 18px 36px -12px rgba(0,0,0,0.35);">
-              <span class="w-9 h-9 rounded-full bg-route text-white inline-flex items-center justify-center flex-shrink-0">
-                <Icon name="MapPin" size={14} strokeWidth={2} />
-              </span>
-              <div class="flex-1 min-w-0">
-                <p class="text-[0.62rem] text-muted uppercase tracking-[0.16em] leading-none">Werkstatt</p>
-                <p class="font-display text-sm font-medium text-onyx leading-tight mt-1">Hamburg-Bahrenfeld</p>
+
+            {/* DEFAULT: EST 1989 Round Badge top-right (wenn keine custom badges) */}
+            {badges.length === 0 && (
+              <div class="absolute -top-3 -right-3 hidden md:block">
+                <div class="rounded-full w-24 h-24 flex flex-col items-center justify-center text-center" style="background: #B91C1C; box-shadow: 0 18px 36px -8px rgba(185,28,28,0.5);">
+                  <span class="font-display text-[0.6rem] text-white/85 uppercase tracking-widest">Est.</span>
+                  <span class="font-display text-2xl font-medium text-white leading-none">1989</span>
+                  <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest mt-1">Hamburg</span>
+                </div>
               </div>
-              <span class="text-[0.62rem] font-medium text-route tracking-wide">Seit 1989</span>
-            </div>
+            )}
+
+            {/* Custom Floating Badges */}
+            {badges.map((b) => {
+              const pos = {
+                tl: 'absolute -top-3 -left-3',
+                tr: 'absolute -top-3 -right-3',
+                bl: 'absolute -bottom-5 -left-5',
+                br: 'absolute -bottom-5 -right-5',
+              }[b.position];
+              if (b.variant === 'red-round') {
+                return (
+                  <div class={`${pos} hidden md:block`}>
+                    <div class="rounded-full w-24 h-24 flex flex-col items-center justify-center text-center" style="background: #B91C1C; box-shadow: 0 18px 36px -8px rgba(185,28,28,0.5);">
+                      {b.topLabel && <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest">{b.topLabel}</span>}
+                      <span class="font-display text-xl font-medium text-white leading-none mt-1">{b.value}</span>
+                      {b.bottomLabel && <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest mt-1">{b.bottomLabel}</span>}
+                    </div>
+                  </div>
+                );
+              }
+              if (b.variant === 'shelby-stamp') {
+                return (
+                  <div class={`${pos} hidden md:block`}>
+                    <div class="w-20 h-20 rounded-full bg-white border-2 border-white flex items-center justify-center" style="box-shadow: 0 22px 48px -10px rgba(0,0,0,0.35);">
+                      <img src="/images/shelby-circle-snake.png" alt="Shelby Cobra" class="w-16 h-16 object-contain" />
+                    </div>
+                  </div>
+                );
+              }
+              return (
+                <div class={`${pos} hidden md:flex rounded-lg p-3.5 items-center gap-3 max-w-[230px]`} style="background: rgba(255,254,251,0.96); backdrop-filter: blur(14px); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 22px 48px -14px rgba(0,0,0,0.28);">
+                  {b.icon && (
+                    <span class="w-10 h-10 rounded-md bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0">
+                      <Icon name={b.icon} size={16} strokeWidth={1.8} />
+                    </span>
+                  )}
+                  <div class="flex-1 min-w-0">
+                    {b.topLabel && <p class="text-[0.55rem] text-muted uppercase tracking-[0.18em] leading-none">{b.topLabel}</p>}
+                    <p class="font-display text-sm font-medium text-onyx leading-tight mt-1">{b.value}</p>
+                    {b.bottomLabel && <p class="text-[0.6rem] text-route mt-1 font-medium">{b.bottomLabel}</p>}
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Bottom Caption (immer dabei wenn captionTitle gegeben) */}
+            {captionTitle && (
+              <div class="absolute -bottom-5 left-5 right-5 hidden sm:flex items-center gap-3 rounded-lg p-3.5 pr-4" style="background: rgba(255,254,251,0.97); backdrop-filter: blur(14px); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 22px 48px -16px rgba(0,0,0,0.28);">
+                <span class="w-10 h-10 rounded-full bg-route text-white inline-flex items-center justify-center flex-shrink-0">
+                  <Icon name="MapPin" size={14} strokeWidth={2} />
+                </span>
+                <div class="flex-1 min-w-0">
+                  <p class="text-[0.6rem] text-muted uppercase tracking-[0.16em] leading-none">{captionTitle}</p>
+                  <p class="font-display text-sm font-medium text-onyx leading-tight mt-1">{captionValue}</p>
+                </div>
+                {captionLabel && <span class="text-[0.62rem] font-medium text-route tracking-wide whitespace-nowrap">{captionLabel}</span>}
+              </div>
+            )}
           </div>
         </div>
       )}
@@ -109,27 +200,40 @@ const {
 </section>
 
 <style>
-  .hero-pill {
-    display: inline-flex;
+  .hero-stat {
+    display: flex;
     align-items: center;
-    gap: 0.45rem;
-    padding: 0.45rem 0.95rem;
-    border-radius: 999px;
+    gap: 0.7rem;
+    padding: 0.85rem 0.95rem;
+    border-radius: 12px;
     background: #fff;
     border: 1px solid rgb(229 219 205);
-    color: rgb(17 17 17);
-    font-size: 0.82rem;
-    font-weight: 500;
-    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
-  .hero-pill:hover {
-    border-color: rgb(185 28 28 / 0.4);
-    transform: translateY(-1px);
+  .hero-stat:hover {
+    transform: translateY(-2px);
+    border-color: rgb(185 28 28 / 0.3);
+    box-shadow: 0 14px 28px -10px rgba(0,0,0,0.12);
   }
-  .hero-pill-dark {
-    background: rgba(255, 255, 255, 0.08);
+  .hero-stat-dark {
+    background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.12);
-    color: rgb(255 255 255 / 0.85);
     backdrop-filter: blur(8px);
+  }
+  .hero-stat-dark:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+  }
+  .hero-stat-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: rgba(185, 28, 28, 0.1);
+    color: rgb(185 28 28);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .hero-stat-dark .hero-stat-icon {
+    background: rgba(220, 38, 38, 0.18);
+    color: rgb(248 113 113);
   }
 </style>
