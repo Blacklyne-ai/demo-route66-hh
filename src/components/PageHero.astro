@@ -57,9 +57,9 @@ const {
 } = Astro.props;
 ---
 <section class={`relative ${variant === 'dark' ? 'section-dark' : 'section-light'} pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden`}>
-  <!-- Route 66 Shield Watermark links - dezent im Background -->
-  <div class="absolute -left-32 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block" aria-hidden="true">
-    <Route66Shield class={variant === 'dark' ? 'text-white' : 'text-onyx'} size={620} opacity={variant === 'dark' ? 0.05 : 0.05} />
+  <!-- Route 66 Shield Watermark links - massiv, ragt über die Ränder -->
+  <div class="absolute -left-64 lg:-left-80 -top-24 lg:-top-32 pointer-events-none hidden md:block" aria-hidden="true">
+    <Route66Shield class={variant === 'dark' ? 'text-white' : 'text-onyx'} size={1200} opacity={variant === 'dark' ? 0.06 : 0.07} />
   </div>
 
   <div class="container-r66 relative z-10">
