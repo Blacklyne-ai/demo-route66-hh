@@ -10,20 +10,17 @@ const { service } = Astro.props;
 <a href={service.href} class="service-card group">
   <div class="service-media">
     <img src={service.image} alt={service.title} loading="lazy" />
-    <div class="service-icon">
-      <Icon name={service.icon} size={22} strokeWidth={2} />
-    </div>
   </div>
-  <div class="p-6 pt-9">
-    <p class="eyebrow mb-3">{service.eyebrow}</p>
+  <div class="service-body">
+    <p class="eyebrow">{service.eyebrow}</p>
     <h3 class="heading-md mb-3">{service.title}</h3>
-    <p class="text-muted text-sm leading-relaxed mb-4">{service.tagline}</p>
-    <div class="flex items-center justify-between">
-      <span class="arrow-link inline-flex">
-        Mehr erfahren <Icon name="ArrowRight" size={14} strokeWidth={2.2} />
+    <p class="text-muted leading-relaxed flex-1 mb-5">{service.tagline}</p>
+    <div class="flex items-center justify-between pt-4 border-t border-line">
+      <span class="arrow-link">
+        Mehr erfahren <Icon name="ArrowRight" size={14} strokeWidth={2} />
       </span>
       {service.price && (
-        <span class="text-xs font-display font-bold uppercase tracking-wider text-route">{service.price}</span>
+        <span class="text-xs text-muted-light">{service.price}</span>
       )}
     </div>
   </div>

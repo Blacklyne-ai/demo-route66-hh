@@ -15,12 +15,12 @@ const headingClass = {
   lg: 'heading-lg',
 }[size];
 ---
-<div class={`max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''} ${light ? 'text-white' : ''}`}>
+<div class={`max-w-3xl ${align === 'center' ? 'mx-auto text-center' : ''}`}>
   {eyebrow && (
-    <p class={`eyebrow mb-4 ${align === 'center' ? 'eyebrow-center' : ''} ${light ? 'eyebrow-light' : ''}`}>{eyebrow}</p>
+    <p class={`eyebrow ${light ? 'eyebrow-light' : ''}`}>{eyebrow}</p>
   )}
   <h2 class={`${headingClass} text-balance ${light ? 'text-white' : 'text-onyx'}`}>{title}</h2>
   {lead && (
-    <p class={`mt-5 text-lg leading-relaxed text-pretty ${light ? 'text-white/75' : 'text-muted'}`}>{lead}</p>
+    <p class={`mt-6 text-lg leading-relaxed text-pretty ${light ? 'text-white/75' : 'text-muted'}`}>{lead}</p>
   )}
 </div>

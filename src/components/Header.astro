@@ -11,27 +11,25 @@ const isActive = (item: typeof nav[number]) =>
 <header id="site-header" class="fixed top-0 left-0 right-0 z-50">
   <div
     id="nav-shell"
-    class="w-full transition-all duration-500"
-    style="background: #FAFAF7; border-bottom: 1px solid rgba(0,0,0,0.06);"
+    class="w-full transition-all duration-300"
+    style="background: rgba(250, 247, 240, 0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,0.04);"
   >
-    <div class="container-r66 flex items-center justify-between gap-3 py-3 md:py-4">
-      <!-- Logo -->
+    <div class="container-r66 flex items-center justify-between gap-4 py-4 md:py-5">
       <a href="/" class="flex items-center gap-3 flex-shrink-0" aria-label="Route 66 Borrmann Motors KG Hamburg">
-        <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors KG" width="180" height="180" class="h-12 md:h-14 w-auto" />
-        <span class="hidden lg:flex flex-col leading-tight">
-          <span class="font-display text-[1.05rem] font-bold uppercase tracking-wide text-onyx leading-none">Route 66</span>
-          <span class="font-display text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted leading-none mt-1">Borrmann Motors KG</span>
+        <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors" width="180" height="180" class="h-11 md:h-12 w-auto" />
+        <span class="hidden md:flex flex-col leading-tight">
+          <span class="font-display text-base font-medium text-onyx leading-none">Route 66</span>
+          <span class="text-[0.68rem] text-muted leading-none mt-1 tracking-wide">Borrmann Motors Hamburg</span>
         </span>
       </a>
 
-      <!-- Desktop nav -->
-      <nav class="hidden lg:flex items-center gap-0.5" aria-label="Primary">
+      <nav class="hidden lg:flex items-center gap-7" aria-label="Primary">
         {nav.map((item) =>
           item.children ? (
             <div class="nav-dd relative">
-              <a href={item.href} class={`nav-pill inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
+              <a href={item.href} class={`nav-link-main inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
                 {item.label}
-                <Icon name="ChevronDown" size={12} strokeWidth={2.4} class="nav-dd-chev" />
+                <Icon name="ChevronDown" size={13} strokeWidth={2} class="nav-dd-chev" />
               </a>
               <div class="nav-dd-panel" role="menu">
                 {item.children.map((c) => (
@@ -40,41 +38,36 @@ const isActive = (item: typeof nav[number]) =>
               </div>
             </div>
           ) : (
-            <a href={item.href} class={`nav-pill ${isActive(item) ? 'active' : ''}`}>{item.label}</a>
+            <a href={item.href} class={`nav-link-main ${isActive(item) ? 'active' : ''}`}>{item.label}</a>
           )
         )}
       </nav>
 
-      <!-- Right cluster -->
-      <div class="flex items-center gap-2">
-        <span id="live-status" class="hidden xl:inline-flex items-center gap-2 px-3 py-1.5 rounded text-[0.7rem] font-semibold uppercase tracking-wider font-display whitespace-nowrap" style="background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.08); color: rgba(10,10,10,0.78);">
+      <div class="flex items-center gap-3">
+        <span id="live-status" class="hidden 2xl:inline-flex items-center gap-2 text-[0.78rem] text-muted whitespace-nowrap">
           <span id="live-dot" class="status-dot status-dot-closed"></span>
           <span id="live-text">Pruefe Zeiten...</span>
         </span>
 
         <a href={telLink} class="btn btn-primary btn-sm hidden md:inline-flex" aria-label={`Anrufen ${site.phoneDisplay}`}>
-          <Icon name="Phone" size={14} strokeWidth={2.4} />
-          {site.phoneDisplay}
-        </a>
-        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm !px-3 hidden sm:inline-flex" aria-label="WhatsApp">
-          <Icon name="MessageCircle" size={16} strokeWidth={2.2} />
+          <Icon name="Phone" size={13} strokeWidth={2} />
+          <span class="font-medium">{site.phoneDisplay}</span>
         </a>
 
-        <button id="menu-toggle" class="lg:hidden p-2.5 rounded transition" style="color: #0A0A0A;" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mobile-menu">
+        <button id="menu-toggle" class="lg:hidden p-2 rounded transition" style="color: #111;" aria-label="Menue oeffnen" aria-expanded="false" aria-controls="mobile-menu">
           <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div id="mobile-menu" class="hidden lg:hidden mx-3 mt-2 rounded-lg overflow-hidden" style="background: #FAFAF7; border: 1px solid rgba(0,0,0,0.08); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.3);">
+  <div id="mobile-menu" class="hidden lg:hidden mx-3 mt-2 rounded-lg overflow-hidden" style="background: #fff; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 30px 60px -20px rgba(0,0,0,0.18);">
     <nav class="flex flex-col p-4" aria-label="Mobile">
       {nav.map((item) => (
         <Fragment>
-          <a href={item.href} class="py-3 px-2 text-onyx/85 hover:text-route border-b border-onyx/10 font-display font-semibold uppercase tracking-wider text-sm transition" style={current === item.href ? 'color:#B91C1C' : ''}>{item.label}</a>
+          <a href={item.href} class="py-3 px-2 text-onyx font-medium border-b border-line text-base transition hover:text-route" style={current === item.href ? 'color:#B91C1C' : ''}>{item.label}</a>
           {item.children && (
-            <div class="flex flex-col pl-4 border-b border-onyx/10">
+            <div class="flex flex-col pl-4 border-b border-line">
               {item.children.filter((c) => c.href !== item.href).map((c) => (
                 <a href={c.href} class="py-2.5 px-2 text-sm text-muted hover:text-route transition" style={current === c.href ? 'color:#B91C1C' : ''}>{c.label}</a>
               ))}
@@ -82,43 +75,43 @@ const isActive = (item: typeof nav[number]) =>
           )}
         </Fragment>
       ))}
-      <div class="grid grid-cols-2 gap-2 mt-4">
-        <a href={telLink} class="btn btn-primary btn-sm">
-          <Icon name="Phone" size={14} strokeWidth={2.2} /> Hamburg
-        </a>
-        <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm">
-          <Icon name="MessageCircle" size={14} strokeWidth={2.2} /> WhatsApp
-        </a>
-      </div>
+      <a href={telLink} class="btn btn-primary mt-4">
+        <Icon name="Phone" size={14} strokeWidth={2} />
+        {site.phoneDisplay}
+      </a>
+      <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp mt-2">
+        <Icon name="MessageCircle" size={14} strokeWidth={2} />
+        WhatsApp
+      </a>
     </nav>
   </div>
 </header>
 
 <style>
-  .hamburger { display: inline-flex; flex-direction: column; justify-content: center; gap: 4px; width: 22px; height: 22px; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: #0A0A0A; border-radius: 2px; transition: transform 0.4s ease, opacity 0.25s ease; transform-origin: center; }
-  .hamburger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hamburger { display: inline-flex; flex-direction: column; justify-content: center; gap: 5px; width: 22px; height: 22px; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: #111; transition: transform 0.35s ease, opacity 0.25s ease; transform-origin: center; }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
   .nav-dd-panel {
-    position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(4px);
-    min-width: 240px; padding: 0.5rem; border-radius: 8px;
-    background: #FAFAF7; border: 1px solid rgba(0,0,0,0.08);
-    box-shadow: 0 20px 44px -16px rgba(0,0,0,0.25);
+    position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%) translateY(4px);
+    min-width: 240px; padding: 0.65rem; border-radius: 10px;
+    background: #fff; border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.2);
     opacity: 0; visibility: hidden; transition: opacity 0.25s ease, transform 0.25s ease;
     z-index: 60;
   }
-  .nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -10px; height: 12px; }
+  .nav-dd-panel::before { content: ""; position: absolute; left: 0; right: 0; top: -14px; height: 16px; }
   .nav-dd:hover .nav-dd-panel,
   .nav-dd:focus-within .nav-dd-panel { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
   .nav-dd:hover .nav-dd-chev { transform: rotate(180deg); }
   .nav-dd-item {
-    display: block; padding: 0.65rem 0.85rem; border-radius: 6px; font-size: 0.85rem; font-weight: 600;
-    color: rgba(10,10,10,0.78); transition: background 0.2s ease, color 0.2s ease;
+    display: block; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.92rem; font-weight: 400;
+    color: rgba(17,17,17,0.78); transition: background 0.2s ease, color 0.2s ease;
   }
-  .nav-dd-item:hover { background: rgba(185,28,28,0.08); color: #B91C1C; }
-  .nav-dd-item.active { color: #B91C1C; background: rgba(185,28,28,0.06); }
+  .nav-dd-item:hover { background: rgba(185,28,28,0.06); color: #B91C1C; }
+  .nav-dd-item.active { color: #B91C1C; background: rgba(185,28,28,0.05); }
   .nav-dd-chev { transition: transform 0.3s ease; }
 </style>
 
@@ -142,9 +135,7 @@ const isActive = (item: typeof nav[number]) =>
       document.body.style.overflow = open ? 'hidden' : '';
     }
 
-    if (toggle) {
-      toggle.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!isOpen()); });
-    }
+    if (toggle) toggle.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!isOpen()); });
     if (menu) {
       menu.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () { setOpen(false); });
@@ -154,7 +145,6 @@ const isActive = (item: typeof nav[number]) =>
     document.addEventListener('click', function (e) { if (isOpen() && header && !header.contains(e.target)) setOpen(false); });
     window.addEventListener('resize', function () { if (window.innerWidth >= 1024 && isOpen()) setOpen(false); });
 
-    // Subtle shadow on scroll
     var ticking = false;
     window.addEventListener('scroll', function () {
       if (ticking) return;
@@ -162,14 +152,13 @@ const isActive = (item: typeof nav[number]) =>
       requestAnimationFrame(function () {
         var y = window.scrollY;
         if (shell) {
-          if (y > 20) { shell.style.boxShadow = '0 4px 16px -8px rgba(0,0,0,0.18)'; }
-          else { shell.style.boxShadow = 'none'; }
+          if (y > 20) { shell.style.background = 'rgba(250, 247, 240, 0.98)'; shell.style.boxShadow = '0 4px 16px -8px rgba(0,0,0,0.10)'; }
+          else { shell.style.background = 'rgba(250, 247, 240, 0.92)'; shell.style.boxShadow = 'none'; }
         }
         ticking = false;
       });
     });
 
-    // Live opening status - Mon-Do 8-17, Fr 8-15, Sa/So closed
     function updateStatus() {
       var dot = document.getElementById('live-dot');
       var text = document.getElementById('live-text');
@@ -183,11 +172,11 @@ const isActive = (item: typeof nav[number]) =>
         msg = 'Mo-Do 8-17 Uhr';
       } else if (day === 5) {
         if (mins < OPEN) msg = 'Heute ab 8:00 Uhr';
-        else if (mins < CLOSE_FR) { open = true; msg = 'Geoeffnet - Fr bis 15:00 Uhr'; }
+        else if (mins < CLOSE_FR) { open = true; msg = 'Geoeffnet bis 15:00'; }
         else msg = 'Mo-Do 8-17 Uhr';
       } else {
         if (mins < OPEN) msg = 'Heute ab 8:00 Uhr';
-        else if (mins < CLOSE_WK) { open = true; msg = 'Geoeffnet - bis 17:00 Uhr'; }
+        else if (mins < CLOSE_WK) { open = true; msg = 'Geoeffnet bis 17:00'; }
         else msg = 'Morgen ab 8:00 Uhr';
       }
       text.textContent = msg;

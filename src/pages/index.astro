@@ -6,7 +6,6 @@ import TeamCard from '../components/TeamCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import CtaBand from '../components/CtaBand.astro';
 import TrustStrip from '../components/TrustStrip.astro';
-import OpeningHours from '../components/OpeningHours.astro';
 import MapBlock from '../components/MapBlock.astro';
 import { site, telLink, telRendsburgLink, mailWorkshopLink, whatsappLink, fullServiceLeistungen } from '../data/site';
 import { services, quickServiceTiles } from '../data/services';
@@ -14,172 +13,209 @@ import { team } from '../data/team';
 import { reviewsMeta } from '../data/reviews';
 
 const fullServiceIcons = ['Car', 'Award', 'Flag', 'Ship', 'Wrench', 'Hammer', 'FileCheck', 'ShieldCheck', 'Package'];
+
+const differentiators = [
+  {
+    num: '01',
+    title: 'TV-Persoenlichkeit. Echte Werkstatt.',
+    body: 'Klaus Borrmann ist bekannt aus Cash fuer Chrom auf DMAX. Aber wenn die Kamera aus ist, steht er trotzdem in der Werkstatt - mit einem Schraubenschluessel in der Hand und V8-Oel an den Fingern.',
+  },
+  {
+    num: '02',
+    title: 'Komplette Import-Abwicklung.',
+    body: 'Vom US-Verkaeufer bis zur deutschen Zulassung - wir uebernehmen alles. Verhandlung, Logistik, Zollabwicklung, TUEV-Umruestung nach Paragraf 21 StVZO, deutsche Papiere. Du bekommst Dein US-Car schluesselfertig.',
+  },
+  {
+    num: '03',
+    title: '35+ Jahre Erfahrung, 4 Spezialisten.',
+    body: 'Klaus, Michel (40 Jahre Ersatzteile), Fred (30 Jahre KFZ-Meister), Bjoern (V8 im Herzen, Rendsburg). Vier Charaktere, gemeinsam ueber 110 Jahre Erfahrung an amerikanischen Fahrzeugen.',
+  },
+];
 ---
 
 <Layout
-  title={`US Cars | Route 66 Borrmann Motors KG | Hamburg Klaus Borrmann`}
+  title="US Cars | Route 66 Borrmann Motors KG | Hamburg Klaus Borrmann"
   description={site.description}
   current="/"
 >
-  <!-- HERO -->
-  <section class="relative section-dark pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden">
-    <div class="absolute inset-0 -z-0">
-      <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann - Route 66 Hamburg" class="w-full h-full object-cover object-[60%_center] opacity-55" loading="eager" />
-      <div class="absolute inset-0 hero-overlay"></div>
-    </div>
+  <!-- HERO - light, clean, premium -->
+  <section class="relative section-light pt-32 pb-12 md:pt-40 md:pb-20 overflow-hidden">
     <div class="container-r66 relative z-10">
-      <div class="max-w-4xl">
-        <p class="eyebrow eyebrow-light mb-5 fade-in">Route 66 Borrmann Motors KG - Hamburg KFZ-Meisterbetrieb</p>
-        <h1 class="heading-display text-white text-balance hero-text-shadow fade-in stagger-1">Route 66<br/><span class="text-route">Hamburg</span></h1>
-        <p class="mt-6 text-xl md:text-2xl text-white/90 leading-relaxed max-w-3xl text-pretty fade-in stagger-2">{site.taglineFull}</p>
-
-        <div class="mt-6 mb-8 flex flex-wrap items-center gap-x-4 gap-y-2 fade-in stagger-3">
-          <span class="inline-flex items-center gap-2 text-sm text-white/80 font-display uppercase tracking-wider"><Icon name="Tv" size={14} strokeWidth={2.2} class="text-route" />Bekannt aus Cash fuer Chrom</span>
-          <span class="w-1 h-1 rounded-full bg-white/30"></span>
-          <span class="inline-flex items-center gap-2 text-sm text-white/80 font-display uppercase tracking-wider"><Icon name="Award" size={14} strokeWidth={2.2} class="text-route" />Official Shelby Service Partner</span>
-          <span class="w-1 h-1 rounded-full bg-white/30 hidden md:inline"></span>
-          <span class="inline-flex items-center gap-2 text-sm text-white/80 font-display uppercase tracking-wider"><Icon name="Wrench" size={14} strokeWidth={2.2} class="text-route" />EST. 1989</span>
+      <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        <div class="lg:col-span-7 fade-in">
+          <p class="eyebrow">US-Cars - KFZ-Meisterbetrieb - Hamburg seit 1989</p>
+          <h1 class="heading-display text-balance">
+            Dein US-Car.<br/>
+            Geliefert, gewartet, restauriert <span class="text-route">in Hamburg.</span>
+          </h1>
+          <p class="mt-7 text-lg md:text-xl text-muted leading-relaxed max-w-2xl text-pretty">
+            Klaus Borrmann und sein Team importieren, warten und restaurieren US-Cars seit 1989. Bekannt aus Cash fuer Chrom (DMAX). Official Shelby Service Partner. Werkstatt in Hamburg-Bahrenfeld, Zweigstelle Rendsburg.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+              <Icon name="Car" size={16} strokeWidth={2} />
+              Aktuelle Fahrzeuge ansehen
+              <Icon name="ArrowRight" size={15} strokeWidth={2} />
+            </a>
+            <a href={telLink} class="btn btn-outline btn-lg">
+              <Icon name="Phone" size={16} strokeWidth={2} />
+              {site.phoneDisplay}
+            </a>
+          </div>
+          <div class="mt-10 pt-8 border-t border-line">
+            <TrustStrip />
+          </div>
         </div>
-
-        <div class="flex flex-wrap gap-3 fade-in stagger-4">
-          <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg">
-            <Icon name="Calendar" size={16} strokeWidth={2.2} />
-            Werkstatt-Termin
-            <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
-          </a>
-          <a href={telLink} class="btn btn-light btn-lg">
-            <Icon name="Phone" size={16} strokeWidth={2.2} />
-            {site.phoneDisplay}
-          </a>
-          <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">
-            <Icon name="Car" size={16} strokeWidth={2.2} />
-            Aktuelle Fahrzeuge
-            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
-          </a>
+        <div class="lg:col-span-5 fade-in stagger-1">
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann - Inhaber Route 66 Borrmann Motors" class="w-full h-full object-cover" loading="eager" />
+            </div>
+            <div class="absolute -bottom-6 -left-6 hidden sm:block">
+              <div class="bg-white rounded-lg p-5 border border-line shadow-lg max-w-[220px]">
+                <p class="text-xs text-muted mb-1">Inhaber</p>
+                <p class="font-display text-lg font-medium text-onyx leading-tight">Klaus Borrmann</p>
+                <p class="text-xs text-route mt-1">Cash fuer Chrom DMAX</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <!-- Shelby badge top right -->
-    <div class="hidden lg:block absolute top-32 right-12 z-10 fade-in stagger-5">
-      <div class="flex flex-col items-center gap-1 p-4 rounded-lg" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); backdrop-filter: blur(10px);">
-        <img src="/images/shelby-circle-snake.png" alt="Shelby Service Partner" class="w-20 h-auto opacity-90" style="filter: brightness(1.1);" />
-        <span class="text-[0.6rem] font-display font-bold uppercase tracking-wider text-white/85">Official Service Partner</span>
       </div>
     </div>
   </section>
 
-  <!-- AUTHORITY STATEMENT -->
-  <section class="section-cream-warm py-16 md:py-20 border-b border-line">
+  <!-- AUTHORITY QUOTE -->
+  <section class="section-warm section-padding border-y border-line">
     <div class="container-r66">
       <div class="max-w-4xl mx-auto text-center fade-in">
-        <p class="eyebrow eyebrow-center mb-5">Cash fuer Chrom DMAX Heritage</p>
-        <p class="text-xl md:text-3xl font-display font-medium text-onyx leading-snug text-balance">
-          "Route 66 in Hamburg ist der erfolgreiche und aus <span class="text-route">Cash fuer Chrom</span> bekannte Importeur, Tuner und Service-Partner fuer US-Fahrzeuge in ganz Deutschland."
+        <Icon name="Quote" size={36} strokeWidth={1.5} class="text-route mx-auto mb-6" />
+        <p class="font-display text-2xl md:text-4xl text-onyx leading-snug text-balance">
+          Route 66 in Hamburg ist der erfolgreiche und aus Cash fuer Chrom bekannte Importeur, Tuner und Service-Partner fuer US-Fahrzeuge in ganz Deutschland.
         </p>
-        <a href={site.external.cashFuerChrom} target="_blank" rel="noopener" class="arrow-link mt-8 inline-flex">
-          Mehr ueber Cash fuer Chrom <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
+        <a href={site.external.cashFuerChrom} target="_blank" rel="noopener" class="arrow-link mt-10 inline-flex">
+          Cash fuer Chrom auf DMAX <Icon name="ExternalLink" size={13} strokeWidth={2} />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- FULL-SERVICE-LEISTUNGEN -->
-  <section class="section-cream py-20 md:py-28">
+  <!-- DREI USPs (numbered like Aston) -->
+  <section class="section-light section-padding">
     <div class="container-r66">
-      <div class="fade-in">
-        <SectionHeading
-          eyebrow="Was wir koennen"
-          title="Full-Service-Leistungen in unserer Meister-Werkstatt"
-          lead="Vom US-Car-Import ueber Restaurierung bis TUEV-Abnahme - alles unter einem Dach. KFZ-Meisterbetrieb in Hamburg-Bahrenfeld plus Zweigstelle Rendsburg."
-        />
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Warum Route 66</p>
+        <h2 class="heading-xl text-balance">Was uns ausmacht.</h2>
       </div>
-
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {fullServiceLeistungen.map((leistung, i) => (
-          <div class={`card-feature fade-in stagger-${(i % 4) + 1}`}>
-            <span class="w-12 h-12 rounded-md bg-onyx text-route inline-flex items-center justify-center mb-4">
-              <Icon name={fullServiceIcons[i] ?? 'Wrench'} size={22} strokeWidth={2} />
-            </span>
-            <h3 class="font-display text-lg font-bold uppercase tracking-wide text-onyx leading-tight">{leistung}</h3>
+      <div class="grid lg:grid-cols-3 gap-12 lg:gap-16">
+        {differentiators.map((d, i) => (
+          <div class={`fade-in stagger-${i + 1}`}>
+            <span class="num-label">{d.num}</span>
+            <h3 class="heading-md mb-4">{d.title}</h3>
+            <p class="text-muted leading-relaxed">{d.body}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- IMPORT EXPERTISE -->
-  <section class="section-anthracite py-20 md:py-28 relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
-      <img src="/images/shelby-circle-snake.png" alt="" class="w-full h-full object-contain object-right" />
-    </div>
-    <div class="container-r66 relative">
-      <div class="grid lg:grid-cols-12 gap-10 items-start">
-        <div class="lg:col-span-5 fade-in">
-          <p class="eyebrow eyebrow-light mb-5">Import-Expertise seit 1989</p>
-          <h2 class="heading-xl text-white text-balance mb-6">Dein Traumwagen in sicheren Haenden</h2>
-          <p class="text-white/80 leading-relaxed text-pretty mb-6">
-            Mit unserer Erfahrung im Fahrzeugimport garantieren wir eine schnelle und reibungslose Lieferung Deines Wunschfahrzeugs oder US-Eigenimports. Von der Zollabfertigung ueber die TUEV-Umruestung bis zu den deutschen Fahrzeugpapieren - wir uebernehmen die komplette Abwicklung fuer Dich.
+  <!-- FULL-SERVICE LEISTUNGEN - alternating image + text -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mb-24">
+        <div class="lg:col-span-6 fade-in">
+          <p class="eyebrow">Full-Service Meisterwerkstatt</p>
+          <h2 class="heading-xl text-balance mb-6">Neun Leistungen, ein Standort.</h2>
+          <p class="text-muted leading-relaxed mb-8 text-lg">
+            Vom US-Car-Import ueber Restaurierung bis TUEV-Abnahme: in Hamburg-Bahrenfeld haben wir die Kompetenz, das Werkzeug und die Geduld, die ein amerikanisches Fahrzeug verdient.
           </p>
-          <a href="/us-cars-kaufen" class="arrow-link arrow-link-light">
-            Wie der Import funktioniert <Icon name="ArrowRight" size={14} strokeWidth={2.2} />
+          <ul class="space-y-3.5">
+            {fullServiceLeistungen.map((l, i) => (
+              <li class="flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <Icon name="Check" size={12} strokeWidth={2.5} />
+                </span>
+                <span class="text-onyx">{l}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/services" class="arrow-link mt-10 inline-flex">
+            Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} />
           </a>
         </div>
-        <div class="lg:col-span-7 grid sm:grid-cols-2 gap-4">
-          {quickServiceTiles.map((t, i) => (
-            <div class={`card-dark fade-in stagger-${i + 1}`}>
-              <span class="tile-icon mb-4">
-                <Icon name={t.icon} size={20} strokeWidth={2} />
-              </span>
-              <h3 class="font-display text-base font-bold uppercase tracking-wider text-white mb-2">{t.title}</h3>
-              <p class="text-white/65 text-sm leading-relaxed">{t.body}</p>
-            </div>
-          ))}
+        <div class="lg:col-span-6 fade-in stagger-1">
+          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
+            <img src="/images/car-check-hero.jpg" alt="Route 66 Werkstatt Hamburg" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Reverse layout: Import expertise -->
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-6 lg:order-2 fade-in">
+          <p class="eyebrow">Import-Expertise</p>
+          <h2 class="heading-xl text-balance mb-6">Dein Traumwagen in sicheren Haenden.</h2>
+          <p class="text-muted leading-relaxed mb-8 text-lg">
+            Mit unserer Erfahrung im Fahrzeugimport garantieren wir eine schnelle und reibungslose Lieferung Deines Wunschfahrzeugs. Von der Zollabfertigung ueber die TUEV-Umruestung bis zu den deutschen Fahrzeugpapieren - wir uebernehmen die komplette Abwicklung fuer Dich.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-x-6 gap-y-4">
+            {quickServiceTiles.map((t) => (
+              <div class="flex items-start gap-3">
+                <span class="w-9 h-9 rounded-md bg-route/8 text-route inline-flex items-center justify-center flex-shrink-0">
+                  <Icon name={t.icon} size={16} strokeWidth={1.8} />
+                </span>
+                <div>
+                  <p class="font-medium text-onyx text-sm leading-tight">{t.title}</p>
+                  <p class="text-muted text-xs mt-1 leading-relaxed">{t.body}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <a href="/us-cars-kaufen" class="arrow-link mt-10 inline-flex">
+            Wie der Import funktioniert <Icon name="ArrowRight" size={14} strokeWidth={2} />
+          </a>
+        </div>
+        <div class="lg:col-span-6 lg:order-1 fade-in stagger-1">
+          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
+            <img src="/images/car-design-1.jpg" alt="US-Car Restoration" class="w-full h-full object-cover" loading="lazy" />
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TEAM SECTION -->
-  <section class="section-cream py-20 md:py-28">
+  <!-- TEAM - clean grid -->
+  <section class="section-light section-padding">
     <div class="container-r66">
-      <div class="fade-in">
-        <SectionHeading
-          eyebrow="Unser Team"
-          title="Persoenlich, ehrlich, V8 im Herzen"
-          lead="Klaus, Michel, Fred und Bjoern - vier Charaktere mit gemeinsam ueber 110 Jahren Erfahrung an US-Cars."
-          align="center"
-        />
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
+        <div class="max-w-2xl fade-in">
+          <p class="eyebrow">Das Team</p>
+          <h2 class="heading-xl text-balance">Vier Charaktere. 110+ Jahre Erfahrung.</h2>
+        </div>
+        <a href="/team" class="arrow-link fade-in stagger-1">Mehr ueber das Team <Icon name="ArrowRight" size={14} strokeWidth={2} /></a>
       </div>
 
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
         {team.map((m, i) => (
           <div class={`fade-in stagger-${i + 1}`}>
             <TeamCard member={m} />
           </div>
         ))}
       </div>
-
-      <div class="mt-12 text-center">
-        <a href="/team" class="btn btn-outline btn-lg">
-          Alles ueber das Team
-          <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
-        </a>
-      </div>
     </div>
   </section>
 
   <!-- SERVICES GRID -->
-  <section class="section-white py-20 md:py-28">
+  <section class="section-white section-padding">
     <div class="container-r66">
-      <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
         <div class="max-w-2xl fade-in">
-          <p class="eyebrow mb-4">Services & Beratung</p>
-          <h2 class="heading-xl text-balance">Vom Call a Mechanic bis Werkstattfuehrung</h2>
+          <p class="eyebrow">Services & Beratung</p>
+          <h2 class="heading-xl text-balance">Vom Call a Mechanic bis Werkstattfuehrung.</h2>
         </div>
-        <a href="/services" class="arrow-link fade-in stagger-1">Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2.2} /></a>
+        <a href="/services" class="arrow-link fade-in stagger-1">Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} /></a>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((s, i) => (
           <div class={`fade-in stagger-${(i % 3) + 1}`}>
             <ServiceCard service={s} />
@@ -189,75 +225,90 @@ const fullServiceIcons = ['Car', 'Award', 'Flag', 'Ship', 'Wrench', 'Hammer', 'F
     </div>
   </section>
 
-  <!-- PRIVATE WERKSTATTFUEHRUNG TEASER -->
-  <section class="section-dark py-20 md:py-28 relative overflow-hidden">
-    <div class="absolute inset-0 -z-0">
-      <img src="/images/team-group.jpg" alt="Route 66 Werkstatt-Team" class="w-full h-full object-cover opacity-30" loading="lazy" />
-      <div class="absolute inset-0 hero-overlay"></div>
-    </div>
-    <div class="container-r66 relative z-10">
-      <div class="max-w-3xl">
-        <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-route text-white text-xs font-display font-bold uppercase tracking-wider mb-5">
-          <Icon name="Sparkles" size={12} strokeWidth={2.6} />
-          NEW - Ab Mai 2026
-        </span>
-        <h2 class="heading-xl text-white text-balance mb-5">Private Werkstattfuehrung</h2>
-        <p class="text-lg text-white/85 leading-relaxed mb-3 text-pretty">
-          Ein Blick hinter die Kulissen - dort, wo Leidenschaft auf Motoren trifft.
-        </p>
-        <p class="text-white/65 mb-8 max-w-2xl">
-          Exklusive Fuehrung durch Werkstatt und Ausstellungsraeume. Persoenliche Einblicke in Projekte. Zeit fuer Fragen. Kaffee und Wasser inklusive. Max. 3-4 Personen, ca. 45 Minuten.
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg">
-            <Icon name="Compass" size={16} strokeWidth={2.2} />
-            Jetzt buchen - 300 EUR
-            <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
-          </a>
-          <a href={telLink} class="btn btn-outline-light btn-lg">
-            <Icon name="Phone" size={16} strokeWidth={2.2} />
-            Fragen? Anrufen
-          </a>
+  <!-- WERKSTATTFUEHRUNG TEASER -->
+  <section class="section-warm section-padding">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 fade-in">
+          <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-deep">
+            <img src="/images/team-group.jpg" alt="Route 66 Werkstatt Team" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+        </div>
+        <div class="lg:col-span-7 fade-in stagger-1">
+          <span class="pill pill-red mb-6">
+            <Icon name="Sparkles" size={12} strokeWidth={2} />
+            NEW - ab Mai 2026
+          </span>
+          <h2 class="heading-xl text-balance mb-6">Private Werkstattfuehrung.</h2>
+          <p class="text-lg text-muted leading-relaxed mb-4 text-pretty">
+            Ein Blick hinter die Kulissen - dort, wo Leidenschaft auf Motoren trifft.
+          </p>
+          <p class="text-muted leading-relaxed mb-8">
+            Exklusive Fuehrung durch Werkstatt und Ausstellungsraeume. Persoenliche Einblicke in Projekte. Zeit fuer Fragen. Kaffee und Wasser inklusive. Maximal 3 bis 4 Personen, ca. 45 Minuten.
+          </p>
+
+          <div class="flex flex-wrap gap-x-8 gap-y-3 mb-10 text-sm">
+            <span class="inline-flex items-center gap-2 text-muted">
+              <Icon name="Users" size={14} strokeWidth={2} class="text-route" />
+              Max. 3-4 Personen
+            </span>
+            <span class="inline-flex items-center gap-2 text-muted">
+              <Icon name="Clock" size={14} strokeWidth={2} class="text-route" />
+              ca. 45 Minuten
+            </span>
+            <span class="inline-flex items-center gap-2 text-muted">
+              <Icon name="Euro" size={14} strokeWidth={2} class="text-route" />
+              300 EUR / Fuehrung
+            </span>
+          </div>
+
+          <div class="flex flex-wrap gap-3">
+            <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg">
+              <Icon name="Compass" size={16} strokeWidth={2} />
+              Werkstattfuehrung buchen
+              <Icon name="ArrowRight" size={15} strokeWidth={2} />
+            </a>
+            <a href={telLink} class="btn btn-outline btn-lg">
+              <Icon name="Phone" size={16} strokeWidth={2} />
+              Fragen? Anrufen
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- JOB BANNER -->
-  <section class="bg-cream-warm py-12 border-y border-line">
+  <section class="section-light py-16">
     <div class="container-r66">
-      <div class="flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
-        <div class="flex items-start gap-4">
-          <span class="w-12 h-12 rounded-md bg-route text-white inline-flex items-center justify-center flex-shrink-0">
-            <Icon name="Briefcase" size={22} strokeWidth={2.2} />
+      <div class="rounded-lg border border-line bg-white p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+        <div class="flex items-start gap-5">
+          <span class="w-14 h-14 rounded-lg bg-route/8 text-route inline-flex items-center justify-center flex-shrink-0">
+            <Icon name="Briefcase" size={22} strokeWidth={1.8} />
           </span>
           <div>
-            <p class="font-display font-bold uppercase tracking-wider text-sm text-route mb-1">Wir stellen ein per sofort</p>
-            <h3 class="heading-md mb-1">KFZ-Mechaniker / Mechatroniker (m/w/d)</h3>
+            <p class="eyebrow mb-2">Wir stellen ein per sofort</p>
+            <h3 class="heading-md mb-2">KFZ-Mechaniker / Mechatroniker (m/w/d).</h3>
             <p class="text-muted text-sm">Unbefristet, Vollzeit, uebertarifliche Bezahlung, Snap-on Tools.</p>
           </div>
         </div>
-        <a href="/jobs" class="btn btn-dark btn-lg flex-shrink-0">
-          Stellenausschreibung ansehen
-          <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
+        <a href="/jobs" class="btn btn-dark flex-shrink-0">
+          Stellenausschreibung
+          <Icon name="ArrowRight" size={15} strokeWidth={2} />
         </a>
       </div>
     </div>
   </section>
 
   <!-- STANDORTE -->
-  <section class="section-cream py-20 md:py-28">
+  <section class="section-white section-padding">
     <div class="container-r66">
-      <div class="fade-in">
-        <SectionHeading
-          eyebrow="Unsere Standorte"
-          title="Hamburg HQ - Zweigstelle Rendsburg"
-          lead="Klaus, Michel und Fred in Hamburg-Bahrenfeld. Bjoern leitet die Zweigstelle in Rendsburg."
-          align="center"
-        />
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Unsere Standorte</p>
+        <h2 class="heading-xl text-balance">Hamburg HQ, Zweigstelle Rendsburg.</h2>
       </div>
 
-      <div class="mt-14 grid lg:grid-cols-2 gap-6">
+      <div class="grid lg:grid-cols-2 gap-8">
         <div class="fade-in">
           <MapBlock
             title="Hamburg - Hauptstandort"
@@ -272,92 +323,40 @@ const fullServiceIcons = ['Car', 'Award', 'Flag', 'Ship', 'Wrench', 'Hammer', 'F
         </div>
         <div class="fade-in stagger-1">
           <MapBlock
-            title="Rendsburg - Zweigstelle (geleitet von Bjoern)"
+            title="Rendsburg - geleitet von Bjoern"
             embedUrl={site.googleMapsEmbedRendsburg}
             address={`${site.addressRendsburg.street}, ${site.addressRendsburg.postal} ${site.addressRendsburg.city}`}
             directionsUrl={site.googleMapsUrlRendsburg}
             phone={site.phoneRendsburgDisplay}
             phoneIntl={site.phoneRendsburgIntl}
             email={site.emailRendsburg}
-            hours={['Termine nach Absprache', 'Bjoern: V8 im Herzen']}
+            hours={['Termine nach Absprache', 'V8 im Herzen']}
           />
         </div>
       </div>
     </div>
   </section>
 
-  <!-- REVIEWS (Google placeholder) -->
-  <section class="section-white py-20 md:py-28">
+  <!-- REVIEWS -->
+  <section class="section-warm section-padding">
     <div class="container-r66">
-      <div class="max-w-3xl mx-auto text-center">
-        <p class="eyebrow eyebrow-center mb-5">Was unsere Kunden sagen</p>
-        <h2 class="heading-xl text-balance mb-6">Echte Bewertungen, keine Erfindung</h2>
+      <div class="max-w-2xl mx-auto text-center fade-in">
+        <p class="eyebrow eyebrow-center">Was unsere Kunden sagen</p>
+        <h2 class="heading-xl text-balance mb-6">Echte Bewertungen, keine Erfindung.</h2>
         <div class="stars justify-center mb-6">
           {Array.from({ length: reviewsMeta.stars }).map(() => (
-            <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           ))}
         </div>
-        <p class="text-muted leading-relaxed max-w-2xl mx-auto mb-8">{reviewsMeta.googleNote}</p>
-        <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="btn btn-outline btn-lg">
-          <Icon name="MapPin" size={16} strokeWidth={2.2} />
+        <p class="text-muted leading-relaxed mb-8">{reviewsMeta.googleNote}</p>
+        <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="btn btn-outline">
+          <Icon name="MapPin" size={15} strokeWidth={2} />
           Bei Google bewerten
-          <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
+          <Icon name="ExternalLink" size={13} strokeWidth={2} />
         </a>
       </div>
     </div>
   </section>
 
-  <!-- SHOP TEASER -->
-  <section class="section-cream-warm py-20 md:py-28 border-y border-line">
-    <div class="container-r66">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="fade-in">
-          <p class="eyebrow mb-5">Borrmann Motors Merchandise</p>
-          <h2 class="heading-xl text-balance mb-5">Tragen, was Du faehrst.</h2>
-          <p class="text-muted leading-relaxed mb-8 text-pretty">
-            Shirts, Hoodies, Patches, Sticker, Schluesselanhaenger, sogar der originale Ankerschluck Borrmann Motors Edition Rum. Alles handverlesen, alles Original Route 66.
-          </p>
-          <div class="grid sm:grid-cols-2 gap-3 mb-8">
-            <div class="card-cream">
-              <h3 class="font-display font-bold text-onyx uppercase tracking-wider text-sm mb-1">Apparel</h3>
-              <p class="text-muted text-xs">Shirts, Hoodies & Socken</p>
-            </div>
-            <div class="card-cream">
-              <h3 class="font-display font-bold text-onyx uppercase tracking-wider text-sm mb-1">Accessoires</h3>
-              <p class="text-muted text-xs">Patches, Schluesselanhaenger</p>
-            </div>
-            <div class="card-cream">
-              <h3 class="font-display font-bold text-onyx uppercase tracking-wider text-sm mb-1">Premium</h3>
-              <p class="text-muted text-xs">925 Silber Ring (399 EUR)</p>
-            </div>
-            <div class="card-cream">
-              <h3 class="font-display font-bold text-onyx uppercase tracking-wider text-sm mb-1">Lifestyle</h3>
-              <p class="text-muted text-xs">Rum, Tassen, Kerzen</p>
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-3">
-            <a href={site.external.partsShop} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-              <Icon name="ShoppingCart" size={16} strokeWidth={2.2} />
-              Ersatzteile-Shop
-              <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
-            </a>
-            <a href="/galerie" class="btn btn-outline btn-lg">
-              Zur Galerie <Icon name="ArrowRight" size={16} strokeWidth={2.2} />
-            </a>
-          </div>
-        </div>
-        <div class="fade-in stagger-1 relative">
-          <div class="aspect-square overflow-hidden rounded-lg bg-onyx">
-            <img src="/images/borrmann-motors-logo.png" alt="Borrmann Motors All American Cars" class="w-full h-full object-contain p-8" loading="lazy" />
-          </div>
-          <span class="absolute top-4 right-4 inline-flex items-center gap-2 px-3 py-1.5 rounded bg-route text-white text-xs font-display font-bold uppercase tracking-wider">
-            <Icon name="Sticker" size={12} strokeWidth={2.4} /> EST. 1989
-          </span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
   <CtaBand />
 </Layout>

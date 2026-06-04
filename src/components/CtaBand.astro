@@ -10,32 +10,32 @@ interface Props {
 const {
   title = 'Dein US-Car. Dein Klaus.',
   lead = 'Du suchst ein bestimmtes Fahrzeug und bist noch nicht fuendig geworden? Du brauchst einen Spezialisten fuer US-Cars? Es gibt zahlreiche gute Gruende uns zu kontaktieren.',
-  signoff = 'Kontaktiere uns - wir machen Deinen Fahrzeugtraum wahr! Herzliche Gruesse, Dein Klaus Borrmann',
+  signoff = 'Kontaktiere uns - wir machen Deinen Fahrzeugtraum wahr. Herzliche Gruesse, Dein Klaus Borrmann',
 } = Astro.props;
 ---
-<section class="section-dark py-20 md:py-28 relative overflow-hidden">
+<section class="section-dark section-padding relative overflow-hidden">
   <div class="container-r66 relative">
-    <div class="max-w-4xl">
-      <p class="eyebrow eyebrow-light mb-5">Final Lap</p>
-      <h2 class="heading-xl text-white text-balance mb-6">{title}</h2>
-      <p class="text-lg text-white/80 leading-relaxed mb-8 text-pretty max-w-2xl">{lead}</p>
+    <div class="max-w-3xl">
+      <p class="eyebrow eyebrow-light">Kontakt</p>
+      <h2 class="heading-xl text-white text-balance mb-7">{title}</h2>
+      <p class="text-lg text-white/80 leading-relaxed mb-10 text-pretty max-w-2xl">{lead}</p>
 
-      <div class="grid sm:grid-cols-3 gap-3 max-w-2xl mb-8">
+      <div class="flex flex-wrap gap-3 mb-10">
         <a href={telLink} class="btn btn-primary btn-lg">
-          <Icon name="Phone" size={16} strokeWidth={2.2} />
+          <Icon name="Phone" size={16} strokeWidth={2} />
           {site.phoneDisplay}
         </a>
         <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
-          <Icon name="MessageCircle" size={16} strokeWidth={2.2} />
+          <Icon name="MessageCircle" size={16} strokeWidth={2} />
           WhatsApp
         </a>
         <a href={mailWorkshopLink} class="btn btn-outline-light btn-lg">
-          <Icon name="Mail" size={16} strokeWidth={2.2} />
-          Werkstatt
+          <Icon name="Mail" size={16} strokeWidth={2} />
+          Werkstatt anschreiben
         </a>
       </div>
 
-      <p class="text-white/70 text-base italic max-w-2xl">"{signoff}"</p>
+      <p class="text-white/55 italic max-w-2xl text-sm">"{signoff}"</p>
     </div>
   </div>
 </section>
