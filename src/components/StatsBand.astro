@@ -1,0 +1,70 @@
+---
+import Icon from './Icon.astro';
+
+const stats = [
+  { value: '35', suffix: '+', label: 'Jahre US-Car-Erfahrung', icon: 'Wrench' },
+  { value: '1989', label: 'gegruendet von Klaus Borrmann', icon: 'Award' },
+  { value: '110', suffix: '+', label: 'Jahre Team-Erfahrung kombiniert', icon: 'Users' },
+  { value: '2', label: 'Standorte: Hamburg & Rendsburg', icon: 'MapPin' },
+];
+---
+
+<section class="section-light section-padding relative overflow-hidden">
+  <!-- Decorative Route 66 shield watermark -->
+  <div aria-hidden="true" class="absolute -right-32 top-1/2 -translate-y-1/2 opacity-[0.04] pointer-events-none rotate-12">
+    <svg width="600" height="600" viewBox="0 0 100 100" fill="currentColor" class="text-onyx">
+      <path d="M50 5 L88 25 L88 75 L50 95 L12 75 L12 25 Z" stroke="currentColor" stroke-width="2" fill="none"/>
+      <text x="50" y="42" text-anchor="middle" font-family="Oswald, sans-serif" font-size="14" font-weight="700">ROUTE</text>
+      <text x="50" y="68" text-anchor="middle" font-family="Oswald, sans-serif" font-size="32" font-weight="700">66</text>
+    </svg>
+  </div>
+
+  <div class="container-r66 relative">
+    <div class="max-w-2xl mb-16 fade-in">
+      <p class="eyebrow">Route 66 in Zahlen</p>
+      <h2 class="heading-xl text-balance">Drei Jahrzehnte. Vier Spezialisten. Ein V8-Herz.</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+      {stats.map((s, i) => (
+        <div class={`fade-in stagger-${i + 1} stat-box`}>
+          <div class="flex items-center gap-3 mb-5">
+            <span class="w-10 h-10 rounded-md bg-route/8 text-route inline-flex items-center justify-center">
+              <Icon name={s.icon} size={18} strokeWidth={1.8} />
+            </span>
+          </div>
+          <div class="font-display text-onyx leading-none tabular-nums">
+            <span class="stat-num text-5xl sm:text-6xl lg:text-7xl font-medium" data-target={s.value}>{s.value}</span>
+            {s.suffix && <span class="text-3xl sm:text-4xl lg:text-5xl text-route font-medium">{s.suffix}</span>}
+          </div>
+          <p class="text-muted text-sm mt-4 leading-relaxed">{s.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const counters = document.querySelectorAll('.stat-num') as NodeListOf<HTMLElement>;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      const el = e.target as HTMLElement;
+      const target = parseInt(el.dataset.target || '0', 10);
+      if (reduce || !target) { el.textContent = String(target); io.unobserve(el); return; }
+      const start = performance.now();
+      const dur = 1600;
+      const tick = (now: number) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = String(Math.round(eased * target));
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = String(target);
+      };
+      requestAnimationFrame(tick);
+      io.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach((el) => io.observe(el));
+</script>

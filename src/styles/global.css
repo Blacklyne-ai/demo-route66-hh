@@ -399,6 +399,66 @@
   .legal-prose strong { color: rgb(var(--rgb-onyx)); font-weight: 500; }
 }
 
+/* ===== KEN BURNS - very subtle slow scale on hero portraits ===== */
+@keyframes ken-burns {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.06) translate(-0.8%, -0.4%); }
+}
+.ken-burns {
+  animation: ken-burns 22s ease-out infinite alternate;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ken-burns { animation: none; }
+}
+
+/* ===== PARALLAX SHIFT for decorative images ===== */
+.parallax-soft { will-change: transform; transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* ===== TEXT REVEAL on scroll ===== */
+.reveal-text { overflow: hidden; }
+.reveal-text-inner { display: inline-block; transform: translateY(110%); transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1); }
+.fade-in.is-visible .reveal-text-inner { transform: translateY(0); }
+html:not(.js) .reveal-text-inner { transform: none; }
+
+/* ===== HERO BADGE - floating */
+.hero-badge {
+  background: #fff;
+  border: 1px solid rgb(var(--rgb-border));
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 22px 48px -20px rgb(0 0 0 / 0.22), 0 1px 2px rgb(0 0 0 / 0.04);
+  backdrop-filter: blur(6px);
+}
+
+/* ===== UNDERLINE-LINK with brush stroke effect ===== */
+.brush-underline {
+  background-image: linear-gradient(90deg, rgb(var(--rgb-route)), rgb(var(--rgb-route)));
+  background-repeat: no-repeat;
+  background-size: 0% 6px;
+  background-position: 0 90%;
+  transition: background-size 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding-bottom: 2px;
+}
+.brush-underline:hover, .brush-underline.is-visible { background-size: 100% 6px; }
+
+/* ===== DECORATIVE NUMBER WATERMARK ===== */
+.deco-number {
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 16vw, 18rem);
+  font-weight: 500;
+  line-height: 1;
+  color: rgb(var(--rgb-onyx) / 0.04);
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+}
+
+/* ===== HOVER ARROW that magnetises ===== */
+.hover-arrow { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.group:hover .hover-arrow, a:hover .hover-arrow { transform: translateX(4px); }
+
 /* ===== FLOATING MOBILE CTA ===== */
 .floating-mobile { display: none; }
 @media (max-width: 1023px) { .floating-mobile { display: flex; } }

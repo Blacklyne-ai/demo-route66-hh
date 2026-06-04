@@ -1,0 +1,55 @@
+---
+const items = [
+  { name: 'Cash fuer Chrom', sub: 'DMAX TV-Show' },
+  { name: 'CHROM & FLAMMEN', sub: 'Print-Magazin' },
+  { name: 'Playboy', sub: 'Januar 2020' },
+  { name: 'Liqui Moly', sub: 'Brand-Partner' },
+  { name: 'Shelby Service', sub: 'Official Partner' },
+  { name: 'AutoScout24', sub: 'Verified Dealer' },
+];
+// Duplicate items so the marquee loops seamlessly
+const loop = [...items, ...items];
+---
+
+<section class="section-warm border-y border-line py-10">
+  <p class="text-center eyebrow eyebrow-muted mb-8">Bekannt aus Presse, TV und Brand-Kollaborationen</p>
+  <div class="marquee-mask">
+    <div class="marquee-track">
+      {loop.map((item) => (
+        <div class="marquee-item">
+          <span class="font-display text-lg md:text-xl font-medium text-onyx tracking-tight">{item.name}</span>
+          <span class="text-xs text-muted-light tracking-wider uppercase">{item.sub}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-mask {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 4rem;
+    width: max-content;
+    animation: marquee-scroll 40s linear infinite;
+    padding-right: 4rem;
+  }
+  .marquee-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    gap: 0.25rem;
+    padding: 0 0.5rem;
+  }
+  .marquee-item span:first-child { white-space: nowrap; }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; flex-wrap: wrap; justify-content: center; }
+  }
+</style>

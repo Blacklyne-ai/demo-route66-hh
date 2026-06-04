@@ -7,12 +7,14 @@ import SectionHeading from '../components/SectionHeading.astro';
 import CtaBand from '../components/CtaBand.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import MapBlock from '../components/MapBlock.astro';
+import StatsBand from '../components/StatsBand.astro';
+import PressMarquee from '../components/PressMarquee.astro';
+import KlausSignature from '../components/KlausSignature.astro';
+import Route66Shield from '../components/Route66Shield.astro';
 import { site, telLink, telRendsburgLink, mailWorkshopLink, whatsappLink, fullServiceLeistungen } from '../data/site';
 import { services, quickServiceTiles } from '../data/services';
 import { team } from '../data/team';
 import { reviewsMeta } from '../data/reviews';
-
-const fullServiceIcons = ['Car', 'Award', 'Flag', 'Ship', 'Wrench', 'Hammer', 'FileCheck', 'ShieldCheck', 'Package'];
 
 const differentiators = [
   {
@@ -38,59 +40,86 @@ const differentiators = [
   description={site.description}
   current="/"
 >
-  <!-- HERO - light, clean, premium -->
+  <!-- HERO - light, with Ken-Burns + floating badges -->
   <section class="relative section-light pt-32 pb-12 md:pt-40 md:pb-20 overflow-hidden">
+    <!-- Decorative giant Route 66 number watermark -->
+    <span class="deco-number hidden lg:block" style="top: 8rem; right: -3rem;">66</span>
+
     <div class="container-r66 relative z-10">
       <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
         <div class="lg:col-span-7 fade-in">
           <p class="eyebrow">US-Cars - KFZ-Meisterbetrieb - Hamburg seit 1989</p>
           <h1 class="heading-display text-balance">
-            Dein US-Car.<br/>
-            Geliefert, gewartet, restauriert <span class="text-route">in Hamburg.</span>
+            <span class="reveal-text block"><span class="reveal-text-inner">Dein US-Car.</span></span>
+            <span class="reveal-text block"><span class="reveal-text-inner">Geliefert, gewartet,</span></span>
+            <span class="reveal-text block"><span class="reveal-text-inner">restauriert <span class="text-route">in Hamburg.</span></span></span>
           </h1>
           <p class="mt-7 text-lg md:text-xl text-muted leading-relaxed max-w-2xl text-pretty">
             Klaus Borrmann und sein Team importieren, warten und restaurieren US-Cars seit 1989. Bekannt aus Cash fuer Chrom (DMAX). Official Shelby Service Partner. Werkstatt in Hamburg-Bahrenfeld, Zweigstelle Rendsburg.
           </p>
           <div class="mt-9 flex flex-wrap gap-3">
-            <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg group">
               <Icon name="Car" size={16} strokeWidth={2} />
               Aktuelle Fahrzeuge ansehen
-              <Icon name="ArrowRight" size={15} strokeWidth={2} />
+              <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
             </a>
             <a href={telLink} class="btn btn-outline btn-lg">
               <Icon name="Phone" size={16} strokeWidth={2} />
               {site.phoneDisplay}
             </a>
           </div>
-          <div class="mt-10 pt-8 border-t border-line">
+          <div class="mt-12 pt-8 border-t border-line">
             <TrustStrip />
           </div>
         </div>
         <div class="lg:col-span-5 fade-in stagger-1">
           <div class="relative">
             <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
-              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann - Inhaber Route 66 Borrmann Motors" class="w-full h-full object-cover" loading="eager" />
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann - Inhaber Route 66 Borrmann Motors" class="w-full h-full object-cover ken-burns" loading="eager" />
             </div>
+            <!-- Floating Inhaber card bottom-left -->
             <div class="absolute -bottom-6 -left-6 hidden sm:block">
-              <div class="bg-white rounded-lg p-5 border border-line shadow-lg max-w-[220px]">
-                <p class="text-xs text-muted mb-1">Inhaber</p>
+              <div class="hero-badge">
+                <p class="text-[0.66rem] text-muted uppercase tracking-widest mb-1">Inhaber & Kfz-Meister</p>
                 <p class="font-display text-lg font-medium text-onyx leading-tight">Klaus Borrmann</p>
-                <p class="text-xs text-route mt-1">Cash fuer Chrom DMAX</p>
+                <p class="text-xs text-route mt-1 inline-flex items-center gap-1"><Icon name="Tv" size={11} strokeWidth={2} /> Cash fuer Chrom DMAX</p>
               </div>
+            </div>
+            <!-- Floating EST. 1989 badge top-right -->
+            <div class="absolute -top-3 -right-3 hidden md:block">
+              <div class="hero-badge !p-0 !rounded-full w-24 h-24 flex flex-col items-center justify-center text-center" style="background: #B91C1C; border-color: #991B1B;">
+                <span class="font-display text-[0.6rem] text-white/85 uppercase tracking-widest">Est.</span>
+                <span class="font-display text-2xl font-medium text-white leading-none">1989</span>
+                <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest mt-1">Hamburg</span>
+              </div>
+            </div>
+            <!-- Decorative Shelby snake bottom right -->
+            <div class="absolute bottom-6 right-6 hidden lg:block w-14 h-14 opacity-90">
+              <img src="/images/shelby-circle-snake.png" alt="Shelby Service Partner" class="w-full h-full object-contain" />
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- Scroll hint -->
+    <div class="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted text-[0.7rem] uppercase tracking-widest">
+      <span>Scroll</span>
+      <span class="block w-px h-8 bg-onyx/20"></span>
+    </div>
   </section>
 
+  <!-- PRESS MARQUEE -->
+  <PressMarquee />
+
   <!-- AUTHORITY QUOTE -->
-  <section class="section-warm section-padding border-y border-line">
-    <div class="container-r66">
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -left-16 top-1/2 -translate-y-1/2 text-onyx" size={420} opacity={0.05} />
+    <div class="container-r66 relative">
       <div class="max-w-4xl mx-auto text-center fade-in">
-        <Icon name="Quote" size={36} strokeWidth={1.5} class="text-route mx-auto mb-6" />
+        <Icon name="Quote" size={42} strokeWidth={1.5} class="text-route mx-auto mb-7" />
         <p class="font-display text-2xl md:text-4xl text-onyx leading-snug text-balance">
-          Route 66 in Hamburg ist der erfolgreiche und aus Cash fuer Chrom bekannte Importeur, Tuner und Service-Partner fuer US-Fahrzeuge in ganz Deutschland.
+          Route 66 in Hamburg ist der erfolgreiche und aus Cash fuer Chrom bekannte Importeur, Tuner und Service-Partner fuer US-Fahrzeuge in <span class="brush-underline">ganz Deutschland</span>.
         </p>
         <a href={site.external.cashFuerChrom} target="_blank" rel="noopener" class="arrow-link mt-10 inline-flex">
           Cash fuer Chrom auf DMAX <Icon name="ExternalLink" size={13} strokeWidth={2} />
@@ -100,8 +129,9 @@ const differentiators = [
   </section>
 
   <!-- DREI USPs (numbered like Aston) -->
-  <section class="section-light section-padding">
-    <div class="container-r66">
+  <section class="section-warm section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-20 -bottom-20 text-route" size={460} opacity={0.05} />
+    <div class="container-r66 relative">
       <div class="max-w-2xl mb-16 fade-in">
         <p class="eyebrow">Warum Route 66</p>
         <h2 class="heading-xl text-balance">Was uns ausmacht.</h2>
@@ -118,6 +148,9 @@ const differentiators = [
     </div>
   </section>
 
+  <!-- STATS BAND -->
+  <StatsBand />
+
   <!-- FULL-SERVICE LEISTUNGEN - alternating image + text -->
   <section class="section-white section-padding">
     <div class="container-r66">
@@ -130,8 +163,8 @@ const differentiators = [
           </p>
           <ul class="space-y-3.5">
             {fullServiceLeistungen.map((l, i) => (
-              <li class="flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5">
+              <li class="flex items-start gap-3 group">
+                <span class="w-6 h-6 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-route group-hover:text-white transition-colors">
                   <Icon name="Check" size={12} strokeWidth={2.5} />
                 </span>
                 <span class="text-onyx">{l}</span>
@@ -139,12 +172,19 @@ const differentiators = [
             ))}
           </ul>
           <a href="/services" class="arrow-link mt-10 inline-flex">
-            Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} />
+            Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} class="hover-arrow" />
           </a>
         </div>
         <div class="lg:col-span-6 fade-in stagger-1">
-          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
-            <img src="/images/car-check-hero.jpg" alt="Route 66 Werkstatt Hamburg" class="w-full h-full object-cover" loading="lazy" />
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
+              <img src="/images/car-check-hero.jpg" alt="Route 66 Werkstatt Hamburg" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <!-- floating "9 Leistungen" badge -->
+            <div class="absolute -bottom-4 -right-4 bg-onyx rounded-lg px-5 py-4 shadow-xl">
+              <p class="font-display text-3xl text-white leading-none">9</p>
+              <p class="text-white/65 text-[0.7rem] uppercase tracking-widest mt-1">Leistungen</p>
+            </div>
           </div>
         </div>
       </div>
@@ -171,36 +211,55 @@ const differentiators = [
             ))}
           </div>
           <a href="/us-cars-kaufen" class="arrow-link mt-10 inline-flex">
-            Wie der Import funktioniert <Icon name="ArrowRight" size={14} strokeWidth={2} />
+            Wie der Import funktioniert <Icon name="ArrowRight" size={14} strokeWidth={2} class="hover-arrow" />
           </a>
         </div>
         <div class="lg:col-span-6 lg:order-1 fade-in stagger-1">
-          <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
-            <img src="/images/car-design-1.jpg" alt="US-Car Restoration" class="w-full h-full object-cover" loading="lazy" />
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/3] bg-cream-warm">
+              <img src="/images/car-design-1.jpg" alt="US-Car Restoration" class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <!-- Route from US to Hamburg overlay badge -->
+            <div class="absolute -top-4 -left-4 bg-white rounded-lg px-5 py-4 shadow-xl border border-line">
+              <div class="flex items-center gap-3">
+                <span class="font-display text-xs uppercase tracking-widest text-muted">USA</span>
+                <Icon name="ArrowRight" size={14} strokeWidth={2} class="text-route" />
+                <span class="font-display text-xs uppercase tracking-widest text-onyx font-medium">Hamburg</span>
+              </div>
+              <p class="text-xs text-muted mt-2">Komplette Import-Abwicklung</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TEAM - clean grid -->
-  <section class="section-light section-padding">
-    <div class="container-r66">
+  <!-- TEAM with hover-reveal -->
+  <section class="section-light section-padding relative overflow-hidden">
+    <span class="deco-number hidden lg:block" style="bottom: 5rem; left: -2rem; font-size: 14rem; opacity: 0.04;">TEAM</span>
+    <div class="container-r66 relative">
       <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
         <div class="max-w-2xl fade-in">
           <p class="eyebrow">Das Team</p>
           <h2 class="heading-xl text-balance">Vier Charaktere. 110+ Jahre Erfahrung.</h2>
         </div>
-        <a href="/team" class="arrow-link fade-in stagger-1">Mehr ueber das Team <Icon name="ArrowRight" size={14} strokeWidth={2} /></a>
+        <a href="/team" class="arrow-link fade-in stagger-1">Mehr ueber das Team <Icon name="ArrowRight" size={14} strokeWidth={2} class="hover-arrow" /></a>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {team.map((m, i) => (
           <div class={`fade-in stagger-${i + 1}`}>
             <TeamCard member={m} />
           </div>
         ))}
       </div>
+
+      <p class="text-center text-muted text-sm mt-12 fade-in">
+        <span class="inline-flex items-center gap-2">
+          <Icon name="Hand" size={14} strokeWidth={1.8} class="text-route" />
+          Hover ueber ein Portrait fuer die Story.
+        </span>
+      </p>
     </div>
   </section>
 
@@ -212,7 +271,7 @@ const differentiators = [
           <p class="eyebrow">Services & Beratung</p>
           <h2 class="heading-xl text-balance">Vom Call a Mechanic bis Werkstattfuehrung.</h2>
         </div>
-        <a href="/services" class="arrow-link fade-in stagger-1">Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} /></a>
+        <a href="/services" class="arrow-link fade-in stagger-1">Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} class="hover-arrow" /></a>
       </div>
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -226,12 +285,13 @@ const differentiators = [
   </section>
 
   <!-- WERKSTATTFUEHRUNG TEASER -->
-  <section class="section-warm section-padding">
-    <div class="container-r66">
+  <section class="section-warm section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-12 -top-12 text-route" size={380} opacity={0.06} />
+    <div class="container-r66 relative">
       <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         <div class="lg:col-span-5 fade-in">
           <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-deep">
-            <img src="/images/team-group.jpg" alt="Route 66 Werkstatt Team" class="w-full h-full object-cover" loading="lazy" />
+            <img src="/images/team-group.jpg" alt="Route 66 Werkstatt Team" class="w-full h-full object-cover ken-burns" loading="lazy" />
           </div>
         </div>
         <div class="lg:col-span-7 fade-in stagger-1">
@@ -263,10 +323,10 @@ const differentiators = [
           </div>
 
           <div class="flex flex-wrap gap-3">
-            <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg">
+            <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg group">
               <Icon name="Compass" size={16} strokeWidth={2} />
               Werkstattfuehrung buchen
-              <Icon name="ArrowRight" size={15} strokeWidth={2} />
+              <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
             </a>
             <a href={telLink} class="btn btn-outline btn-lg">
               <Icon name="Phone" size={16} strokeWidth={2} />
@@ -281,7 +341,7 @@ const differentiators = [
   <!-- JOB BANNER -->
   <section class="section-light py-16">
     <div class="container-r66">
-      <div class="rounded-lg border border-line bg-white p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
+      <div class="rounded-lg border border-line bg-white p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6 justify-between transition-shadow hover:shadow-xl">
         <div class="flex items-start gap-5">
           <span class="w-14 h-14 rounded-lg bg-route/8 text-route inline-flex items-center justify-center flex-shrink-0">
             <Icon name="Briefcase" size={22} strokeWidth={1.8} />
@@ -292,9 +352,9 @@ const differentiators = [
             <p class="text-muted text-sm">Unbefristet, Vollzeit, uebertarifliche Bezahlung, Snap-on Tools.</p>
           </div>
         </div>
-        <a href="/jobs" class="btn btn-dark flex-shrink-0">
+        <a href="/jobs" class="btn btn-dark flex-shrink-0 group">
           Stellenausschreibung
-          <Icon name="ArrowRight" size={15} strokeWidth={2} />
+          <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
         </a>
       </div>
     </div>
@@ -345,7 +405,7 @@ const differentiators = [
         <h2 class="heading-xl text-balance mb-6">Echte Bewertungen, keine Erfindung.</h2>
         <div class="stars justify-center mb-6">
           {Array.from({ length: reviewsMeta.stars }).map(() => (
-            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           ))}
         </div>
         <p class="text-muted leading-relaxed mb-8">{reviewsMeta.googleNote}</p>
@@ -359,4 +419,15 @@ const differentiators = [
   </section>
 
   <CtaBand />
+
+  <!-- KLAUS SIGNATURE AT BOTTOM -->
+  <section class="section-dark py-16">
+    <div class="container-r66 text-center">
+      <div class="fade-in flex flex-col items-center">
+        <p class="text-white/55 italic mb-6 text-sm">Persoenlich von Klaus,</p>
+        <KlausSignature light size="md" />
+        <p class="text-white/45 text-xs mt-3 tracking-widest uppercase">Inhaber Route 66 Borrmann Motors KG</p>
+      </div>
+    </div>
+  </section>
 </Layout>

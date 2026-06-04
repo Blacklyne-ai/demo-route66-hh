@@ -1,0 +1,26 @@
+---
+// Smooth scroll-progress indicator at top of page - 2px high red line
+---
+<div id="scroll-progress" class="fixed top-0 left-0 right-0 z-[60] h-[2px] pointer-events-none origin-left">
+  <div id="scroll-progress-bar" class="h-full w-full origin-left scale-x-0 transition-transform duration-150" style="background: #B91C1C; transform-origin: left;"></div>
+</div>
+
+<script is:inline>
+  (function () {
+    var bar = document.getElementById('scroll-progress-bar');
+    if (!bar) return;
+    var ticking = false;
+    function update() {
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      var p = h > 0 ? Math.min(1, window.scrollY / h) : 0;
+      bar.style.transform = 'scaleX(' + p + ')';
+      ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    });
+    update();
+  })();
+</script>
