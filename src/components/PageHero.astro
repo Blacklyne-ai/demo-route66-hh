@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Route66Shield from './Route66Shield.astro';
 
 interface Props {
   eyebrow?: string;
@@ -11,13 +12,34 @@ interface Props {
   secondaryCta?: { label: string; href: string; icon?: string };
   breadcrumbs?: { label: string; href: string }[];
   variant?: 'light' | 'dark';
+  trustPills?: { label: string; icon: string }[];
 }
-const { eyebrow, title, lead, image, imageAlt = '', cta, secondaryCta, breadcrumbs = [], variant = 'light' } = Astro.props;
+const {
+  eyebrow,
+  title,
+  lead,
+  image,
+  imageAlt = '',
+  cta,
+  secondaryCta,
+  breadcrumbs = [],
+  variant = 'light',
+  trustPills = [
+    { label: 'Seit 1989', icon: 'Award' },
+    { label: 'Cash für Chrom', icon: 'Tv' },
+    { label: 'Shelby Partner', icon: 'Trophy' },
+  ],
+} = Astro.props;
 ---
-<section class={`relative ${variant === 'dark' ? 'section-dark' : 'section-light'} pt-36 pb-16 md:pt-44 md:pb-24 overflow-hidden`}>
+<section class={`relative ${variant === 'dark' ? 'section-dark' : 'section-light'} pt-36 pb-20 md:pt-44 md:pb-28 overflow-hidden`}>
+  <!-- Route 66 Shield Watermark - immer als dezenter Background -->
+  <div class="absolute -right-32 top-1/2 -translate-y-1/2 pointer-events-none hidden lg:block" aria-hidden="true">
+    <Route66Shield class={variant === 'dark' ? 'text-white' : 'text-onyx'} size={580} opacity={variant === 'dark' ? 0.05 : 0.04} />
+  </div>
+
   <div class="container-r66 relative z-10">
     {breadcrumbs.length > 0 && (
-      <nav class={`mb-8 flex items-center gap-2 text-[0.78rem] ${variant === 'dark' ? 'text-white/55' : 'text-muted'}`} aria-label="Breadcrumb">
+      <nav class={`mb-10 flex items-center gap-2 text-[0.78rem] ${variant === 'dark' ? 'text-white/55' : 'text-muted'}`} aria-label="Breadcrumb">
         {breadcrumbs.map((b, i) => (
           <Fragment>
             <a href={b.href} class="hover:text-route transition">{b.label}</a>
@@ -26,18 +48,31 @@ const { eyebrow, title, lead, image, imageAlt = '', cta, secondaryCta, breadcrum
         ))}
       </nav>
     )}
-    <div class="grid lg:grid-cols-12 gap-10 lg:gap-16 items-end">
+    <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
       <div class="lg:col-span-7">
         {eyebrow && <p class={`eyebrow ${variant === 'dark' ? 'eyebrow-light' : ''}`}>{eyebrow}</p>}
         <h1 class={`heading-display text-balance ${variant === 'dark' ? 'text-white' : 'text-onyx'}`}>{title}</h1>
         {lead && <p class={`mt-7 text-lg md:text-xl leading-relaxed max-w-2xl text-pretty ${variant === 'dark' ? 'text-white/80' : 'text-muted'}`}>{lead}</p>}
+
+        <!-- Trust-Pills um die linke Spalte zu füllen -->
+        {trustPills && trustPills.length > 0 && (
+          <div class="mt-8 flex flex-wrap gap-2.5">
+            {trustPills.map((p) => (
+              <span class={`hero-pill ${variant === 'dark' ? 'hero-pill-dark' : ''}`}>
+                <Icon name={p.icon} size={13} strokeWidth={1.8} class="text-route" />
+                {p.label}
+              </span>
+            ))}
+          </div>
+        )}
+
         {(cta || secondaryCta) && (
-          <div class="mt-10 flex flex-wrap gap-3">
+          <div class="mt-9 flex flex-wrap gap-3">
             {cta && (
-              <a href={cta.href} class="btn btn-primary btn-lg">
+              <a href={cta.href} class="btn btn-primary btn-lg group">
                 {cta.icon && <Icon name={cta.icon} size={16} strokeWidth={2} />}
                 {cta.label}
-                <Icon name="ArrowRight" size={15} strokeWidth={2} />
+                <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
               </a>
             )}
             {secondaryCta && (
@@ -51,11 +86,50 @@ const { eyebrow, title, lead, image, imageAlt = '', cta, secondaryCta, breadcrum
       </div>
       {image && (
         <div class="lg:col-span-5">
-          <div class="rounded-xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] bg-cream-warm">
-            <img src={image} alt={imageAlt} class="w-full h-full object-cover" loading="eager" />
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] lg:aspect-[3/4] bg-cream-warm">
+              <img src={image} alt={imageAlt} class="w-full h-full object-cover ken-burns" loading="eager" />
+            </div>
+            <!-- Floating Caption Card (image-Bottom) -->
+            <div class="absolute bottom-4 left-4 right-4 hidden sm:flex items-center gap-3 rounded-lg p-3 pr-4" style="background: rgba(255,254,251,0.96); backdrop-filter: blur(14px); border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 18px 36px -12px rgba(0,0,0,0.35);">
+              <span class="w-9 h-9 rounded-full bg-route text-white inline-flex items-center justify-center flex-shrink-0">
+                <Icon name="MapPin" size={14} strokeWidth={2} />
+              </span>
+              <div class="flex-1 min-w-0">
+                <p class="text-[0.62rem] text-muted uppercase tracking-[0.16em] leading-none">Werkstatt</p>
+                <p class="font-display text-sm font-medium text-onyx leading-tight mt-1">Hamburg-Bahrenfeld</p>
+              </div>
+              <span class="text-[0.62rem] font-medium text-route tracking-wide">Seit 1989</span>
+            </div>
           </div>
         </div>
       )}
     </div>
   </div>
 </section>
+
+<style>
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.45rem 0.95rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    color: rgb(17 17 17);
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+  }
+  .hero-pill:hover {
+    border-color: rgb(185 28 28 / 0.4);
+    transform: translateY(-1px);
+  }
+  .hero-pill-dark {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+    color: rgb(255 255 255 / 0.85);
+    backdrop-filter: blur(8px);
+  }
+</style>
