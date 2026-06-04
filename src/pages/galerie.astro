@@ -1,69 +1,144 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Route66Shield from '../components/Route66Shield.astro';
 import { site } from '../data/site';
 
-const galleryItems = [
-  { src: '/images/klaus-borrmann.jpg', title: 'Klaus Borrmann', subtitle: 'Inhaber & TV-Persönlichkeit' },
-  { src: '/images/team-group.jpg', title: 'Das Route 66 Team', subtitle: 'Hamburg & Rendsburg vereint' },
-  { src: '/images/car-check-hero.jpg', title: 'Werkstatt im Einsatz', subtitle: 'Hamburg-Bahrenfeld' },
-  { src: '/images/car-design-1.jpg', title: 'Borrmann Motors Racing 66', subtitle: 'Custom Design Build' },
-  { src: '/images/car-design-2.jpg', title: 'Custom Showcase', subtitle: 'Eigene Werkstatt-Projekte' },
-  { src: '/images/michel-schmidt.jpg', title: 'Michel Schmidt', subtitle: '40 Jahre Ersatzteile' },
-  { src: '/images/fred-fiedler.jpg', title: 'Fred Fiedler', subtitle: 'KFZ-Meister seit 30 Jahren' },
-  { src: '/images/bjoern.jpg', title: 'Björn', subtitle: 'Rendsburg Standort' },
-  { src: '/images/team-header.jpg', title: 'Werkstatt-Atmosphaere', subtitle: 'Wo Leidenschaft auf Motoren trifft' },
+const featured = {
+  src: '/images/team-group.jpg',
+  title: 'Das Route 66 Team',
+  category: 'Werkstatt',
+  body: 'Klaus, Michel, Fred und das Team vor dem Borrmann-Motors-Werkstatt-Eingang in Hamburg-Bahrenfeld.',
+};
+
+const gallery = [
+  { src: '/images/klaus-borrmann.jpg', title: 'Klaus Borrmann', category: 'Inhaber', span: 'tall' },
+  { src: '/images/car-design-1.jpg', title: 'Borrmann Motors Racing 66', category: 'Custom Build', span: 'wide' },
+  { src: '/images/team-header.jpg', title: 'Mustang Showcase', category: 'US-Car' },
+  { src: '/images/michel-schmidt.jpg', title: 'Michel Schmidt', category: 'Ersatzteile' },
+  { src: '/images/fred-fiedler.jpg', title: 'Fred Fiedler', category: 'KFZ-Meister' },
+  { src: '/images/car-design-2.jpg', title: 'Custom Showcase', category: 'Tuning', span: 'tall' },
+  { src: '/images/bjoern.jpg', title: 'Björn - Standort Rendsburg', category: 'Team' },
+  { src: '/images/team-group.jpg', title: 'Hamburg-Bahrenfeld', category: 'Werkstatt', span: 'wide' },
 ];
+
+const categories = ['Alle', 'Werkstatt', 'US-Cars', 'Team', 'Custom Builds'];
 ---
 
 <Layout
-  title="Car-Galerie - Route 66 Hamburg | US-Cars & Werkstatt-Impressionen"
+  title="Galerie - Route 66 Hamburg | US-Cars & Werkstatt-Impressionen"
   description="Car-Galerie von Route 66 Borrmann Motors Hamburg - Klaus, Team, US-Cars, Werkstatt-Projekte, Custom Designs."
   current="/galerie"
 >
   <PageHero
     eyebrow="Car-Galerie"
     title="Bilder sagen mehr."
-    lead="Klaus, das Team, die Werkstatt, die Cars. Echte Eindruecke aus 35 Jahren Route 66 Hamburg."
+    lead="Klaus, das Team, die Werkstatt, die Cars. Echte Eindrücke aus 35 Jahren Route 66 Hamburg."
     image="/images/team-header.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Galerie', href: '/galerie' }]}
   />
 
-  <section class="section-cream py-20 md:py-28">
-    <div class="container-r66">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {galleryItems.map((item, i) => (
-          <div class={`group relative aspect-[4/5] overflow-hidden rounded-lg bg-onyx fade-in stagger-${(i % 4) + 1}`}>
-            <img src={item.src} alt={item.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
-            <div class="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent opacity-90"></div>
-            <div class="absolute bottom-0 left-0 right-0 p-5">
-              <h3 class="font-display text-lg font-bold uppercase tracking-wide text-white">{item.title}</h3>
-              <p class="text-white/75 text-xs mt-1">{item.subtitle}</p>
+  <!-- Featured Big -->
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-32 -top-20 text-onyx" size={520} opacity={0.04} />
+    <div class="container-r66 relative">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7 fade-in">
+          <div class="rounded-xl overflow-hidden aspect-[16/11] bg-cream-warm relative group">
+            <img src={featured.src} alt={featured.title} class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+            <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-route text-white text-[0.66rem] font-medium uppercase tracking-widest">
+              <Icon name="Camera" size={11} strokeWidth={2.2} />
+              {featured.category}
+            </span>
+          </div>
+        </div>
+        <div class="lg:col-span-5 fade-in stagger-1">
+          <p class="eyebrow">Highlight-Bild</p>
+          <h2 class="heading-xl text-balance mb-6">{featured.title}.</h2>
+          <p class="text-muted leading-relaxed text-lg mb-8">{featured.body}</p>
+          <div class="grid grid-cols-2 gap-4 max-w-sm">
+            <div>
+              <p class="font-display text-3xl text-onyx font-medium leading-none">35+</p>
+              <p class="text-[0.7rem] tracking-widest uppercase text-muted mt-2">Jahre</p>
+            </div>
+            <div>
+              <p class="font-display text-3xl text-onyx font-medium leading-none">100+</p>
+              <p class="text-[0.7rem] tracking-widest uppercase text-muted mt-2">Projekte</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Filter (visual only) -->
+  <section class="section-warm py-10 border-y border-line">
+    <div class="container-r66">
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        {categories.map((c, i) => (
+          <span class={`gallery-pill ${i === 0 ? 'active' : ''}`}>
+            {c}
+          </span>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="mt-14 text-center">
-        <p class="text-muted mb-6">Mehr Eindruecke gibt's auf unseren Social-Kanaelen.</p>
-        <div class="flex flex-wrap items-center justify-center gap-3">
-          <a href={site.social.instagram} target="_blank" rel="noopener" class="btn btn-dark btn-lg">
-            <Icon name="Camera" size={16} strokeWidth={2.2} />
-            Instagram
-            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
+  <!-- Bento-Style Gallery Grid -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="bento-grid">
+        {gallery.map((item, i) => (
+          <a
+            href={item.src}
+            target="_blank"
+            rel="noopener"
+            class={`bento-item ${item.span === 'wide' ? 'bento-wide' : ''} ${item.span === 'tall' ? 'bento-tall' : ''} fade-in stagger-${(i % 4) + 1}`}
+            aria-label={item.title}
+          >
+            <img src={item.src} alt={item.title} loading="lazy" />
+            <div class="bento-overlay"></div>
+            <div class="bento-info">
+              <span class="bento-category">{item.category}</span>
+              <h3 class="bento-title">{item.title}</h3>
+            </div>
+            <span class="bento-icon">
+              <Icon name="ArrowUpRight" size={16} strokeWidth={2} />
+            </span>
           </a>
-          <a href={site.social.youtube} target="_blank" rel="noopener" class="btn btn-outline btn-lg">
-            <Icon name="Tv2" size={16} strokeWidth={2.2} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Social CTA -->
+  <section class="section-dark section-padding relative overflow-hidden">
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img src="/images/team-group.jpg" alt="" class="w-full h-full object-cover opacity-20 ken-burns" loading="lazy" />
+      <div class="absolute inset-0" style="background: linear-gradient(120deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.5) 100%);"></div>
+    </div>
+    <div class="container-r66 relative z-10">
+      <div class="max-w-3xl">
+        <p class="eyebrow eyebrow-light">Folge uns</p>
+        <h2 class="heading-xl text-white text-balance mb-6">Mehr Bilder. Mehr Stories. Täglich.</h2>
+        <p class="text-lg text-white/80 leading-relaxed mb-10 max-w-2xl">
+          Auf Instagram, YouTube und Facebook gibt es täglich frische Werkstatt-Eindrücke, Custom-Projekte und Cash-für-Chrom-Backstage.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={site.social.instagram} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+            <Icon name="Camera" size={16} strokeWidth={2} />
+            Instagram folgen
+            <Icon name="ExternalLink" size={13} strokeWidth={2} />
+          </a>
+          <a href={site.social.youtube} target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">
+            <Icon name="Tv2" size={16} strokeWidth={2} />
             YouTube
-            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
           </a>
-          <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-            <Icon name="Car" size={16} strokeWidth={2.2} />
+          <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-outline-light btn-lg">
+            <Icon name="Car" size={16} strokeWidth={2} />
             Aktuelle Fahrzeuge
-            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
           </a>
         </div>
       </div>
@@ -72,3 +147,108 @@ const galleryItems = [
 
   <CtaBand />
 </Layout>
+
+<style>
+  /* Gallery category pills */
+  .gallery-pill {
+    padding: 0.55rem 1.1rem;
+    border-radius: 999px;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    color: rgb(17 17 17 / 0.78);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+  .gallery-pill:hover { border-color: rgb(185 28 28); color: rgb(185 28 28); }
+  .gallery-pill.active { background: rgb(185 28 28); color: #fff; border-color: rgb(185 28 28); }
+
+  /* Bento grid */
+  .bento-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  @media (min-width: 640px) {
+    .bento-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  }
+  @media (min-width: 1024px) {
+    .bento-grid {
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 240px;
+      gap: 1.25rem;
+    }
+  }
+
+  .bento-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgb(245 240 229);
+    aspect-ratio: 1;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  }
+  @media (min-width: 1024px) {
+    .bento-item { aspect-ratio: auto; }
+    .bento-wide { grid-column: span 2; }
+    .bento-tall { grid-row: span 2; }
+  }
+
+  .bento-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bento-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 48px -16px rgba(0,0,0,0.25);
+  }
+  .bento-item:hover img { transform: scale(1.08); }
+
+  .bento-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);
+    opacity: 0.65;
+    transition: opacity 0.4s ease;
+  }
+  .bento-item:hover .bento-overlay { opacity: 1; }
+
+  .bento-info {
+    position: absolute; bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+  }
+  .bento-category {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: rgb(185 28 28);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 0.5rem;
+  }
+  .bento-title {
+    font-family: "Oswald", sans-serif;
+    color: #fff;
+    font-size: 1.15rem;
+    font-weight: 500;
+    line-height: 1.2;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.6);
+  }
+
+  .bento-icon {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    width: 36px; height: 36px;
+    border-radius: 999px;
+    background: rgba(255, 254, 251, 0.95);
+    color: rgb(17 17 17);
+    display: inline-flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px);
+    transform: scale(0.85);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .bento-item:hover .bento-icon { opacity: 1; transform: scale(1); }
+</style>

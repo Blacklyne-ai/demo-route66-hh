@@ -1,41 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
-import { site } from '../data/site';
+import Route66Shield from '../components/Route66Shield.astro';
+import { site, mailLink } from '../data/site';
 
-const pressItems = [
+const featured = {
+  type: 'TV-Hauptauftritt',
+  title: 'Cash für Chrom',
+  publisher: 'DMAX',
+  description: 'Klaus Borrmann ist seit Jahren in der DMAX-Sendung "Cash für Chrom" zu sehen - die Show, die Schrottplätzen ihren wahren Wert gibt. Klaus hat zahlreiche Auftritte und ist eines der bekanntesten Gesichter der Sendung.',
+  link: site.external.cashFürChrom,
+  linkText: 'Episode auf DMAX ansehen',
+  icon: 'Tv',
+  image: '/images/klaus-borrmann.jpg',
+};
+
+const press = [
   {
-    type: 'TV',
-    title: 'Cash für Chrom',
-    publisher: 'DMAX',
-    description: 'Klaus Borrmann ist in der DMAX-Sendung "Cash für Chrom" zu sehen - die Show, die Schrottplaetzen ihren wahren Wert gibt. Klaus hat zahlreiche Auftritte und ist eines der bekanntesten Gesichter der Sendung.',
-    link: site.external.cashFürChrom,
-    linkText: 'Cash für Chrom auf DMAX',
-    icon: 'Tv',
-  },
-  {
-    type: 'Print',
+    type: 'Print-Magazin',
     title: 'CHROM & FLAMMEN',
     publisher: 'Dezember-Ausgabe',
     description: 'Mehrseitiges Feature über Route 66 als Institution der Hamburger US-Car-Szene. Frank Mundus eröffnet: "Im Prinzip ist alles wie vorher, aber irgendwie auch ganz anders."',
     icon: 'Newspaper',
+    accent: 'Print',
   },
   {
-    type: 'Print',
-    title: 'Playboy "Mein Schlitten & Ich"',
+    type: 'Magazin-Interview',
+    title: 'Playboy - Mein Schlitten & Ich',
     publisher: 'Januar 2020',
     description: 'Klaus Borrmann im Playboy-Interview über seine Leidenschaft für Cars, insbesondere seine 499 PS Corvette ZHZ.',
     icon: 'Newspaper',
+    accent: 'Print',
   },
   {
-    type: 'Digital',
+    type: 'Marken-Kollaboration',
     title: 'Liqui Moly Car-Care',
-    publisher: 'Brand-Kollaboration',
-    description: 'Klaus arbeitet mit Liqui Moly an automotiven Pflege-Inhalten - die richtige Wahl von Oelen und Pflegeprodukten ist auch für US-Car-Fans Pflicht.',
+    publisher: 'Brand-Partner',
+    description: 'Klaus arbeitet mit Liqui Moly an automotiven Pflege-Inhalten - die richtige Wahl von Ölen und Pflegeprodukten ist auch für US-Car-Fans Pflicht.',
     icon: 'Trophy',
+    accent: 'Brand',
+  },
+  {
+    type: 'Werks-Partnerschaft',
+    title: 'Shelby Service Partner',
+    publisher: 'Offizielle Lizenz',
+    description: 'Route 66 ist Official Shelby Service Partner in Deutschland - mit direktem Zugang zu Original-Teilen und Werks-Knowhow.',
+    icon: 'Award',
+    accent: 'Brand',
   },
 ];
 ---
@@ -46,42 +59,166 @@ const pressItems = [
   current="/presse"
 >
   <PageHero
-    eyebrow="Presse"
-    title="Route 66 in den Medien"
-    lead="Cash für Chrom auf DMAX, CHROM & FLAMMEN Print, Playboy-Interview - Klaus Borrmann und Route 66 sind seit Jahren Stammgaeste in der US-Car-Berichterstattung."
+    eyebrow="Presse & Medien"
+    title="Route 66 in den Medien."
+    lead="Cash für Chrom auf DMAX, CHROM & FLAMMEN Print, Playboy-Interview - Klaus Borrmann und Route 66 sind seit Jahren Stammgäste in der US-Car-Berichterstattung."
     image="/images/klaus-borrmann.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Presse', href: '/presse' }]}
   />
 
-  <section class="section-cream py-20 md:py-28">
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -left-32 -top-24 text-onyx" size={520} opacity={0.04} />
+    <div class="container-r66 relative">
+      <div class="rounded-2xl overflow-hidden grid lg:grid-cols-12 fade-in" style="background: linear-gradient(160deg, #111 0%, #1A1A1A 100%); box-shadow: 0 32px 64px -20px rgba(0,0,0,0.35);">
+        <div class="lg:col-span-6 relative">
+          <div class="aspect-[4/5] lg:aspect-auto lg:h-full bg-onyx-900 overflow-hidden">
+            <img src={featured.image} alt={featured.title} class="w-full h-full object-cover ken-burns" loading="lazy" />
+          </div>
+          <span class="absolute top-5 left-5 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-route text-white text-[0.66rem] font-medium uppercase tracking-widest">
+            <Icon name="Tv" size={11} strokeWidth={2.2} />
+            {featured.type}
+          </span>
+        </div>
+        <div class="lg:col-span-6 p-8 md:p-12 lg:p-14 flex flex-col justify-center">
+          <p class="text-[0.7rem] tracking-[0.18em] uppercase text-route font-medium mb-4">{featured.publisher}</p>
+          <h2 class="font-display text-4xl md:text-5xl text-white leading-tight mb-7">{featured.title}</h2>
+          <p class="text-white/75 leading-relaxed text-lg mb-10">{featured.description}</p>
+          <a href={featured.link} target="_blank" rel="noopener" class="btn btn-primary btn-lg group self-start">
+            <Icon name="Tv" size={16} strokeWidth={2} />
+            {featured.linkText}
+            <Icon name="ExternalLink" size={13} strokeWidth={2} />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white section-padding">
     <div class="container-r66">
-      <div class="grid md:grid-cols-2 gap-5">
-        {pressItems.map((p, i) => (
-          <article class={`card-feature fade-in stagger-${(i % 3) + 1}`}>
-            <div class="flex items-start gap-4 mb-4">
-              <span class="w-12 h-12 rounded-md bg-route text-white inline-flex items-center justify-center flex-shrink-0">
-                <Icon name={p.icon} size={20} strokeWidth={2} />
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Weitere Erwähnungen</p>
+        <h2 class="heading-xl text-balance">Print, Brand, Auszeichnungen.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+        {press.map((p, i) => (
+          <article class={`press-card fade-in stagger-${(i % 4) + 1}`}>
+            <div class="press-accent">{p.accent}</div>
+            <div class="flex items-start gap-5">
+              <span class="press-icon">
+                <Icon name={p.icon} size={20} strokeWidth={1.8} />
               </span>
               <div class="flex-1">
-                <span class="inline-block px-2 py-0.5 rounded text-[0.65rem] font-display font-bold uppercase tracking-wider bg-cream-warm border border-line text-onyx mb-2">{p.type}</span>
-                <h3 class="heading-md mb-1">{p.title}</h3>
-                <p class="text-xs text-muted-light uppercase tracking-wider font-semibold">{p.publisher}</p>
+                <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium mb-2">{p.type}</p>
+                <h3 class="heading-md mb-1 leading-tight">{p.title}</h3>
+                <p class="text-route text-sm font-medium mb-4">{p.publisher}</p>
+                <p class="text-muted leading-relaxed text-sm">{p.description}</p>
               </div>
             </div>
-            <p class="text-muted text-sm leading-relaxed mb-4">{p.description}</p>
-            {p.link && (
-              <a href={p.link} target="_blank" rel="noopener" class="arrow-link inline-flex">
-                {p.linkText} <Icon name="ExternalLink" size={12} strokeWidth={2.2} />
-              </a>
-            )}
           </article>
         ))}
       </div>
     </div>
   </section>
 
-  <CtaBand
-    title="Presse-Anfrage?"
-    lead="Du arbeitest für ein Magazin, Sender oder Online-Portal und möchtest mit Klaus sprechen? Ruf direkt durch oder schreib uns eine E-Mail."
-  />
+  <section class="section-warm section-padding">
+    <div class="container-r66">
+      <div class="max-w-4xl mx-auto">
+        <div class="rounded-2xl p-8 md:p-12 grid md:grid-cols-12 gap-8 items-center fade-in" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.1);">
+          <div class="md:col-span-3 flex justify-center">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0 border-4 border-cream-warm shadow-xl">
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class="md:col-span-9 text-center md:text-left">
+            <Icon name="Quote" size={28} strokeWidth={1.4} class="text-route mb-3 mx-auto md:mx-0" />
+            <p class="font-display text-xl md:text-2xl text-onyx leading-snug italic mb-5">
+              "Cash für Chrom hat Route 66 bekannt gemacht. Aber gewachsen sind wir, weil wir gute Arbeit machen - jeden Tag, seit 1989."
+            </p>
+            <p class="font-display text-onyx font-medium">Klaus Borrmann</p>
+            <p class="text-muted text-xs uppercase tracking-widest mt-1">Inhaber Route 66 Borrmann Motors</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark section-padding relative overflow-hidden">
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img src="/images/team-header.jpg" alt="" class="w-full h-full object-cover opacity-15 ken-burns" loading="lazy" />
+      <div class="absolute inset-0" style="background: linear-gradient(120deg, rgba(8,8,8,0.94) 0%, rgba(8,8,8,0.75) 60%, rgba(8,8,8,0.5) 100%);"></div>
+    </div>
+    <div class="container-r66 relative z-10">
+      <div class="max-w-3xl">
+        <p class="eyebrow eyebrow-light">Presse-Anfrage</p>
+        <h2 class="heading-xl text-white text-balance mb-6">Du arbeitest in den Medien?</h2>
+        <p class="text-lg text-white/80 leading-relaxed mb-10 max-w-2xl">
+          Magazin, Sender, Online-Portal oder Podcast? Klaus steht für Interviews und Werkstatt-Drehs zur Verfügung - per Mail oder direkt am Telefon.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={mailLink} class="btn btn-primary btn-lg group">
+            <Icon name="Mail" size={16} strokeWidth={2} />
+            Presse-Anfrage per Mail
+            <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
+          </a>
+          <a href={`tel:${site.phoneIntl}`} class="btn btn-outline-light btn-lg">
+            <Icon name="Phone" size={16} strokeWidth={2} />
+            {site.phoneDisplay}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .press-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 16px;
+    padding: 2rem;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .press-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: rgb(185 28 28);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .press-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.15);
+  }
+  .press-card:hover::before { transform: scaleY(1); }
+  .press-card:hover .press-icon { background: rgb(185 28 28); color: #fff; }
+
+  .press-accent {
+    position: absolute;
+    top: 1.25rem; right: 1.25rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: rgb(245 240 229);
+    color: rgb(96 87 75);
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .press-icon {
+    width: 52px; height: 52px;
+    border-radius: 12px;
+    background: rgba(185, 28, 28, 0.08);
+    color: rgb(185 28 28);
+    display: inline-flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+</style>

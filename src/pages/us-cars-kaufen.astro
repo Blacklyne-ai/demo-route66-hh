@@ -4,24 +4,44 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import Icon from '../components/Icon.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Route66Shield from '../components/Route66Shield.astro';
 import { site, telLink, whatsappLink } from '../data/site';
 
 const steps = [
   { num: '01', title: 'Wunschfahrzeug finden', body: 'Du suchst ein bestimmtes Modell? Wir finden es. Ob aus unseren Beständen oder als Direkt-Import aus den USA.', icon: 'Search' },
   { num: '02', title: 'Beratung & Angebot', body: 'Klaus persönlich oder das Team berechnet realistische Importkosten - Fahrzeug, Zoll, TÜV, Transport, Papiere.', icon: 'MessageSquare' },
-  { num: '03', title: 'Kauf in den USA', body: 'Wir übernehmen Verhandlung, Kauf und logistische Abwicklung beim US-Haendler oder Privatverkauf.', icon: 'Handshake' },
+  { num: '03', title: 'Kauf in den USA', body: 'Wir übernehmen Verhandlung, Kauf und logistische Abwicklung beim US-Händler oder Privatverkauf.', icon: 'Handshake' },
   { num: '04', title: 'Zollabfertigung', body: 'Komplette Zollabwicklung in Deutschland - inklusive aller Papiere und Steuerbescheinigungen.', icon: 'Ship' },
-  { num: '05', title: 'TÜV-Umruestung', body: 'TÜV-Abnahme nach Paragraf 21 StVZO. Unsere KFZ-Meister-Werkstatt erfüllt alle Anforderungen.', icon: 'ShieldCheck' },
+  { num: '05', title: 'TÜV-Umrüstung', body: 'TÜV-Abnahme nach Paragraf 21 StVZO. Unsere KFZ-Meister-Werkstatt erfüllt alle Anforderungen.', icon: 'ShieldCheck' },
   { num: '06', title: 'Deutsche Papiere', body: 'Erstellung der deutschen Fahrzeugpapiere. Zulassung wenn gewünscht direkt durch uns.', icon: 'FileCheck' },
 ];
 
-const expertise = [
-  { title: 'US-Cars Oldtimer', body: 'Klassiker aus den 50ern, 60ern, 70ern - vom V8 Camaro bis zum Mustang.', icon: 'Car' },
-  { title: 'Muscle Cars', body: 'Charger, Challenger, Corvette - die ganze Welt der amerikanischen Muskelkraft.', icon: 'Flag' },
-  { title: 'Youngtimer', body: 'US-Fahrzeuge der 80er bis 2000er - bezahlbarer Einstieg in die US-Welt.', icon: 'Sparkles' },
-  { title: 'Neuwagen-Import', body: 'Aktuelle US-Modelle direkt aus den Staaten - inklusive Sondermodelle.', icon: 'Award' },
-  { title: 'Shelby Service Partner', body: 'Official Shelby Service Partner Deutschland - Original-Teile und Werks-Knowhow.', icon: 'Trophy' },
-  { title: 'Restaurierung', body: 'Komplette Restaurierungen bis zum Concours-Niveau. Eigene Werkstatt.', icon: 'Wrench' },
+const categories = [
+  { title: 'US-Cars Oldtimer', body: 'Klassiker aus den 50ern, 60ern, 70ern - vom V8 Camaro bis zum Mustang.', icon: 'Car', image: '/images/team-header.jpg' },
+  { title: 'Muscle Cars', body: 'Charger, Challenger, Corvette - die ganze Welt der amerikanischen Muskelkraft.', icon: 'Flag', image: '/images/car-design-1.jpg' },
+  { title: 'Youngtimer', body: 'US-Fahrzeuge der 80er bis 2000er - bezahlbarer Einstieg in die US-Welt.', icon: 'Sparkles', image: '/images/car-design-2.jpg' },
+  { title: 'Neuwagen-Import', body: 'Aktuelle US-Modelle direkt aus den Staaten - inklusive Sondermodelle.', icon: 'Award', image: '/images/team-header.jpg' },
+  { title: 'Shelby Service Partner', body: 'Official Shelby Service Partner Deutschland - Original-Teile und Werks-Knowhow.', icon: 'Trophy', image: '/images/team-group.jpg' },
+  { title: 'Restaurierung', body: 'Komplette Restaurierungen bis zum Concours-Niveau. Eigene Werkstatt.', icon: 'Wrench', image: '/images/car-design-1.jpg' },
+];
+
+const faqs = [
+  {
+    q: 'Wie lange dauert ein US-Car-Import?',
+    a: 'In der Regel rechnen wir mit 8 bis 14 Wochen ab Kaufabschluss in den USA bis zur deutschen Zulassung. Containerschiff-Transport, Zoll und TÜV-Umrüstung brauchen Zeit - dafür ist alles sauber abgewickelt.',
+  },
+  {
+    q: 'Was kostet die Import-Abwicklung?',
+    a: 'Das hängt vom Fahrzeug ab. Wir kalkulieren transparent: Fahrzeugpreis + Transport + Zoll + TÜV + Papiere. Klaus macht Dir vorab ein realistisches Angebot ohne versteckte Kosten.',
+  },
+  {
+    q: 'Kann jedes US-Car in Deutschland zugelassen werden?',
+    a: 'Fast jedes. Bei Oldtimern ab 30 Jahren ist die TÜV-Abnahme einfacher. Bei jüngeren Fahrzeugen brauchen wir teils Einzelabnahmen nach Paragraf 21 StVZO - aber wir kennen den Weg.',
+  },
+  {
+    q: 'Bietet ihr auch Probefahrten an?',
+    a: 'Klar. Für die aktuellen Fahrzeuge in unserem Bestand kannst Du gerne einen Termin vereinbaren. Schau auf AutoScout24 was wir aktuell haben oder ruf direkt durch.',
+  },
 ];
 ---
 
@@ -32,84 +52,276 @@ const expertise = [
 >
   <PageHero
     eyebrow="US-Cars kaufen"
-    title="Dein Traum auf vier Raedern"
-    lead="Wenn US-Cars auch 'Dein Ding' ist, Du US-Cars kaufen und Dir Deine Träume verwirklichen willst, dann bist Du bei den Profis von Route 66 Borrmann Motors KG genau richtig."
+    title="Dein Traum auf vier Rädern."
+    lead="Wenn US-Cars auch Dein Ding sind, Du US-Cars kaufen und Dir Deine Träume verwirklichen willst, dann bist Du bei den Profis von Route 66 Borrmann Motors KG genau richtig."
     image="/images/team-header.jpg"
-    cta={{ label: 'Aktuelle Fahrzeuge ansehen', href: site.external.autoscout24, icon: 'Car' }}
+    cta={{ label: 'Aktuelle Fahrzeuge', href: site.external.autoscout24, icon: 'Car' }}
     secondaryCta={{ label: site.phoneDisplay, href: telLink, icon: 'Phone' }}
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'US-Cars kaufen', href: '/us-cars-kaufen' }]}
   />
 
-  <!-- IMPORT EXPERTISE -->
-  <section class="section-cream py-20 md:py-28">
+  <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
-      <SectionHeading
-        eyebrow="Unsere Expertise"
-        title="Welche US-Cars wir importieren"
-        lead="Vom Oldtimer-Klassiker bis zum aktuellen Neuwagen - wir kennen den US-Markt aus dem ff."
-        align="center"
-      />
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {expertise.map((e, i) => (
-          <div class={`card-feature fade-in stagger-${(i % 4) + 1}`}>
-            <span class="w-12 h-12 rounded-md bg-route text-white inline-flex items-center justify-center mb-4">
-              <Icon name={e.icon} size={22} strokeWidth={2} />
-            </span>
-            <h3 class="heading-md mb-3">{e.title}</h3>
-            <p class="text-muted text-sm leading-relaxed">{e.body}</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-10">
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="Award" size={18} strokeWidth={1.8} />
+          </span>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Erfahrung</p>
+            <p class="font-display text-onyx leading-tight mt-1">Seit 1989</p>
           </div>
-        ))}
+        </div>
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="Ship" size={18} strokeWidth={1.8} />
+          </span>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Import</p>
+            <p class="font-display text-onyx leading-tight mt-1">Komplett aus USA</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="ShieldCheck" size={18} strokeWidth={1.8} />
+          </span>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">TÜV-Umrüstung</p>
+            <p class="font-display text-onyx leading-tight mt-1">Paragraf 21 StVZO</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 group">
+          <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+            <Icon name="Trophy" size={18} strokeWidth={1.8} />
+          </span>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Partner</p>
+            <p class="font-display text-onyx leading-tight mt-1">Official Shelby</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- IMPORT PROCESS -->
-  <section class="section-anthracite py-20 md:py-28">
+  <section class="section-light py-20 relative overflow-hidden">
+    <Route66Shield class="absolute -right-24 -top-24 text-onyx" size={460} opacity={0.04} />
+    <div class="container-r66 relative">
+      <div class="max-w-4xl mx-auto">
+        <div class="rounded-2xl p-8 md:p-12 grid md:grid-cols-12 gap-8 items-center fade-in" style="background: linear-gradient(160deg, #FAF7F0 0%, #F5F0E5 100%); border: 1px solid #E2DBCD;">
+          <div class="md:col-span-3 flex justify-center">
+            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden flex-shrink-0 border-4 border-white shadow-xl">
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <div class="md:col-span-9 text-center md:text-left">
+            <Icon name="Quote" size={28} strokeWidth={1.4} class="text-route mb-3 mx-auto md:mx-0" />
+            <p class="font-display text-xl md:text-2xl text-onyx leading-snug italic mb-5">
+              "Ich kaufe seit 35 Jahren US-Cars in den Staaten. Ich kenne die Verkäufer, die Schiffslinien, die Zollbeamten. Du bekommst Dein Auto - sauber, transparent, mit deutscher Zulassung."
+            </p>
+            <p class="font-display text-onyx font-medium">Klaus Borrmann</p>
+            <p class="text-muted text-xs uppercase tracking-widest mt-1">Inhaber & KFZ-Meister - Hamburg seit 1989</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-white section-padding">
     <div class="container-r66">
-      <SectionHeading
-        eyebrow="So funktioniert's"
-        title="In 6 Schritten zu Deinem US-Car"
-        lead="Wir übernehmen die komplette Abwicklung für Dich - von der ersten Anfrage bis zur deutschen Zulassung."
-        align="center"
-        light
-      />
-      <div class="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {steps.map((s, i) => (
-          <div class={`card-dark fade-in stagger-${(i % 3) + 1}`}>
-            <div class="flex items-start gap-4 mb-4">
-              <span class="font-display text-3xl font-bold text-route leading-none">{s.num}</span>
-              <span class="tile-icon">
-                <Icon name={s.icon} size={20} strokeWidth={2} />
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Unsere Expertise</p>
+        <h2 class="heading-xl text-balance">Sechs Welten. Ein Importeur.</h2>
+        <p class="mt-5 text-muted leading-relaxed text-lg">Vom Oldtimer-Klassiker bis zum aktuellen Neuwagen - wir kennen den US-Markt aus dem ff.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {categories.map((c, i) => (
+          <div class={`cat-card fade-in stagger-${(i % 3) + 1}`}>
+            <div class="cat-media">
+              <img src={c.image} alt={c.title} loading="lazy" />
+              <div class="cat-overlay"></div>
+              <span class="cat-icon">
+                <Icon name={c.icon} size={18} strokeWidth={1.8} />
               </span>
             </div>
-            <h3 class="font-display text-lg font-bold uppercase tracking-wide text-white mb-2">{s.title}</h3>
-            <p class="text-white/65 text-sm leading-relaxed">{s.body}</p>
+            <div class="cat-body">
+              <h3 class="heading-md mb-2 leading-tight">{c.title}</h3>
+              <p class="text-muted text-sm leading-relaxed">{c.body}</p>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- AUTOSCOUT24 CTA -->
-  <section class="section-cream-warm py-20">
-    <div class="container-r66">
-      <div class="rounded-lg p-10 md:p-14 text-center" style="background: linear-gradient(180deg, #FAFAF7 0%, #F5F1E8 100%); border: 1px solid #E5DDD0;">
-        <p class="eyebrow eyebrow-center mb-5">Cars for Sale</p>
-        <h2 class="heading-xl text-balance mb-4 max-w-3xl mx-auto">Unsere aktuellen Fahrzeuge auf AutoScout24</h2>
-        <p class="text-muted leading-relaxed max-w-2xl mx-auto mb-8">
-          Den vollständigen Bestand pflegen wir auf AutoScout24 - mit Bildern, Spec-Sheets und Preisen. Schau dort rein und finde Dein Wunschfahrzeug.
+  <section class="section-warm section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -left-32 -bottom-24 text-route" size={520} opacity={0.04} />
+    <div class="container-r66 relative">
+      <SectionHeading
+        eyebrow="So funktioniert's"
+        title="In sechs Schritten zu Deinem US-Car."
+        lead="Wir übernehmen die komplette Abwicklung - von der ersten Anfrage bis zur deutschen Zulassung."
+        align="center"
+      />
+
+      <div class="mt-16 relative">
+        <div class="hidden lg:block absolute top-12 left-[8.5%] right-[8.5%] h-px" style="background: repeating-linear-gradient(90deg, rgba(185,28,28,0.4) 0px, rgba(185,28,28,0.4) 6px, transparent 6px, transparent 14px);" aria-hidden="true"></div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-6 gap-6 lg:gap-5 relative">
+          {steps.map((s, i) => (
+            <div class={`step-card fade-in stagger-${(i % 3) + 1}`}>
+              <div class="relative inline-flex mb-5">
+                <span class="step-num w-24 h-24 rounded-full bg-white border-2 border-line inline-flex items-center justify-center relative z-10 transition-all duration-500" style="box-shadow: 0 8px 24px -8px rgba(0,0,0,0.12);">
+                  <span class="font-display text-3xl text-onyx font-medium leading-none">{s.num}</span>
+                </span>
+                <span class="absolute -top-1 -right-1 w-9 h-9 rounded-full bg-route text-white inline-flex items-center justify-center z-20 shadow-lg">
+                  <Icon name={s.icon} size={14} strokeWidth={2} />
+                </span>
+              </div>
+              <h3 class="font-display text-base font-medium text-onyx leading-tight mb-2">{s.title}</h3>
+              <p class="text-muted leading-relaxed text-xs">{s.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark section-padding relative overflow-hidden">
+    <div class="absolute inset-0 z-0" aria-hidden="true">
+      <img src="/images/team-header.jpg" alt="" class="w-full h-full object-cover opacity-20 ken-burns" loading="lazy" />
+      <div class="absolute inset-0" style="background: linear-gradient(120deg, rgba(8,8,8,0.92) 0%, rgba(8,8,8,0.7) 60%, rgba(8,8,8,0.5) 100%);"></div>
+    </div>
+
+    <div class="container-r66 relative z-10">
+      <div class="max-w-2xl">
+        <p class="eyebrow eyebrow-light">Aktuelle Fahrzeuge</p>
+        <h2 class="heading-xl text-white text-balance mb-6">Den vollständigen Bestand pflegen wir auf AutoScout24.</h2>
+        <p class="text-lg text-white/80 leading-relaxed mb-10">
+          Mit Bildern, Spec-Sheets und Preisen - immer aktuell. Schau dort rein und finde Dein Wunschfahrzeug. Oder ruf direkt durch wenn Du etwas Spezielles suchst.
         </p>
-        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg">
-          <Icon name="Car" size={16} strokeWidth={2.2} />
-          Aktuelle Fahrzeuge bei AutoScout24
-          <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
-        </a>
+        <div class="flex flex-wrap gap-3">
+          <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg group">
+            <Icon name="Car" size={16} strokeWidth={2} />
+            Zum AutoScout24-Profil
+            <Icon name="ExternalLink" size={13} strokeWidth={2} />
+          </a>
+          <a href={telLink} class="btn btn-outline-light btn-lg">
+            <Icon name="Phone" size={16} strokeWidth={2} />
+            Spezial-Suche anfragen
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light section-padding">
+    <div class="container-r66">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <div class="lg:col-span-4 fade-in">
+          <p class="eyebrow">Häufige Fragen</p>
+          <h2 class="heading-xl text-balance mb-6">Die wichtigsten Antworten.</h2>
+          <p class="text-muted leading-relaxed mb-8">Hier die Antworten auf die Fragen, die Klaus täglich am Telefon hört.</p>
+          <a href={telLink} class="arrow-link">
+            Noch Fragen? Ruf an <Icon name="Phone" size={13} strokeWidth={2} class="hover-arrow" />
+          </a>
+        </div>
+        <div class="lg:col-span-8">
+          <div class="space-y-3">
+            {faqs.map((f, i) => (
+              <details class={`faq-item fade-in stagger-${i + 1}`}>
+                <summary class="faq-summary">
+                  <span class="font-display text-lg font-medium text-onyx pr-4">{f.q}</span>
+                  <span class="faq-chevron w-9 h-9 rounded-full bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0">
+                    <Icon name="Plus" size={16} strokeWidth={2.4} />
+                  </span>
+                </summary>
+                <p class="text-muted leading-relaxed mt-5 pr-12">{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <CtaBand
-    title="Du hast Dein Wunschfahrzeug gefunden?"
-    lead="Schau es Dir an, teste es! Frag auch gern nach unserem Abholservice. Klaus und sein Team sind für Dich da."
+    title="Bereit für Dein US-Car?"
+    lead="Schau Dir die aktuellen Fahrzeuge auf AutoScout24 an oder ruf direkt durch - Klaus oder das Team beraten Dich ehrlich und ohne Schnickschnack."
   />
 </Layout>
+
+<style>
+  .cat-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .cat-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.18);
+  }
+  .cat-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: rgb(245 240 229);
+  }
+  .cat-media img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cat-card:hover .cat-media img { transform: scale(1.05); }
+  .cat-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+  }
+  .cat-icon {
+    position: absolute; bottom: -18px; left: 1.25rem;
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgb(185 28 28);
+    color: #fff;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 2px solid #fff;
+    box-shadow: 0 10px 24px -8px rgba(185, 28, 28, 0.55);
+    z-index: 2;
+  }
+  .cat-body { padding: 2rem 1.5rem 1.75rem; }
+
+  .step-card:hover .step-num {
+    border-color: rgb(185, 28, 28);
+    transform: scale(1.04);
+    box-shadow: 0 14px 36px -10px rgba(185,28,28,0.3);
+  }
+
+  .faq-item {
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .faq-item[open] {
+    border-color: rgb(185 28 28 / 0.3);
+    box-shadow: 0 14px 32px -12px rgba(0,0,0,0.1);
+  }
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.75rem 2rem;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+  .faq-summary::-webkit-details-marker { display: none; }
+  .faq-item[open] .faq-summary { padding-bottom: 0.25rem; }
+  .faq-item[open] .faq-chevron { background: rgb(185 28 28); color: #fff; transform: rotate(45deg); }
+  .faq-chevron { transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease; }
+  .faq-item p { padding-left: 2rem; padding-right: 2rem; padding-bottom: 1.75rem; }
+</style>

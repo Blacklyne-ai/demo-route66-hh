@@ -4,9 +4,17 @@ import PageHero from '../components/PageHero.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import TeamCard from '../components/TeamCard.astro';
 import CtaBand from '../components/CtaBand.astro';
+import Route66Shield from '../components/Route66Shield.astro';
 import Icon from '../components/Icon.astro';
 import { team } from '../data/team';
-import { site } from '../data/site';
+import { site, telLink } from '../data/site';
+
+const teamStats = [
+  { value: '4', label: 'Spezialisten' },
+  { value: '110+', label: 'Jahre Erfahrung' },
+  { value: '2', label: 'Standorte' },
+  { value: '1989', label: 'Gegründet' },
+];
 ---
 
 <Layout
@@ -16,15 +24,94 @@ import { site } from '../data/site';
 >
   <PageHero
     eyebrow="Unser Team"
-    title="Die Gesichter hinter Route 66"
+    title="Die Gesichter hinter Route 66."
     lead="Vier Charaktere. Über 110 Jahre kombinierte Erfahrung an US-Cars. Klaus, Michel und Fred in Hamburg, Björn in Rendsburg - alle mit Diesel im Blut und V8 im Herzen."
     image="/images/team-group.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Team', href: '/team' }]}
   />
 
-  <section class="section-cream py-20 md:py-28">
+  <!-- Team Stats Strip -->
+  <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10">
+        {teamStats.map((s) => (
+          <div class="text-center md:text-left">
+            <p class="font-display text-4xl md:text-5xl text-onyx font-medium leading-none">{s.value}</p>
+            <p class="text-[0.7rem] tracking-[0.16em] uppercase text-muted font-medium mt-3">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- KLAUS Featured - Big Story Section -->
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-32 top-20 text-onyx" size={520} opacity={0.04} />
+
+    <div class="container-r66 relative">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 fade-in">
+          <div class="relative">
+            <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+              <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann Portrait" class="w-full h-full object-cover ken-burns" loading="lazy" />
+            </div>
+            <!-- DMAX Floating Badge -->
+            <div class="absolute -top-4 -right-4 hidden md:block">
+              <div class="rounded-full w-28 h-28 flex flex-col items-center justify-center text-center" style="background: #B91C1C; box-shadow: 0 18px 36px -8px rgba(185,28,28,0.5);">
+                <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest">Bekannt aus</span>
+                <span class="font-display text-base font-medium text-white leading-none mt-1">DMAX</span>
+                <span class="font-display text-[0.55rem] text-white/85 uppercase tracking-widest mt-1">Cash für Chrom</span>
+              </div>
+            </div>
+            <!-- Floating Quote -->
+            <div class="absolute -bottom-5 -left-5 max-w-[280px] hidden lg:block rounded-lg p-5" style="background: #fff; border: 1px solid #E2DBCD; box-shadow: 0 22px 48px -16px rgba(0,0,0,0.22);">
+              <Icon name="Quote" size={18} strokeWidth={1.5} class="text-route mb-2" />
+              <p class="text-onyx text-sm leading-snug italic">"V8 ist Religion. Und ich bin der Pastor."</p>
+              <p class="text-[0.66rem] uppercase tracking-widest text-route font-medium mt-3">Klaus</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 fade-in stagger-1">
+          <p class="eyebrow">Klaus Borrmann - Die Geschichte</p>
+          <h2 class="heading-xl text-balance mb-7">Vom V8-Fan zum US-Car-Importeur.</h2>
+          <div class="space-y-5 text-onyx text-pretty leading-relaxed text-lg">
+            <p>
+              Seit 1989 ist Klaus Borrmann das Gesicht der Hamburger US-Car-Szene. Was als Werkstatt für amerikanische Klassiker begann, ist heute eine Institution: Importeur, Tuner, Service-Partner - und Official Shelby Service Partner.
+            </p>
+            <p>
+              Mit "Cash für Chrom" auf DMAX wurde Klaus deutschlandweit bekannt. Seine Leidenschaft für den V8, sein Auge für den richtigen Schrotthaufen mit Potenzial - das hat ihn zur TV-Persönlichkeit gemacht. Aber wer ihn kennt, weiß: Klaus bleibt Klaus. KFZ-Meister durch und durch.
+            </p>
+            <p>
+              Die Werkstatt in Hamburg-Bahrenfeld ist Werkstatt geblieben. Hier wird geschraubt, geschwitzt, geflucht und gefeiert. Klaus, Michel, Fred und Björn leben das jeden Tag.
+            </p>
+          </div>
+          <div class="mt-10 flex flex-wrap gap-3">
+            <a href={site.external.cashFürChrom} target="_blank" rel="noopener" class="btn btn-primary btn-lg group">
+              <Icon name="Tv" size={16} strokeWidth={2} />
+              Cash für Chrom auf DMAX
+              <Icon name="ExternalLink" size={13} strokeWidth={2} />
+            </a>
+            <a href={telLink} class="btn btn-outline btn-lg">
+              <Icon name="Phone" size={16} strokeWidth={2} />
+              Klaus direkt anrufen
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM showcase grid -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Das gesamte Team</p>
+        <h2 class="heading-xl text-balance">Vier Spezialisten. Eine Mission.</h2>
+        <p class="mt-5 text-muted leading-relaxed text-lg">Halte den Mauszeiger auf ein Portrait für die ganze Story.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {team.map((m, i) => (
           <div class={`fade-in stagger-${i + 1}`}>
             <TeamCard member={m} />
@@ -34,40 +121,89 @@ import { site } from '../data/site';
     </div>
   </section>
 
-  <!-- KLAUS STORY -->
-  <section class="section-anthracite py-20 md:py-28">
+  <!-- Standorte Split -->
+  <section class="section-warm section-padding">
     <div class="container-r66">
-      <div class="grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-5 fade-in">
-          <div class="rounded-lg overflow-hidden border border-white/10">
-            <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann Portrait" class="w-full h-auto" loading="lazy" />
+      <div class="max-w-2xl mb-14 fade-in">
+        <p class="eyebrow">Wo wir sind</p>
+        <h2 class="heading-xl text-balance">Zwei Standorte. Ein Team.</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6 lg:gap-8">
+        <div class="location-card fade-in">
+          <div class="loc-banner" style="background: linear-gradient(135deg, #111 0%, #1A1A1A 100%);">
+            <p class="text-[0.66rem] tracking-[0.18em] uppercase text-white/55 font-medium">Hauptstandort</p>
+            <h3 class="font-display text-3xl text-white leading-tight mt-1">Hamburg</h3>
+            <p class="text-white/65 text-sm mt-2">Kieler Straße 271, 22525 Hamburg-Bahrenfeld</p>
+          </div>
+          <div class="loc-body">
+            <p class="text-onyx mb-6">Klaus, Michel und Fred halten die Stellung in der Werkstatt seit 1989. Hier wird importiert, gewartet und restauriert.</p>
+            <ul class="space-y-2.5 mb-7">
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Users" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx">Klaus, Michel, Fred + Werkstatt-Team</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Clock" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx">Mo - Do: 8 - 17 Uhr, Fr: 8 - 15 Uhr</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Phone" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx font-medium">{site.phoneDisplay}</span>
+              </li>
+            </ul>
+            <a href="/kontakt" class="arrow-link">Mehr zum Standort <Icon name="ArrowRight" size={13} strokeWidth={2} class="hover-arrow" /></a>
           </div>
         </div>
-        <div class="lg:col-span-7 fade-in stagger-1">
-          <p class="eyebrow eyebrow-light mb-5">Klaus Borrmann - Die Geschichte</p>
-          <h2 class="heading-xl text-white text-balance mb-6">Vom V8-Fan zum US-Car-Importeur</h2>
-          <div class="space-y-4 text-white/80 text-pretty leading-relaxed">
-            <p>
-              Seit 1989 ist Klaus Borrmann das Gesicht der Hamburger US-Car-Szene. Was als Werkstatt für amerikanische Klassiker begann, ist heute eine Institution: Importeur, Tuner, Service-Partner - und Official Shelby Service Partner.
-            </p>
-            <p>
-              Mit "Cash für Chrom" auf DMAX wurde Klaus deutschlandweit bekannt. Seine Leidenschaft für den V8, sein Auge für den richtigen Schrotthaufen mit Potenzial - das hat ihn zur TV-Persönlichkeit gemacht. Aber wer ihn kennt, weiss: Klaus bleibt Klaus. KFZ-Meister durch und durch.
-            </p>
-            <p>
-              Die Werkstatt in Hamburg-Bahrenfeld ist Werkstatt geblieben. Hier wird geschraubt, geschwitzt, gefluchtt und gefeiert. Klaus, Michel, Fred und Björn leben das jeden Tag.
-            </p>
+
+        <div class="location-card fade-in stagger-1">
+          <div class="loc-banner" style="background: linear-gradient(135deg, #B91C1C 0%, #991B1B 100%);">
+            <p class="text-[0.66rem] tracking-[0.18em] uppercase text-white/75 font-medium">Zweigstelle</p>
+            <h3 class="font-display text-3xl text-white leading-tight mt-1">Rendsburg</h3>
+            <p class="text-white/85 text-sm mt-2">Lundener Straße 12-14, 24768 Rendsburg</p>
           </div>
-          <a href={site.external.cashFürChrom} target="_blank" rel="noopener" class="arrow-link arrow-link-light mt-8">
-            Cash für Chrom auf DMAX ansehen
-            <Icon name="ExternalLink" size={14} strokeWidth={2.2} />
-          </a>
+          <div class="loc-body">
+            <p class="text-onyx mb-6">Björn leitet den Standort Rendsburg. Vollblutmechaniker mit Diesel im Blut und V8 im Herzen.</p>
+            <ul class="space-y-2.5 mb-7">
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Users" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx">Björn als Standortleiter</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Clock" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx">Termine nach Absprache</span>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Phone" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-onyx font-medium">{site.phoneRendsburgDisplay}</span>
+              </li>
+            </ul>
+            <a href="/kontakt" class="arrow-link">Mehr zum Standort <Icon name="ArrowRight" size={13} strokeWidth={2} class="hover-arrow" /></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <CtaBand
-    title="Lerne uns persönlich kennen"
+    title="Lerne uns persönlich kennen."
     lead="Schau in der Werkstatt vorbei, ruf Klaus an, schreib Michel eine Mail oder buche eine Private Werkstattführung - wir freuen uns auf Dich."
   />
 </Layout>
+
+<style>
+  .location-card {
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .location-card:hover {
+    transform: translateY(-3px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 28px 56px -16px rgba(0,0,0,0.2);
+  }
+  .loc-banner { padding: 2rem 2rem 1.75rem; }
+  .loc-body { padding: 2rem; }
+</style>

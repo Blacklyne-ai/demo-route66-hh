@@ -1,20 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import MapBlock from '../components/MapBlock.astro';
-import OpeningHours from '../components/OpeningHours.astro';
-import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Route66Shield from '../components/Route66Shield.astro';
 import { site, telLink, telRendsburgLink, mailLink, mailWorkshopLink, whatsappLink } from '../data/site';
 
-const contactTiles = [
-  { title: 'WhatsApp', body: 'Schnelle Anfragen, Fotos, Voice-Memo - direkt aufs Handy.', cta: 'Chat starten', href: whatsappLink, icon: 'MessageCircle', external: true },
-  { title: 'Telefon Hamburg', body: site.phoneDisplay + ' (Mo-Fr 9-15 Uhr telefonisch)', cta: 'Anrufen', href: telLink, icon: 'Phone' },
-  { title: 'Telefon Rendsburg', body: site.phoneRendsburgDisplay + ' (Björn direkt)', cta: 'Anrufen', href: telRendsburgLink, icon: 'Phone' },
-  { title: 'E-Mail allgemein', body: site.email + ' - für Anfragen aller Art.', cta: 'Mail schreiben', href: mailLink, icon: 'Mail' },
-  { title: 'Werkstatt E-Mail', body: site.emailWorkshop + ' - direkt zu Fred und Team.', cta: 'Werkstatt anschreiben', href: mailWorkshopLink, icon: 'Wrench' },
-  { title: 'Werkstatt vor Ort', body: site.address.street + ' - direkt vorbeikommen.', cta: 'Route planen', href: site.googleDirectionsUrl, icon: 'MapPin', external: true },
+const channels = [
+  { title: 'WhatsApp', subtitle: 'Schnelle Anfragen, Fotos, Voice-Memo', value: 'Direkt chatten', href: whatsappLink, icon: 'MessageCircle', external: true, accent: 'green' },
+  { title: 'Telefon Hamburg', subtitle: 'Klaus, Michel, Fred', value: site.phoneDisplay, href: telLink, icon: 'Phone' },
+  { title: 'Telefon Rendsburg', subtitle: 'Direkt zu Björn', value: site.phoneRendsburgDisplay, href: telRendsburgLink, icon: 'Phone' },
+  { title: 'E-Mail allgemein', subtitle: 'Für Anfragen aller Art', value: site.email, href: mailLink, icon: 'Mail' },
+  { title: 'Werkstatt-E-Mail', subtitle: 'Direkt zu Fred und Team', value: site.emailWorkshop, href: mailWorkshopLink, icon: 'Wrench' },
+  { title: 'Vor Ort', subtitle: 'Werkstatt-Adresse', value: 'Route planen', href: site.googleDirectionsUrl, icon: 'MapPin', external: true },
 ];
 ---
 
@@ -26,72 +24,283 @@ const contactTiles = [
   <PageHero
     eyebrow="Kontakt"
     title="Lass uns reden."
-    lead="Klaus, Michel, Fred in Hamburg. Björn in Rendsburg. Such Dir Deinen Weg aus - wir antworten schnell und ehrlich."
+    lead="Klaus, Michel und Fred in Hamburg. Björn in Rendsburg. Such Dir Deinen Weg aus - wir antworten schnell und ehrlich. Kein Kontaktformular, sondern echte direkte Wege."
     image="/images/team-header.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Kontakt', href: '/kontakt' }]}
   />
 
-  <!-- CONTACT TILES (NO FORMULAR - explizit per Brief) -->
-  <section class="section-cream py-20 md:py-28">
+  <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
-      <SectionHeading
-        eyebrow="So erreichst Du uns"
-        title="Sechs Wege, ein Team"
-        lead="Wir haben bewusst kein Kontaktformular - sondern direkte Kontaktwege auf denen Du sofort eine Antwort bekommst."
-        align="center"
-      />
-      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {contactTiles.map((t, i) => (
+      <div class="flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center gap-4">
+          <span class="w-12 h-12 rounded-lg bg-route/10 text-route inline-flex items-center justify-center">
+            <Icon name="Clock" size={20} strokeWidth={1.8} />
+          </span>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-muted font-medium">Öffnungszeiten</p>
+            <p class="font-display text-onyx leading-tight mt-1">Mo - Do: 8 - 17 Uhr · Fr: 8 - 15 Uhr</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a href={telLink} class="btn btn-primary btn-sm !rounded-full">
+            <Icon name="Phone" size={13} strokeWidth={2} />
+            Sofort anrufen
+          </a>
+          <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm !rounded-full">
+            <Icon name="MessageCircle" size={13} strokeWidth={2} />
+            WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-32 top-1/2 -translate-y-1/2 text-onyx" size={520} opacity={0.04} />
+    <div class="container-r66 relative">
+      <div class="max-w-2xl mb-16 fade-in">
+        <p class="eyebrow">Sechs Wege zu uns</p>
+        <h2 class="heading-xl text-balance">Such Dir Deinen Kanal aus.</h2>
+        <p class="mt-5 text-muted leading-relaxed text-lg">Wir haben bewusst kein Kontaktformular - sondern direkte Kontaktwege, auf denen Du eine echte Antwort bekommst.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {channels.map((c, i) => (
           <a
-            href={t.href}
-            target={t.external ? '_blank' : undefined}
-            rel={t.external ? 'noopener' : undefined}
-            class={`tile fade-in stagger-${(i % 3) + 1}`}
+            href={c.href}
+            target={c.external ? '_blank' : undefined}
+            rel={c.external ? 'noopener' : undefined}
+            class={`channel-tile ${c.accent === 'green' ? 'channel-green' : ''} fade-in stagger-${(i % 3) + 1}`}
           >
-            <span class="tile-icon">
-              <Icon name={t.icon} size={20} strokeWidth={2} />
+            <span class="channel-icon">
+              <Icon name={c.icon} size={20} strokeWidth={1.8} />
             </span>
-            <h3 class="font-display text-base font-bold uppercase tracking-wider text-onyx">{t.title}</h3>
-            <p class="text-muted text-sm leading-relaxed flex-1">{t.body}</p>
-            <span class="arrow-link mt-2">{t.cta} <Icon name="ArrowRight" size={13} strokeWidth={2.2} /></span>
+            <h3 class="heading-md mt-5 mb-1 leading-tight">{c.title}</h3>
+            <p class="text-muted text-sm mb-5">{c.subtitle}</p>
+            <span class="channel-cta">
+              {c.value}
+              <Icon name="ArrowRight" size={13} strokeWidth={2} class="hover-arrow" />
+            </span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- STANDORTE -->
-  <section class="section-cream-warm py-20 md:py-28 border-y border-line">
+  <section class="section-white py-20">
     <div class="container-r66">
-      <SectionHeading
-        eyebrow="Unsere Standorte"
-        title="Hamburg HQ - Zweigstelle Rendsburg"
-        align="center"
-      />
-      <div class="mt-14 grid lg:grid-cols-2 gap-6">
-        <MapBlock
-          title="Hamburg - Hauptstandort"
-          embedUrl={site.googleMapsEmbed}
-          address={`${site.address.street}, ${site.address.streetDetail}, ${site.address.postal} ${site.address.city}`}
-          directionsUrl={site.googleDirectionsUrl}
-          phone={site.phoneDisplay}
-          phoneIntl={site.phoneIntl}
-          email={site.email}
-          hours={['Mo - Do: 8 - 17 Uhr', 'Fr: 8 - 15 Uhr', 'Sa: Nach Vereinbarung', 'Telefonisch Mo - Fr 9 - 15 Uhr']}
-        />
-        <MapBlock
-          title="Rendsburg - Zweigstelle"
-          embedUrl={site.googleMapsEmbedRendsburg}
-          address={`${site.addressRendsburg.street}, ${site.addressRendsburg.postal} ${site.addressRendsburg.city}`}
-          directionsUrl={site.googleMapsUrlRendsburg}
-          phone={site.phoneRendsburgDisplay}
-          phoneIntl={site.phoneRendsburgIntl}
-          email={site.emailRendsburg}
-          hours={['Termine nach Absprache', 'Geleitet von Björn - V8 im Herzen', 'Eigene Webseite: www.route66-sh.de']}
-        />
+      <div class="max-w-3xl mx-auto text-center fade-in">
+        <Icon name="Quote" size={36} strokeWidth={1.4} class="text-route mx-auto mb-7" />
+        <p class="font-display text-2xl md:text-3xl text-onyx leading-snug italic mb-7">
+          "Komm einfach in die Werkstatt - Kaffee steht. Und wir reden über Dein Fahrzeug, nicht über Termine."
+        </p>
+        <div class="flex items-center justify-center gap-3">
+          <div class="w-12 h-12 rounded-full overflow-hidden">
+            <img src="/images/klaus-borrmann.jpg" alt="Klaus" class="w-full h-full object-cover" />
+          </div>
+          <div class="text-left">
+            <p class="font-display text-onyx font-medium leading-tight">Klaus Borrmann</p>
+            <p class="text-muted text-[0.7rem] uppercase tracking-widest mt-0.5">Inhaber Route 66</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-warm section-padding">
+    <div class="container-r66">
+      <div class="max-w-2xl mb-14 fade-in">
+        <p class="eyebrow">Unsere Standorte</p>
+        <h2 class="heading-xl text-balance">Hamburg HQ. Zweigstelle Rendsburg.</h2>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="location-big fade-in">
+          <div class="loc-map">
+            <iframe
+              src={site.googleMapsEmbed}
+              width="100%"
+              height="100%"
+              style="border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Hamburg Standort"
+              class="absolute inset-0"
+            ></iframe>
+          </div>
+          <div class="loc-body">
+            <div class="flex items-start justify-between gap-4 mb-5">
+              <div>
+                <p class="text-[0.66rem] tracking-[0.18em] uppercase text-route font-medium mb-2">Hauptstandort</p>
+                <h3 class="heading-md leading-tight">Hamburg</h3>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[0.66rem] font-medium uppercase tracking-widest" style="background: rgba(185,28,28,0.08); color: rgb(185 28 28);">
+                <Icon name="Award" size={11} strokeWidth={2.2} />
+                Seit 1989
+              </span>
+            </div>
+            <address class="not-italic text-muted leading-relaxed mb-6">
+              {site.address.street}, {site.address.streetDetail}<br />
+              {site.address.postal} {site.address.city}
+            </address>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Phone" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={telLink} class="text-onyx font-medium hover:text-route transition">{site.phoneDisplay}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Mail" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={mailLink} class="text-muted hover:text-route transition">{site.email}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Wrench" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={mailWorkshopLink} class="text-muted hover:text-route transition">{site.emailWorkshop}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Clock" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-muted">Mo - Do: 8 - 17 Uhr · Fr: 8 - 15 Uhr</span>
+              </li>
+            </ul>
+            <a href={site.googleDirectionsUrl} target="_blank" rel="noopener" class="arrow-link">
+              Route planen <Icon name="Navigation" size={13} strokeWidth={2} class="hover-arrow" />
+            </a>
+          </div>
+        </div>
+
+        <div class="location-big fade-in stagger-1">
+          <div class="loc-map">
+            <iframe
+              src={site.googleMapsEmbedRendsburg}
+              width="100%"
+              height="100%"
+              style="border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Rendsburg Standort"
+              class="absolute inset-0"
+            ></iframe>
+          </div>
+          <div class="loc-body">
+            <div class="flex items-start justify-between gap-4 mb-5">
+              <div>
+                <p class="text-[0.66rem] tracking-[0.18em] uppercase text-route font-medium mb-2">Zweigstelle</p>
+                <h3 class="heading-md leading-tight">Rendsburg</h3>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[0.66rem] font-medium uppercase tracking-widest" style="background: rgba(185,28,28,0.08); color: rgb(185 28 28);">
+                <Icon name="User" size={11} strokeWidth={2.2} />
+                Björn
+              </span>
+            </div>
+            <address class="not-italic text-muted leading-relaxed mb-6">
+              {site.addressRendsburg.street}<br />
+              {site.addressRendsburg.postal} {site.addressRendsburg.city}
+            </address>
+            <ul class="space-y-3 mb-6">
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Phone" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={telRendsburgLink} class="text-onyx font-medium hover:text-route transition">{site.phoneRendsburgDisplay}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Mail" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={`mailto:${site.emailRendsburg}`} class="text-muted hover:text-route transition">{site.emailRendsburg}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="ExternalLink" size={14} strokeWidth={1.8} class="text-route" />
+                <a href={site.addressRendsburg.web} target="_blank" rel="noopener" class="text-muted hover:text-route transition">{site.addressRendsburg.web}</a>
+              </li>
+              <li class="flex items-center gap-3 text-sm">
+                <Icon name="Clock" size={14} strokeWidth={1.8} class="text-route" />
+                <span class="text-muted">Termine nach Absprache</span>
+              </li>
+            </ul>
+            <a href={site.googleMapsUrlRendsburg} target="_blank" rel="noopener" class="arrow-link">
+              Route planen <Icon name="Navigation" size={13} strokeWidth={2} class="hover-arrow" />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <CtaBand />
 </Layout>
+
+<style>
+  .channel-tile {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    padding: 1.85rem;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .channel-tile::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgb(185 28 28);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .channel-tile:hover {
+    transform: translateY(-3px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.18);
+  }
+  .channel-tile:hover::before { transform: scaleX(1); }
+  .channel-tile:hover .channel-icon { background: rgb(185 28 28); color: #fff; transform: rotate(-4deg); }
+  .channel-tile.channel-green::before { background: #25D366; }
+  .channel-tile.channel-green:hover .channel-icon { background: #25D366; }
+
+  .channel-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(185, 28, 28, 0.08);
+    color: rgb(185 28 28);
+    display: inline-flex; align-items: center; justify-content: center;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .channel-tile.channel-green .channel-icon {
+    background: rgba(37, 211, 102, 0.1);
+    color: #25D366;
+  }
+
+  .channel-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgb(17 17 17);
+    font-weight: 500;
+    font-size: 0.92rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid rgb(229 219 205);
+  }
+  .channel-tile:hover .channel-cta { color: rgb(185 28 28); }
+  .channel-tile.channel-green:hover .channel-cta { color: #1FA855; }
+
+  .location-big {
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .location-big:hover {
+    transform: translateY(-3px);
+    border-color: rgb(198 187 168);
+    box-shadow: 0 28px 56px -16px rgba(0,0,0,0.18);
+  }
+  .loc-map {
+    aspect-ratio: 16 / 9;
+    background: rgb(245 240 229);
+    position: relative;
+  }
+  .loc-body { padding: 2rem 2rem 2.25rem; }
+</style>
