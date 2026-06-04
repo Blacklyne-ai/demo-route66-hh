@@ -2,8 +2,19 @@
 import Layout from '../../layouts/Layout.astro';
 import PageHero from '../../components/PageHero.astro';
 import ServiceCard from '../../components/ServiceCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
 import CtaBand from '../../components/CtaBand.astro';
+import Route66Shield from '../../components/Route66Shield.astro';
+import Icon from '../../components/Icon.astro';
 import { services } from '../../data/services';
+import { site, telLink, whatsappLink } from '../../data/site';
+
+const benefits = [
+  { title: 'Pauschal-Preise', body: 'Faire Festpreise statt versteckter Stundenlohn-Falle.', icon: 'Euro' },
+  { title: 'Online buchbar', body: 'Termin online wählen statt im Telefon warten.', icon: 'Calendar' },
+  { title: 'Klaus persönlich', body: 'Bei Beratungs-Services berät Klaus selbst.', icon: 'User' },
+  { title: 'KFZ-Meisterbetrieb', body: 'Offiziell anerkannt seit 1989, Snap-on Werkzeug.', icon: 'Wrench' },
+];
 ---
 
 <Layout
@@ -14,13 +25,85 @@ import { services } from '../../data/services';
   <PageHero
     eyebrow="Alle Services"
     title="Werkstatt. Beratung. Erlebnis."
-    lead="Vom Telefon-Termin bis zur exklusiven Werkstattführung - hier findest Du alle Services im Überblick. Buchungen direkt online."
-    image="/images/car-check-hero.jpg"
+    lead="Vom Telefon-Termin bis zur exklusiven Werkstattführung - hier findest Du alle Services im Überblick. Buchungen direkt online oder per Anruf."
+    image="/images/team-group.jpg"
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Services', href: '/services' }]}
   />
 
-  <section class="section-cream py-20 md:py-28">
+  <!-- Benefits Strip -->
+  <section class="section-warm py-10 border-y border-line">
     <div class="container-r66">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+        {benefits.map((b) => (
+          <div class="flex items-center gap-4 group">
+            <span class="w-11 h-11 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0 group-hover:bg-route group-hover:text-white transition-colors duration-300">
+              <Icon name={b.icon} size={18} strokeWidth={1.8} />
+            </span>
+            <div>
+              <p class="font-display text-onyx leading-tight mb-1">{b.title}</p>
+              <p class="text-muted text-xs leading-relaxed">{b.body}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Service - Werkstattführung -->
+  <section class="section-light section-padding relative overflow-hidden">
+    <Route66Shield class="absolute -right-32 -top-24 text-onyx" size={520} opacity={0.04} />
+    <div class="container-r66 relative">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-7 fade-in">
+          <span class="pill pill-red mb-6 inline-flex">
+            <Icon name="Sparkles" size={12} strokeWidth={2} />
+            Neu - ab Mai 2026
+          </span>
+          <p class="eyebrow">Highlight</p>
+          <h2 class="heading-xl text-balance mb-6">Private Werkstattführung mit Klaus.</h2>
+          <p class="text-muted leading-relaxed text-lg mb-8">
+            Ein Blick hinter die Kulissen - dort, wo Leidenschaft auf Motoren trifft. 45 Minuten exklusiv durch Werkstatt und Ausstellung. Maximal 3-4 Personen, Kaffee inklusive.
+          </p>
+          <div class="grid sm:grid-cols-3 gap-4 mb-8">
+            <div class="text-center sm:text-left">
+              <p class="font-display text-3xl text-onyx font-medium leading-none">300<span class="text-xl text-route">€</span></p>
+              <p class="text-[0.7rem] text-muted uppercase tracking-widest mt-2">pro Führung</p>
+            </div>
+            <div class="text-center sm:text-left">
+              <p class="font-display text-3xl text-onyx font-medium leading-none">45<span class="text-xl text-route">'</span></p>
+              <p class="text-[0.7rem] text-muted uppercase tracking-widest mt-2">Minuten</p>
+            </div>
+            <div class="text-center sm:text-left">
+              <p class="font-display text-3xl text-onyx font-medium leading-none">3-4</p>
+              <p class="text-[0.7rem] text-muted uppercase tracking-widest mt-2">Personen</p>
+            </div>
+          </div>
+          <a href="/services/werkstattfuehrung" class="btn btn-primary btn-lg group">
+            <Icon name="Compass" size={16} strokeWidth={2} />
+            Werkstattführung buchen
+            <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
+          </a>
+        </div>
+        <div class="lg:col-span-5 fade-in stagger-1">
+          <div class="rounded-xl overflow-hidden aspect-[4/5] bg-cream-warm">
+            <img src="/images/team-group.jpg" alt="Werkstatt-Tour mit Klaus" class="w-full h-full object-cover ken-burns" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- All Services -->
+  <section class="section-white section-padding">
+    <div class="container-r66">
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-14 fade-in">
+        <div class="max-w-xl">
+          <p class="eyebrow">Alle Services</p>
+          <h2 class="heading-xl text-balance">Fünf Services. Eine Werkstatt.</h2>
+        </div>
+        <p class="max-w-md text-muted text-sm leading-relaxed">Jeder Service ist online buchbar mit transparenten Pauschal-Preisen. Bestandskunden bekommen Beratungs-Services kostenfrei.</p>
+      </div>
+
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map((s, i) => (
           <div class={`fade-in stagger-${(i % 3) + 1}`}>
@@ -31,5 +114,67 @@ import { services } from '../../data/services';
     </div>
   </section>
 
+  <!-- Pricing comparison -->
+  <section class="section-warm section-padding">
+    <div class="container-r66">
+      <SectionHeading
+        eyebrow="Preise im Überblick"
+        title="Faire Pauschal-Preise. Kein Kleingedrucktes."
+        align="center"
+      />
+
+      <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {services.filter(s => s.price).map((s, i) => (
+          <div class={`pricing-card fade-in stagger-${(i % 4) + 1}`}>
+            <div class="flex items-center gap-3 mb-5">
+              <span class="w-10 h-10 rounded-lg bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0">
+                <Icon name={s.icon} size={16} strokeWidth={1.8} />
+              </span>
+              <h3 class="font-display text-base font-medium text-onyx leading-tight">{s.title}</h3>
+            </div>
+            <p class="font-display text-3xl text-onyx font-medium leading-none mb-2">{s.price?.split('/')[0]?.trim() ?? s.price}</p>
+            <p class="text-xs text-muted mb-5">{s.price?.includes('/') ? s.price.split('/')[1]?.trim() : 'inkl. MwSt.'}</p>
+            <p class="text-muted text-sm leading-relaxed mb-5">{s.tagline}</p>
+            <a href={s.href} class="arrow-link inline-flex text-sm">Details <Icon name="ArrowRight" size={12} strokeWidth={2} class="hover-arrow" /></a>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center mt-10 text-sm text-muted">
+        Werkstattleistungen werden nach Aufwand individuell kalkuliert.
+        <a href={telLink} class="text-route font-medium hover:underline ml-1">Klaus anrufen für ein Angebot</a>
+      </p>
+    </div>
+  </section>
+
   <CtaBand />
 </Layout>
+
+<style>
+  .pricing-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid rgb(229 219 205);
+    border-radius: 14px;
+    padding: 1.85rem;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+  }
+  .pricing-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: rgb(185 28 28);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    border-color: rgb(185 28 28 / 0.3);
+    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.15);
+  }
+  .pricing-card:hover::before { transform: scaleX(1); }
+</style>

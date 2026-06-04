@@ -1,0 +1,82 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  eyebrow: string;
+  intro?: string;
+  sections: { id: string; label: string }[];
+  current?: string;
+  breadcrumbs?: { label: string; href: string }[];
+}
+const { title, eyebrow, intro, sections, current = '', breadcrumbs = [] } = Astro.props;
+---
+
+<section class="section-light section-padding pt-36 md:pt-44 relative overflow-hidden">
+  <div class="container-r66 relative">
+    {breadcrumbs.length > 0 && (
+      <nav class="mb-8 flex items-center gap-2 text-[0.78rem] text-muted" aria-label="Breadcrumb">
+        {breadcrumbs.map((b, i) => (
+          <Fragment>
+            <a href={b.href} class="hover:text-route transition">{b.label}</a>
+            {i < breadcrumbs.length - 1 && <Icon name="ChevronRight" size={11} strokeWidth={2} />}
+          </Fragment>
+        ))}
+      </nav>
+    )}
+
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+      <!-- Sidebar with anchor-nav -->
+      <aside class="lg:col-span-3">
+        <div class="lg:sticky lg:top-32">
+          <p class="eyebrow">{eyebrow}</p>
+          <h1 class="heading-lg text-balance mb-6">{title}</h1>
+          {intro && <p class="text-muted text-sm leading-relaxed mb-8">{intro}</p>}
+          <nav class="hidden lg:block legal-toc" aria-label="Inhaltsverzeichnis">
+            <p class="text-[0.66rem] tracking-[0.18em] uppercase text-muted font-medium mb-3">Inhalt</p>
+            <ul class="space-y-2">
+              {sections.map((s, i) => (
+                <li>
+                  <a href={`#${s.id}`} class="legal-toc-link">
+                    <span class="legal-toc-num">{String(i + 1).padStart(2, '0')}</span>
+                    {s.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main content -->
+      <article class="lg:col-span-9 legal-prose">
+        <slot />
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .legal-toc-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.55rem 0.85rem;
+    border-radius: 8px;
+    color: rgba(17, 17, 17, 0.7);
+    font-size: 0.86rem;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .legal-toc-link:hover {
+    background: rgb(245 240 229);
+    color: rgb(185 28 28);
+  }
+  .legal-toc-num {
+    font-family: "Oswald", sans-serif;
+    font-size: 0.66rem;
+    font-weight: 600;
+    color: rgb(185 28 28);
+    letter-spacing: 0.06em;
+    flex-shrink: 0;
+  }
+</style>

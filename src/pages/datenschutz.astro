@@ -1,7 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageHero from '../components/PageHero.astro';
+import LegalLayout from '../components/LegalLayout.astro';
 import { site } from '../data/site';
+
+const sections = [
+  { id: 'ueberblick', label: 'Datenschutz auf einen Blick' },
+  { id: 'verantwortlicher', label: 'Verantwortlicher' },
+  { id: 'datenverarbeitung', label: 'Datenverarbeitung' },
+  { id: 'externe-dienste', label: 'Externe Dienste' },
+  { id: 'rechte', label: 'Deine Rechte' },
+  { id: 'ssl', label: 'SSL-Verschlüsselung' },
+  { id: 'stand', label: 'Stand' },
+];
 ---
 
 <Layout
@@ -10,77 +20,73 @@ import { site } from '../data/site';
   current="/datenschutz"
   noindex
 >
-  <PageHero
-    eyebrow="DSGVO"
+  <LegalLayout
+    eyebrow="DSGVO konform"
     title="Datenschutz"
+    intro="Welche personenbezogenen Daten wir verarbeiten - und wie wir sie schützen."
+    sections={sections}
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'Datenschutz', href: '/datenschutz' }]}
-  />
+  >
+    <h2 id="ueberblick">1. Datenschutz auf einen Blick</h2>
+    <h3>Allgemeine Hinweise</h3>
+    <p>
+      Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Deinen personenbezogenen Daten passiert, wenn Du diese Website besuchst. Personenbezogene Daten sind alle Daten, mit denen Du persönlich identifiziert werden kannst.
+    </p>
 
-  <section class="section-cream py-20 md:py-28">
-    <div class="container-narrow">
-      <article class="legal-prose">
-        <h2>1. Datenschutz auf einen Blick</h2>
-        <h3>Allgemeine Hinweise</h3>
-        <p>
-          Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Deinen personenbezogenen Daten passiert, wenn Du diese Website besuchst. Personenbezogene Daten sind alle Daten, mit denen Du persönlich identifiziert werden kannst.
-        </p>
+    <h3>Datenerfassung auf dieser Website</h3>
+    <p>
+      Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten findest Du im <a href="/impressum">Impressum</a>.
+    </p>
 
-        <h3>Datenerfassung auf dieser Website</h3>
-        <p>
-          Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten findest Du im <a href="/impressum">Impressum</a>.
-        </p>
+    <h2 id="verantwortlicher">2. Verantwortlicher</h2>
+    <p>
+      <strong>{site.legalName}</strong><br />
+      {site.legal.gesellschafter}<br />
+      {site.address.street}, {site.address.postal} {site.address.city}<br />
+      Telefon: <a href={`tel:${site.phoneIntl}`}>{site.phoneDisplay}</a><br />
+      E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+    </p>
 
-        <h2>2. Verantwortlicher</h2>
-        <p>
-          <strong>{site.legalName}</strong><br />
-          {site.legal.gesellschafter}<br />
-          {site.address.street}, {site.address.postal} {site.address.city}<br />
-          Telefon: <a href={`tel:${site.phoneIntl}`}>{site.phoneDisplay}</a><br />
-          E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
-        </p>
+    <h2 id="datenverarbeitung">3. Datenverarbeitung auf dieser Website</h2>
+    <h3>Cookies</h3>
+    <p>
+      Unsere Website verwendet nur technisch notwendige Cookies. Diese sind erforderlich, um die Funktion der Website zu gewährleisten. Tracking-Cookies werden nur nach Deiner ausdrücklichen Einwilligung gesetzt.
+    </p>
 
-        <h2>3. Datenverarbeitung auf dieser Website</h2>
-        <h3>Cookies</h3>
-        <p>
-          Unsere Website verwendet nur technisch notwendige Cookies. Diese sind erforderlich, um die Funktion der Website zu gewährleisten. Tracking-Cookies werden nur nach Deiner ausdrücklichen Einwilligung gesetzt.
-        </p>
+    <h3>Server-Logfiles</h3>
+    <p>
+      Unser Hosting-Provider erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Dein Browser übermittelt: Browsertyp und -version, Betriebssystem, Referrer-URL, Hostname, Uhrzeit der Anfrage, IP-Adresse. Eine Zusammenführung mit anderen Datenquellen wird nicht vorgenommen.
+    </p>
 
-        <h3>Server-Logfiles</h3>
-        <p>
-          Unser Hosting-Provider erhebt und speichert automatisch Informationen in sogenannten Server-Logfiles, die Dein Browser übermittelt: Browsertyp und -version, Betriebssystem, Referrer-URL, Hostname, Uhrzeit der Anfrage, IP-Adresse. Eine Zusammenführung mit anderen Datenquellen wird nicht vorgenommen.
-        </p>
+    <h3>Kontaktaufnahme</h3>
+    <p>
+      Wenn Du uns per Telefon, WhatsApp oder E-Mail kontaktierst, werden Deine Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten zum Zwecke der Bearbeitung gespeichert. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+    </p>
 
-        <h3>Kontaktaufnahme</h3>
-        <p>
-          Wenn Du uns per Telefon, WhatsApp oder E-Mail kontaktierst, werden Deine Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten zum Zwecke der Bearbeitung gespeichert. Die Verarbeitung erfolgt auf Basis von Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
-        </p>
+    <h2 id="externe-dienste">4. Externe Dienste</h2>
+    <h3>Google Maps</h3>
+    <p>
+      Auf unserer Website nutzen wir Google Maps für die Standortanzeige. Verantwortlich: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Mehr Infos in der Google-Datenschutzerklärung.
+    </p>
+    <h3>Externe Verlinkungen</h3>
+    <p>
+      Wir verlinken auf externe Angebote wie AutoScout24, route66-hh.shop, Cash für Chrom (DMAX), Instagram, YouTube und Facebook. Diese Anbieter erheben eigene Daten - bitte beachte deren Datenschutzhinweise.
+    </p>
 
-        <h2>4. Externe Dienste</h2>
-        <h3>Google Maps</h3>
-        <p>
-          Auf unserer Website nutzen wir Google Maps für die Standortanzeige. Verantwortlich: Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Mehr Infos in der Google-Datenschutzerklärung.
-        </p>
-        <h3>Externe Verlinkungen</h3>
-        <p>
-          Wir verlinken auf externe Angebote wie AutoScout24, route66-hh.shop, Cash für Chrom (DMAX), Instagram, YouTube und Facebook. Diese Anbieter erheben eigene Daten - bitte beachte deren Datenschutzhinweise.
-        </p>
+    <h2 id="rechte">5. Deine Rechte</h2>
+    <p>
+      Du hast jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch (Art. 21 DSGVO). Wende Dich dafür einfach unter der oben genannten E-Mail-Adresse an uns.
+    </p>
+    <p>
+      Du hast außerdem das Recht, Dich bei einer Aufsichtsbehörde zu beschweren - in der Regel bei der Behörde Deines Wohnsitzes oder unseres Firmensitzes.
+    </p>
 
-        <h2>5. Deine Rechte</h2>
-        <p>
-          Du hast jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch (Art. 21 DSGVO). Wende Dich dafür einfach unter der oben genannten E-Mail-Adresse an uns.
-        </p>
-        <p>
-          Du hast außerdem das Recht, Dich bei einer Aufsichtsbehörde zu beschweren - in der Regel bei der Behörde Deines Wohnsitzes oder unseres Firmensitzes.
-        </p>
+    <h2 id="ssl">6. SSL-Verschlüsselung</h2>
+    <p>
+      Diese Seite nutzt aus Sicherheitsgründen eine SSL-Verschlüsselung. Du erkennst eine verschlüsselte Verbindung daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und ein Schloss-Symbol erscheint.
+    </p>
 
-        <h2>6. SSL-Verschlüsselung</h2>
-        <p>
-          Diese Seite nutzt aus Sicherheitsgründen eine SSL-Verschlüsselung. Du erkennst eine verschlüsselte Verbindung daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt und ein Schloss-Symbol erscheint.
-        </p>
-
-        <h2>7. Stand der Datenschutzerklärung</h2>
-        <p>Diese Datenschutzerklärung wurde zuletzt am 04.06.2026 aktualisiert.</p>
-      </article>
-    </div>
-  </section>
+    <h2 id="stand">7. Stand der Datenschutzerklärung</h2>
+    <p>Diese Datenschutzerklärung wurde zuletzt am 04.06.2026 aktualisiert.</p>
+  </LegalLayout>
 </Layout>

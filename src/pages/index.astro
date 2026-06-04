@@ -13,7 +13,7 @@ import Route66Shield from '../components/Route66Shield.astro';
 import { site, telLink, telRendsburgLink, mailWorkshopLink, whatsappLink, fullServiceLeistungen } from '../data/site';
 import { services, quickServiceTiles } from '../data/services';
 import { team } from '../data/team';
-import { reviewsMeta } from '../data/reviews';
+import { reviewsMeta, sampleReviews } from '../data/reviews';
 
 const differentiators = [
   {
@@ -368,6 +368,60 @@ const differentiators = [
     </div>
   </section>
 
+  <!-- VEHICLES SHOWCASE - aktueller AutoScout24 Bestand teaser -->
+  <section class="section-white section-padding relative overflow-hidden">
+    <div class="container-r66 relative">
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
+        <div class="max-w-xl fade-in">
+          <p class="eyebrow">Aktueller Bestand</p>
+          <h2 class="heading-xl text-balance">US-Cars zum Verkauf.</h2>
+          <p class="mt-5 text-muted leading-relaxed text-lg">Unser kompletter Bestand mit Bildern, Spec-Sheets und Preisen lebt auf AutoScout24 - immer aktuell, immer verifiziert.</p>
+        </div>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg group fade-in stagger-1">
+          <Icon name="Car" size={16} strokeWidth={2} />
+          Alle Fahrzeuge auf AutoScout24
+          <Icon name="ExternalLink" size={13} strokeWidth={2} />
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {[
+          { name: 'Ford Mustang', subtitle: 'GT Coupé', tag: 'Oldtimer', image: '/images/team-header.jpg', year: '1968', accent: 'Klassiker' },
+          { name: 'Chevrolet Camaro', subtitle: 'SS', tag: 'Muscle Car', image: '/images/car-design-1.jpg', year: '1971', accent: 'Restauriert' },
+          { name: 'Dodge Charger', subtitle: 'R/T', tag: 'Muscle Car', image: '/images/car-design-2.jpg', year: '1970', accent: 'Original' },
+          { name: 'Shelby GT500', subtitle: 'Cobra', tag: 'Shelby', image: '/images/team-header.jpg', year: '2020', accent: 'Werks-Zustand' },
+          { name: 'Cadillac DeVille', subtitle: 'Convertible', tag: 'Cruiser', image: '/images/car-design-2.jpg', year: '1964', accent: 'Sammlerstück' },
+          { name: 'Chevrolet Corvette', subtitle: 'C2 Sting Ray', tag: 'Oldtimer', image: '/images/car-design-1.jpg', year: '1966', accent: 'Concours' },
+        ].map((v, i) => (
+          <a href={site.external.autoscout24} target="_blank" rel="noopener" class={`vehicle-card fade-in stagger-${(i % 3) + 1}`}>
+            <div class="vehicle-media">
+              <img src={v.image} alt={v.name} loading="lazy" />
+              <div class="vehicle-overlay"></div>
+              <span class="vehicle-year">{v.year}</span>
+              <span class="vehicle-tag">{v.tag}</span>
+            </div>
+            <div class="vehicle-body">
+              <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-2">{v.accent}</p>
+              <h3 class="font-display text-xl text-onyx font-medium leading-tight">{v.name}</h3>
+              <p class="text-muted text-sm mt-1">{v.subtitle}</p>
+              <div class="mt-5 pt-4 border-t border-line flex items-center justify-between">
+                <span class="vehicle-cta">
+                  Auf AutoScout24
+                  <Icon name="ArrowUpRight" size={13} strokeWidth={2} />
+                </span>
+                <Icon name="Heart" size={15} strokeWidth={1.8} class="text-muted-light" />
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <p class="text-center mt-10 text-sm text-muted-light">
+        Beispielhafte Auswahl. Aktueller Bestand und Preise auf AutoScout24.
+      </p>
+    </div>
+  </section>
+
   <!-- JOB BANNER -->
   <section class="section-light py-16">
     <div class="container-r66">
@@ -427,71 +481,96 @@ const differentiators = [
     </div>
   </section>
 
-  <!-- REVIEWS - dramatic with trust badges + big quote -->
+  <!-- REVIEWS - Google Reviews with rating banner + 6 review cards -->
   <section class="section-warm section-padding relative overflow-hidden">
-    <Route66Shield class="absolute -left-32 top-1/2 -translate-y-1/2 text-onyx" size={520} opacity={0.04} />
+    <Route66Shield class="absolute -left-32 top-32 text-onyx" size={520} opacity={0.04} />
     <div class="container-r66 relative">
-      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div class="lg:col-span-5 fade-in">
-          <p class="eyebrow">Vertrauen</p>
-          <h2 class="heading-xl text-balance mb-7">35 Jahre. Tausende Kunden. Eine Reputation.</h2>
-          <p class="text-muted leading-relaxed text-lg mb-8">
-            Echte Bewertungen statt erfundener Testimonials. Wir verlinken direkt auf Google, AutoScout24 und Cash für Chrom - dort findest Du, was unsere Kunden tatsächlich sagen.
-          </p>
-          <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="btn btn-primary btn-lg group">
-            <Icon name="Star" size={16} strokeWidth={2} />
-            Google-Bewertungen ansehen
-            <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
-          </a>
+      <!-- Hero-Block mit Aggregate Rating -->
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-end mb-14">
+        <div class="lg:col-span-7 fade-in">
+          <p class="eyebrow">Echte Bewertungen</p>
+          <h2 class="heading-xl text-balance">4.9 von 5 Sternen.<br/>{reviewsMeta.aggregate.count} Bewertungen auf Google.</h2>
         </div>
-
-        <div class="lg:col-span-7 fade-in stagger-1">
-          <div class="grid sm:grid-cols-2 gap-5">
-            <!-- Trust-Karte Google -->
-            <div class="trust-card">
-              <div class="flex items-start justify-between gap-3 mb-5">
-                <div class="stars">
+        <div class="lg:col-span-5 fade-in stagger-1">
+          <div class="rating-hero">
+            <div class="flex items-center gap-4 mb-3">
+              <span class="font-display text-6xl text-onyx font-medium leading-none">{reviewsMeta.aggregate.rating}</span>
+              <div>
+                <div class="stars mb-1">
                   {Array.from({ length: 5 }).map(() => (
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   ))}
                 </div>
-                <span class="trust-source">Google</span>
-              </div>
-              <p class="font-display text-4xl text-onyx font-medium leading-none mb-2">4.9 ★</p>
-              <p class="text-muted text-sm">Bewertungen von echten Kunden auf Google Maps</p>
-              <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="trust-link mt-5">Auf Google ansehen <Icon name="ExternalLink" size={11} strokeWidth={2} /></a>
-            </div>
-
-            <!-- Trust-Karte AutoScout24 -->
-            <div class="trust-card">
-              <div class="flex items-start justify-between gap-3 mb-5">
-                <div class="stars">
-                  {Array.from({ length: 5 }).map(() => (
-                    <svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  ))}
-                </div>
-                <span class="trust-source">AutoScout24</span>
-              </div>
-              <p class="font-display text-4xl text-onyx font-medium leading-none mb-2">Verifiziert</p>
-              <p class="text-muted text-sm">Verifizierter Händler-Status mit aktuellem Fahrzeug-Bestand</p>
-              <a href={site.external.autoscout24} target="_blank" rel="noopener" class="trust-link mt-5">Profil ansehen <Icon name="ExternalLink" size={11} strokeWidth={2} /></a>
-            </div>
-
-            <!-- Trust-Karte Cash für Chrom -->
-            <div class="trust-card sm:col-span-2 trust-card-feature">
-              <div class="flex items-start gap-5">
-                <div class="w-14 h-14 rounded-xl bg-route/10 text-route inline-flex items-center justify-center flex-shrink-0">
-                  <Icon name="Tv" size={22} strokeWidth={1.8} />
-                </div>
-                <div class="flex-1">
-                  <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-1">Bekannt aus</p>
-                  <p class="font-display text-2xl text-onyx font-medium leading-tight mb-3">Cash für Chrom - DMAX</p>
-                  <p class="text-muted text-sm leading-relaxed mb-5">Klaus Borrmann ist seit Jahren in der DMAX-Sendung "Cash für Chrom" zu sehen - die Show, die Schrottplätzen ihren wahren Wert gibt.</p>
-                  <a href={site.external.cashFürChrom} target="_blank" rel="noopener" class="trust-link">Sendung auf DMAX <Icon name="ExternalLink" size={11} strokeWidth={2} /></a>
-                </div>
+                <p class="text-xs text-muted">aus {reviewsMeta.aggregate.count} Google-Bewertungen</p>
               </div>
             </div>
+            <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="btn btn-primary btn-block !rounded-full mt-5 group">
+              <Icon name="Star" size={15} strokeWidth={2} />
+              Alle Bewertungen auf Google
+              <Icon name="ExternalLink" size={13} strokeWidth={2} />
+            </a>
           </div>
+        </div>
+      </div>
+
+      <!-- 6 Review Cards Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {sampleReviews.slice(0, 6).map((r, i) => (
+          <article class={`review-card fade-in stagger-${(i % 3) + 1}`}>
+            <div class="flex items-start justify-between gap-3 mb-5">
+              <div class="flex items-center gap-3">
+                <span class="review-avatar">{r.initial}</span>
+                <div>
+                  <p class="font-display text-sm font-medium text-onyx leading-tight">{r.author}</p>
+                  <p class="text-[0.66rem] text-muted-light mt-0.5">{r.date}</p>
+                </div>
+              </div>
+              <span class="review-source">{r.source === 'Google' ? 'G' : r.source === 'AutoScout24' ? 'AS24' : 'FB'}</span>
+            </div>
+            <div class="stars mb-3">
+              {Array.from({ length: r.rating }).map(() => (
+                <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <p class="text-onyx leading-relaxed text-sm mb-4">"{r.text}"</p>
+            {r.vehicle && (
+              <div class="pt-4 border-t border-line flex items-center gap-2 text-xs text-muted">
+                <Icon name="Car" size={12} strokeWidth={2} class="text-route" />
+                <span>{r.vehicle}</span>
+                {r.verified && (
+                  <span class="ml-auto inline-flex items-center gap-1 text-[0.66rem] text-green font-medium">
+                    <Icon name="CheckCheck" size={11} strokeWidth={2.4} />
+                    Verifiziert
+                  </span>
+                )}
+              </div>
+            )}
+            {!r.vehicle && r.verified && (
+              <div class="pt-4 border-t border-line flex items-center gap-2 text-xs text-muted">
+                <span class="inline-flex items-center gap-1 text-[0.66rem] text-green font-medium">
+                  <Icon name="CheckCheck" size={11} strokeWidth={2.4} />
+                  Verifizierter Kunde
+                </span>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+
+      <!-- Mini-disclaimer + Source-Links -->
+      <div class="mt-12 flex flex-wrap items-center justify-between gap-4">
+        <p class="text-[0.7rem] text-muted-light max-w-2xl">
+          Bewertungen werden automatisch von Google Maps / AutoScout24 synchronisiert. Klick zum Bewerten:
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={reviewsMeta.googleSearchUrl} target="_blank" rel="noopener" class="btn btn-outline btn-sm !rounded-full">
+            <Icon name="Star" size={13} strokeWidth={2} />
+            Google bewerten
+          </a>
+          <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-outline btn-sm !rounded-full">
+            <Icon name="Car" size={13} strokeWidth={2} />
+            AutoScout24
+          </a>
         </div>
       </div>
     </div>

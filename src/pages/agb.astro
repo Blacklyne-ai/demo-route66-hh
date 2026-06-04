@@ -1,7 +1,20 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import PageHero from '../components/PageHero.astro';
+import LegalLayout from '../components/LegalLayout.astro';
 import { site } from '../data/site';
+
+const sections = [
+  { id: 'geltung', label: 'Geltungsbereich' },
+  { id: 'vertrag', label: 'Vertragsschluss' },
+  { id: 'preise', label: 'Service-Preise' },
+  { id: 'zahlung', label: 'Zahlung' },
+  { id: 'termine', label: 'Termine & Rückruf' },
+  { id: 'storno', label: 'Stornierung' },
+  { id: 'gewaehr', label: 'Gewährleistung' },
+  { id: 'haftung', label: 'Haftung' },
+  { id: 'datenschutz', label: 'Datenschutz' },
+  { id: 'schluss', label: 'Schlussbestimmungen' },
+];
 ---
 
 <Layout
@@ -10,76 +23,72 @@ import { site } from '../data/site';
   current="/agb"
   noindex
 >
-  <PageHero
+  <LegalLayout
     eyebrow="Allgemeine Geschäftsbedingungen"
     title="AGB"
+    intro="Vertragsbedingungen für Werkstattleistungen, Beratungs-Services, Importe und Werkstattführungen."
+    sections={sections}
     breadcrumbs={[{ label: 'Startseite', href: '/' }, { label: 'AGB', href: '/agb' }]}
-  />
+  >
+    <h2 id="geltung">1. Geltungsbereich</h2>
+    <p>
+      Diese AGB gelten für alle Verträge zwischen {site.legalName} (im Folgenden "Route 66") und ihren Kunden über Werkstattleistungen, Beratungs-Services (Call a Mechanic, Car Check, Call for Parts), Fahrzeug-Imports und Werkstattführungen.
+    </p>
 
-  <section class="section-cream py-20 md:py-28">
-    <div class="container-narrow">
-      <article class="legal-prose">
-        <h2>1. Geltungsbereich</h2>
-        <p>
-          Diese AGB gelten für alle Verträge zwischen {site.legalName} (im Folgenden "Route 66") und ihren Kunden über Werkstattleistungen, Beratungs-Services (Call a Mechanic, Car Check, Call for Parts), Fahrzeug-Imports und Werkstattführungen.
-        </p>
+    <h2 id="vertrag">2. Vertragsschluss</h2>
+    <p>
+      Verträge kommen durch ausdrückliche Auftragserteilung (telefonisch, schriftlich, persönlich) oder durch Buchung eines Online-Service-Slots zustande. Online-Buchungen werden per E-Mail bestätigt.
+    </p>
 
-        <h2>2. Vertragsschluss</h2>
-        <p>
-          Verträge kommen durch ausdrückliche Auftragserteilung (telefonisch, schriftlich, persönlich) oder durch Buchung eines Online-Service-Slots zustande. Online-Buchungen werden per E-Mail bestätigt.
-        </p>
+    <h2 id="preise">3. Service-Preise</h2>
+    <p>
+      Aktuelle Pauschal-Preise unserer Beratungs-Services:
+    </p>
+    <ul>
+      <li><strong>Call a Mechanic:</strong> 175 EUR inkl. MwSt. pro angefangene 45-Minuten-Einheit</li>
+      <li><strong>Car Check (EU-Fahrzeuge):</strong> 275 EUR pauschal inkl. MwSt. bis max. 1,5 Stunden; Mehraufwand 165 EUR pro angefangene Stunde</li>
+      <li><strong>Call for Parts / TÜV-Recherche:</strong> 175 EUR inkl. MwSt. pro Anfrage</li>
+      <li><strong>Private Werkstattführung:</strong> 300 EUR pro Führung inkl. MwSt., Kaffee und Wasser; max. 3-4 Personen, ca. 45 Minuten</li>
+    </ul>
+    <p>
+      Servicegebühren gelten nicht für Bestandskunden. Werkstattleistungen werden nach Auftrag und Aufwand individuell kalkuliert.
+    </p>
 
-        <h2>3. Service-Preise</h2>
-        <p>
-          Aktuelle Pauschal-Preise unserer Beratungs-Services:
-        </p>
-        <ul>
-          <li><strong>Call a Mechanic:</strong> 175 EUR inkl. MwSt. pro angefangene 45-Minuten-Einheit</li>
-          <li><strong>Car Check (EU-Fahrzeuge):</strong> 275 EUR pauschal inkl. MwSt. bis max. 1,5 Stunden; Mehraufwand 165 EUR pro angefangene Stunde</li>
-          <li><strong>Call for Parts / TÜV-Recherche:</strong> 175 EUR inkl. MwSt. pro Anfrage</li>
-          <li><strong>Private Werkstattführung:</strong> 300 EUR pro Führung inkl. MwSt., Kaffee und Wasser; max. 3-4 Personen, ca. 45 Minuten</li>
-        </ul>
-        <p>
-          Servicegebühren gelten nicht für Bestandskunden. Werkstattleistungen werden nach Auftrag und Aufwand individuell kalkuliert.
-        </p>
+    <h2 id="zahlung">4. Zahlung</h2>
+    <p>
+      Beratungs-Services sind vorab online über "pay now" zu zahlen. Werkstattleistungen werden nach Abnahme in Rechnung gestellt. Akzeptierte Zahlungsmethoden: Barzahlung, EC-Karte, Banktransfer.
+    </p>
 
-        <h2>4. Zahlung</h2>
-        <p>
-          Beratungs-Services sind vorab online über "pay now" zu zahlen. Werkstattleistungen werden nach Abnahme in Rechnung gestellt. Akzeptierte Zahlungsmethoden: Barzahlung, EC-Karte, Banktransfer.
-        </p>
+    <h2 id="termine">5. Termine und Rückruf</h2>
+    <p>
+      Telefon-Termine werden innerhalb des gebuchten Zeitfensters durchgeführt. Wir bemühen uns um die Einhaltung der vereinbarten Zeiten. Bei Verzögerungen informieren wir umgehend per Telefon oder E-Mail.
+    </p>
 
-        <h2>5. Termine und Rückruf</h2>
-        <p>
-          Telefon-Termine werden innerhalb des gebuchten Zeitfensters durchgeführt. Wir bemühen uns um die Einhaltung der vereinbarten Zeiten. Bei Verzögerungen informieren wir umgehend per Telefon oder E-Mail.
-        </p>
+    <h2 id="storno">6. Stornierung</h2>
+    <p>
+      Kostenlose Stornierung bis 24 Stunden vor dem Termin. Bei späterer Stornierung oder Nichterscheinen kann die volle Servicegebühr berechnet werden.
+    </p>
 
-        <h2>6. Stornierung</h2>
-        <p>
-          Kostenlose Stornierung bis 24 Stunden vor dem Termin. Bei späterer Stornierung oder Nichterscheinen kann die volle Servicegebühr berechnet werden.
-        </p>
+    <h2 id="gewaehr">7. Gewährleistung</h2>
+    <p>
+      Es gelten die gesetzlichen Gewährleistungsregelungen. Bei Werkstattleistungen gilt die handwerksrechtliche Gewährleistungsfrist.
+    </p>
 
-        <h2>7. Gewährleistung</h2>
-        <p>
-          Es gelten die gesetzlichen Gewährleistungsregelungen. Bei Werkstattleistungen gilt die handwerksrechtliche Gewährleistungsfrist.
-        </p>
+    <h2 id="haftung">8. Haftung</h2>
+    <p>
+      Route 66 haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit. Bei einfacher Fahrlässigkeit haften wir nur bei Verletzung wesentlicher Vertragspflichten und begrenzt auf den vorhersehbaren, vertragstypischen Schaden.
+    </p>
 
-        <h2>8. Haftung</h2>
-        <p>
-          Route 66 haftet unbeschränkt bei Vorsatz und grober Fahrlässigkeit. Bei einfacher Fahrlässigkeit haften wir nur bei Verletzung wesentlicher Vertragspflichten und begrenzt auf den vorhersehbaren, vertragstypischen Schaden.
-        </p>
+    <h2 id="datenschutz">9. Datenschutz</h2>
+    <p>
+      Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer <a href="/datenschutz">Datenschutzerklärung</a>.
+    </p>
 
-        <h2>9. Datenschutz</h2>
-        <p>
-          Die Verarbeitung personenbezogener Daten erfolgt gemäß unserer <a href="/datenschutz">Datenschutzerklärung</a>.
-        </p>
+    <h2 id="schluss">10. Schlussbestimmungen</h2>
+    <p>
+      Es gilt deutsches Recht. Gerichtsstand ist - sofern gesetzlich zulässig - {site.address.city}. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen unberührt.
+    </p>
 
-        <h2>10. Schlussbestimmungen</h2>
-        <p>
-          Es gilt deutsches Recht. Gerichtsstand ist - sofern gesetzlich zulässig - {site.address.city}. Sollten einzelne Bestimmungen unwirksam sein, bleibt die Wirksamkeit der übrigen unberührt.
-        </p>
-
-        <p>Stand: 04.06.2026</p>
-      </article>
-    </div>
-  </section>
+    <p>Stand: 04.06.2026</p>
+  </LegalLayout>
 </Layout>

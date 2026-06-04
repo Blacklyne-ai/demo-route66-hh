@@ -578,7 +578,168 @@
 }
 .trust-card:hover .trust-link { gap: 0.65rem; }
 
-/* ===== KEN BURNS - very subtle slow scale on hero portraits ===== */
+/* ===== VEHICLE CARDS - Showcase ===== */
+.vehicle-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgb(229 219 205);
+  border-radius: 16px;
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+}
+.vehicle-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgb(185 28 28), rgb(220 38 38));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 3;
+}
+.vehicle-card:hover {
+  transform: translateY(-6px);
+  border-color: rgb(185 28 28 / 0.35);
+  box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.22);
+}
+.vehicle-card:hover::before { transform: scaleX(1); }
+
+.vehicle-media {
+  position: relative;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  background: rgb(245 240 229);
+}
+.vehicle-media img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.vehicle-card:hover .vehicle-media img { transform: scale(1.08); }
+.vehicle-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.5) 100%);
+  opacity: 0.85;
+}
+
+.vehicle-year {
+  position: absolute; top: 1rem; left: 1rem;
+  font-family: "Oswald", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  z-index: 2;
+}
+
+.vehicle-tag {
+  position: absolute; top: 1rem; right: 1rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgb(185 28 28);
+  color: #fff;
+  z-index: 2;
+  box-shadow: 0 8px 16px -4px rgba(185, 28, 28, 0.45);
+}
+
+.vehicle-body { padding: 1.65rem; flex: 1; display: flex; flex-direction: column; }
+
+.vehicle-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: rgb(17 17 17);
+  font-weight: 500;
+  font-size: 0.84rem;
+  transition: gap 0.3s ease, color 0.3s ease;
+}
+.vehicle-card:hover .vehicle-cta { color: rgb(185 28 28); gap: 0.65rem; }
+
+/* ===== REVIEW CARDS - Google Reviews ===== */
+.rating-hero {
+  background: #fff;
+  border: 1px solid rgb(229 219 205);
+  border-radius: 16px;
+  padding: 1.85rem;
+  box-shadow: 0 22px 48px -20px rgba(0,0,0,0.18);
+  position: relative;
+  overflow: hidden;
+}
+.rating-hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, rgb(185 28 28), rgb(220 38 38));
+}
+
+.review-card {
+  position: relative;
+  background: #fff;
+  border: 1px solid rgb(229 219 205);
+  border-radius: 14px;
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  isolation: isolate;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+}
+.review-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: rgb(185 28 28);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.review-card:hover {
+  transform: translateY(-3px);
+  border-color: rgb(185 28 28 / 0.3);
+  box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.16);
+}
+.review-card:hover::before { transform: scaleX(1); }
+
+.review-avatar {
+  width: 38px; height: 38px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(185 28 28), rgb(153 27 27));
+  color: #fff;
+  font-family: "Oswald", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px -2px rgba(185, 28, 28, 0.35);
+}
+
+.review-source {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding: 0.3rem 0.55rem;
+  border-radius: 6px;
+  background: rgb(245 240 229);
+  color: rgb(96 87 75);
+  border: 1px solid rgb(229 219 205);
+}
+
+/* ===== USP CARDS - Homepage Differentiators ===== */
 @keyframes ken-burns {
   0% { transform: scale(1) translate(0, 0); }
   100% { transform: scale(1.06) translate(-0.8%, -0.4%); }
