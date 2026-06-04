@@ -1,0 +1,53 @@
+---
+// Slim top banner for active job posting - direkt über der Nav-Pille
+import Icon from './Icon.astro';
+---
+<a id="job-banner" href="/jobs" class="job-banner-top group" aria-label="Wir stellen ein per sofort">
+  <div class="container-r66">
+    <div class="flex items-center justify-center gap-2 md:gap-3 py-2.5 text-white text-[0.78rem] md:text-sm">
+      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-white/15 text-white text-[0.62rem] font-medium uppercase tracking-widest backdrop-blur-sm flex-shrink-0">
+        <Icon name="Briefcase" size={10} strokeWidth={2.4} />
+        Jobs
+      </span>
+      <span class="font-medium tracking-wide">
+        Wir stellen ein per sofort: <span class="hidden sm:inline">KFZ-Mechaniker / Mechatroniker (m/w/d)</span><span class="sm:hidden">Mechaniker / Mechatroniker</span>
+      </span>
+      <span class="inline-flex items-center gap-1 font-medium underline underline-offset-2 decoration-white/40 group-hover:decoration-white transition-all">
+        Zur Stelle
+        <Icon name="ArrowRight" size={12} strokeWidth={2.4} class="hover-arrow" />
+      </span>
+    </div>
+  </div>
+</a>
+
+<style>
+  .job-banner-top {
+    display: block;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 60;
+    background: linear-gradient(90deg, #991B1B 0%, #B91C1C 50%, #DC2626 100%);
+    box-shadow: 0 2px 8px -2px rgba(185, 28, 28, 0.35);
+    transition: transform 0.3s ease;
+  }
+  /* Hide the banner when scrolled past hero - js will toggle */
+  .job-banner-top.is-hidden {
+    transform: translateY(-100%);
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var banner = document.getElementById('job-banner');
+    var header = document.getElementById('site-header');
+    if (!banner || !header) return;
+
+    // Adjust header padding-top to account for banner
+    function syncHeaderTop() {
+      var h = banner.offsetHeight;
+      header.style.paddingTop = h + 12 + 'px';
+    }
+    syncHeaderTop();
+    window.addEventListener('resize', syncHeaderTop);
+  })();
+</script>

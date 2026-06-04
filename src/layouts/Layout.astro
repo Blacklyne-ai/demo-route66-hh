@@ -6,6 +6,7 @@ import FloatingCTA from '../components/FloatingCTA.astro';
 import CookieBanner from '../components/CookieBanner.astro';
 import SchemaOrg from '../components/SchemaOrg.astro';
 import ScrollProgress from '../components/ScrollProgress.astro';
+import JobBanner from '../components/JobBanner.astro';
 import { site } from '../data/site';
 
 interface Props {
@@ -70,6 +71,7 @@ const ogImageUrl = new URL(ogImage, site.url).toString();
   <body>
     <a href="#main" class="skip-link">Zum Inhalt springen</a>
     <ScrollProgress />
+    <JobBanner />
     <Header current={current} />
     <main id="main">
       <slot />
