@@ -1,7 +1,6 @@
 ---
 import { telLink, whatsappLink, mailWorkshopLink, site } from '../data/site';
 import Icon from './Icon.astro';
-import KlausSignature from './KlausSignature.astro';
 
 interface Props {
   title?: string;
@@ -9,19 +8,15 @@ interface Props {
   signoff?: string;
 }
 const {
-  title = 'Dein US-Car. Dein Klaus.',
-  lead = 'Du suchst ein bestimmtes Fahrzeug und bist noch nicht fündig geworden? Du brauchst einen Spezialisten für US-Cars? Es gibt zahlreiche gute Gründe uns zu kontaktieren.',
-  signoff = 'Kontaktiere uns - wir machen Deinen Fahrzeugtraum wahr. Herzliche Grüße, Dein Klaus Borrmann',
+  title = 'Direkt mit der Werkstatt sprechen.',
+  lead = 'Du suchst ein bestimmtes US-Car, brauchst eine TÜV-Beratung oder willst eine Werkstattführung buchen? Klaus und sein Team beraten Dich persönlich - per Telefon, WhatsApp oder direkt vor Ort.',
+  signoff = 'Kontaktiere uns - wir machen Deinen Fahrzeugtraum wahr. Herzliche Grüße, Klaus Borrmann.',
 } = Astro.props;
 ---
 <section class="section-dark section-padding relative overflow-hidden">
   <div class="absolute inset-0 z-0" aria-hidden="true">
     <img src="/images/klaus-borrmann.jpg" alt="" class="w-full h-full object-cover opacity-15 ken-burns" loading="lazy" />
     <div class="absolute inset-0" style="background: linear-gradient(90deg, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.85) 50%, rgba(8,8,8,0.7) 100%);"></div>
-  </div>
-
-  <div class="absolute -right-12 top-1/2 -translate-y-1/2 z-0 pointer-events-none opacity-[0.05]" aria-hidden="true">
-    <span class="font-display text-[18rem] leading-none text-white" style="letter-spacing: -0.04em;">66</span>
   </div>
 
   <div class="container-r66 relative z-10">
@@ -31,7 +26,7 @@ const {
         <h2 class="heading-xl text-white text-balance mb-7">{title}</h2>
         <p class="text-lg md:text-xl text-white/80 leading-relaxed mb-10 text-pretty max-w-2xl">{lead}</p>
 
-        <div class="flex flex-wrap gap-3 mb-12">
+        <div class="flex flex-wrap gap-3 mb-10">
           <a href={telLink} class="btn btn-primary btn-lg group">
             <Icon name="Phone" size={16} strokeWidth={2} />
             {site.phoneDisplay}
@@ -47,12 +42,22 @@ const {
           </a>
         </div>
 
-        <div class="flex items-end gap-6 pt-8 border-t border-white/10 max-w-lg">
-          <div class="flex-shrink-0">
-            <KlausSignature light size="sm" />
+        <!-- Mini contact-grid for additional channels -->
+        <div class="grid sm:grid-cols-3 gap-5 pt-8 border-t border-white/10 max-w-2xl">
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-2">Hamburg HQ</p>
+            <p class="text-white text-sm">{site.address.street}</p>
+            <p class="text-white/60 text-xs mt-1">{site.address.postal} {site.address.city}</p>
           </div>
-          <div class="flex-1 pb-2">
-            <p class="text-white/85 text-sm leading-snug italic">"{signoff}"</p>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-2">Rendsburg</p>
+            <p class="text-white text-sm">{site.addressRendsburg.street}</p>
+            <p class="text-white/60 text-xs mt-1">{site.addressRendsburg.postal} {site.addressRendsburg.city}</p>
+          </div>
+          <div>
+            <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-2">Öffnungszeiten</p>
+            <p class="text-white text-sm">Mo - Do: 8 - 17 Uhr</p>
+            <p class="text-white/60 text-xs mt-1">Fr: 8 - 15 Uhr</p>
           </div>
         </div>
       </div>
@@ -62,8 +67,8 @@ const {
           <div class="rounded-xl overflow-hidden aspect-[4/5] bg-onyx-900 border border-white/10">
             <img src="/images/klaus-borrmann.jpg" alt="Klaus Borrmann" class="w-full h-full object-cover" loading="lazy" />
           </div>
-          <div class="absolute -bottom-5 -left-5 rounded-lg px-5 py-4 max-w-[230px]" style="background: rgba(255,254,251,0.96); backdrop-filter: blur(14px); box-shadow: 0 22px 48px -16px rgba(0,0,0,0.5);">
-            <p class="text-[0.66rem] text-muted uppercase tracking-widest mb-1">Direkt von</p>
+          <div class="absolute -bottom-5 -left-5 rounded-lg px-5 py-4 max-w-[250px]" style="background: rgba(255,254,251,0.96); backdrop-filter: blur(14px); box-shadow: 0 22px 48px -16px rgba(0,0,0,0.5);">
+            <p class="text-[0.66rem] text-muted uppercase tracking-widest mb-1">Inhaber & KFZ-Meister</p>
             <p class="font-display text-lg font-medium text-onyx leading-tight">Klaus Borrmann</p>
             <a href={telLink} class="text-route text-sm font-medium mt-2 inline-flex items-center gap-1 hover:gap-2 transition-all">
               <Icon name="Phone" size={12} strokeWidth={2} />

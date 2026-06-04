@@ -26,18 +26,24 @@ const isActive = (item: typeof nav[number]) =>
         {nav.map((item) =>
           item.children ? (
             <div class="nav-dd relative">
-              <a href={item.href} class={`nav-pill-item inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
+              <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined} class={`nav-pill-item inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`} aria-haspopup="true" aria-expanded="false">
                 {item.label}
                 <Icon name="ChevronDown" size={11} strokeWidth={2} class="nav-dd-chev" />
               </a>
               <div class="nav-dd-panel" role="menu">
                 {item.children.map((c) => (
-                  <a href={c.href} role="menuitem" class={`nav-dd-item ${current === c.href ? 'active' : ''}`}>{c.label}</a>
+                  <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined} role="menuitem" class={`nav-dd-item inline-flex items-center justify-between gap-2 ${current === c.href ? 'active' : ''}`}>
+                    <span>{c.label}</span>
+                    {c.external && <Icon name="ExternalLink" size={11} strokeWidth={2} />}
+                  </a>
                 ))}
               </div>
             </div>
           ) : (
-            <a href={item.href} class={`nav-pill-item ${isActive(item) ? 'active' : ''}`}>{item.label}</a>
+            <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined} class={`nav-pill-item inline-flex items-center gap-1 ${isActive(item) ? 'active' : ''}`}>
+              {item.label}
+              {item.external && <Icon name="ExternalLink" size={10} strokeWidth={2} />}
+            </a>
           )
         )}
       </nav>
@@ -64,11 +70,17 @@ const isActive = (item: typeof nav[number]) =>
     <nav class="flex flex-col p-4" aria-label="Mobile">
       {nav.map((item) => (
         <Fragment>
-          <a href={item.href} class="py-3 px-2 text-onyx font-medium border-b border-line text-base transition hover:text-route" style={current === item.href ? 'color:#B91C1C' : ''}>{item.label}</a>
+          <a href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener' : undefined} class="py-3 px-2 text-onyx font-medium border-b border-line text-base transition hover:text-route inline-flex items-center justify-between gap-2" style={current === item.href ? 'color:#B91C1C' : ''}>
+            <span>{item.label}</span>
+            {item.external && <Icon name="ExternalLink" size={12} strokeWidth={2} />}
+          </a>
           {item.children && (
             <div class="flex flex-col pl-4 border-b border-line">
               {item.children.filter((c) => c.href !== item.href).map((c) => (
-                <a href={c.href} class="py-2.5 px-2 text-sm text-muted hover:text-route transition" style={current === c.href ? 'color:#B91C1C' : ''}>{c.label}</a>
+                <a href={c.href} target={c.external ? '_blank' : undefined} rel={c.external ? 'noopener' : undefined} class="py-2.5 px-2 text-sm text-muted hover:text-route transition inline-flex items-center justify-between gap-2" style={current === c.href ? 'color:#B91C1C' : ''}>
+                  <span>{c.label}</span>
+                  {c.external && <Icon name="ExternalLink" size={11} strokeWidth={2} />}
+                </a>
               ))}
             </div>
           )}

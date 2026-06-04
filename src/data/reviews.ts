@@ -8,7 +8,7 @@ export const reviewsMeta = {
   googleNote:
     'Echte Bewertungen werden via Google Place Details API automatisch aktualisiert. Hier ist eine Auswahl aktueller Stimmen.',
   googleSearchUrl:
-    'https://www.google.com/maps/search/?api=1&query=Route+66+Borrmann+Motors+Hamburg',
+    'https://www.google.com/maps/place/Borrmann+GmbH/data=!4m2!3m1!1s0x47baa35be11860db:0x393d7c138bd25d6b',
   stars: 5,
   aggregate: {
     rating: 4.9,

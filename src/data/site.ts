@@ -98,18 +98,25 @@ export const site = {
   external: {
     autoscout24: 'https://www.autoscout24.de/haendler/route-66-borrmann-motors-kg-hamburg',
     partsShop: 'https://www.route66-hh.shop',
+    shopMerchandise: 'https://www.route66-hh.shop/category/shirts-hoodies',
+    shopErsatzteile: 'https://www.route66-hh.shop/category/ersatzteile',
+    shopTuning: 'https://www.route66-hh.shop/category/tuning',
     cashFürChrom: 'https://www.dmax.de/sendungen/cash-für-chrom',
   },
 
-  // Google Maps embed - address-query based
+  // Google Maps - Place ID extracted from official Maps URL
+  // Place: Borrmann GmbH (Route 66) - 0x47baa35be11860db:0x393d7c138bd25d6b
+  googlePlaceId: '0x47baa35be11860db:0x393d7c138bd25d6b',
   googleMapsEmbed:
-    'https://www.google.com/maps?q=Kieler+Straße+271,+22525+Hamburg,+Germany&z=15&output=embed',
+    'https://www.google.com/maps?q=Route+66+Borrmann+Motors+Kieler+Stra%C3%9Fe+271+Hamburg&z=16&output=embed',
   googleMapsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Kieler+Straße+271+22525+Hamburg',
+    'https://www.google.com/maps/place/Borrmann+GmbH/data=!4m2!3m1!1s0x47baa35be11860db:0x393d7c138bd25d6b',
+  googleReviewsUrl:
+    'https://www.google.com/maps/place/Borrmann+GmbH/data=!4m6!3m5!1s0x47baa35be11860db:0x393d7c138bd25d6b!8m2!3d53.5734!4d9.9203!9m1!1b1',
   googleDirectionsUrl:
-    'https://www.google.com/maps/dir/?api=1&destination=Kieler+Straße+271+22525+Hamburg',
+    'https://www.google.com/maps/dir/?api=1&destination=Kieler+Straße+271+22525+Hamburg&destination_place_id=0x47baa35be11860db:0x393d7c138bd25d6b',
   googleMapsEmbedRendsburg:
-    'https://www.google.com/maps?q=Lundener+Straße+12,+24768+Rendsburg,+Germany&z=15&output=embed',
+    'https://www.google.com/maps?q=Lundener+Stra%C3%9Fe+12,+24768+Rendsburg&z=16&output=embed',
   googleMapsUrlRendsburg:
     'https://www.google.com/maps/search/?api=1&query=Lundener+Straße+12+24768+Rendsburg',
 };
@@ -138,7 +145,11 @@ export interface NavItem {
 
 export const nav: NavItem[] = [
   { href: '/', label: 'Startseite' },
-  { href: '/us-cars-kaufen', label: 'US-Cars' },
+  {
+    href: 'https://www.autoscout24.de/haendler/route-66-borrmann-motors-kg-hamburg',
+    label: 'Cars for Sale',
+    external: true,
+  },
   {
     href: '/services',
     label: 'Services',
@@ -151,10 +162,20 @@ export const nav: NavItem[] = [
       { href: '/services/werkstattführung', label: 'Private Werkstattführung' },
     ],
   },
+  {
+    href: 'https://www.route66-hh.shop',
+    label: 'Shop',
+    external: true,
+    children: [
+      { href: 'https://www.route66-hh.shop', label: 'Shop-Startseite', external: true },
+      { href: 'https://www.route66-hh.shop/category/shirts-hoodies', label: 'Merchandise', external: true },
+      { href: 'https://www.route66-hh.shop/category/ersatzteile', label: 'Ersatzteile', external: true },
+      { href: 'https://www.route66-hh.shop/category/tuning', label: 'Tuning', external: true },
+    ],
+  },
   { href: '/team', label: 'Team' },
   { href: '/galerie', label: 'Galerie' },
   { href: '/presse', label: 'Presse' },
-  { href: '/jobs', label: 'Jobs' },
   { href: '/kontakt', label: 'Kontakt' },
 ];
 

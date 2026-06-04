@@ -2,93 +2,85 @@
 import { site, telLink, telRendsburgLink, mailLink, mailWorkshopLink, whatsappLink, legalNav } from '../data/site';
 import { services } from '../data/services';
 import Icon from './Icon.astro';
-import Route66Shield from './Route66Shield.astro';
 const year = new Date().getFullYear();
 
 const company = [
   { href: '/team', label: 'Team' },
-  { href: '/jobs', label: 'Jobs' },
-  { href: '/presse', label: 'Presse' },
   { href: '/galerie', label: 'Galerie' },
+  { href: '/presse', label: 'Presse' },
+  { href: '/jobs', label: 'Jobs' },
   { href: '/kontakt', label: 'Kontakt' },
+];
+
+const shops = [
+  { href: site.external.autoscout24, label: 'Cars for Sale (AutoScout24)' },
+  { href: site.external.partsShop, label: 'Shop - Merchandise' },
+  { href: site.external.shopErsatzteile, label: 'Shop - Ersatzteile' },
+  { href: site.external.shopTuning, label: 'Shop - Tuning' },
 ];
 ---
 
 <footer class="section-dark relative overflow-hidden">
-  <!-- Decorative Route 66 Shield -->
-  <div class="absolute -right-20 -top-20 pointer-events-none" aria-hidden="true">
-    <Route66Shield class="text-white" size={520} opacity={0.04} />
-  </div>
-  <!-- Decorative big 66 -->
-  <span class="absolute -left-12 -bottom-32 font-display text-[24rem] leading-none text-white/[0.025] pointer-events-none select-none hidden md:block" aria-hidden="true">66</span>
+  <!-- Subtle dark grid pattern -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none" aria-hidden="true" style="background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px); background-size: 80px 80px;"></div>
 
-  <!-- Top Banner: Klaus' Final Sign-Off -->
-  <div class="border-b border-white/10 py-14 relative z-10">
+  <!-- Top: Brand Badges Strip -->
+  <div class="border-b border-white/10 py-12 relative z-10">
     <div class="container-r66">
-      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-        <div class="lg:col-span-7">
-          <p class="eyebrow eyebrow-light">Ein letzter Gedanke</p>
-          <p class="font-display text-2xl md:text-3xl text-white leading-snug mt-3 mb-5">
-            "V8 ist Religion. Und ich bin der Pastor."
-          </p>
-          <div class="flex items-center gap-3">
-            <div class="w-11 h-11 rounded-full overflow-hidden flex-shrink-0">
-              <img src="/images/klaus-borrmann.jpg" alt="Klaus" class="w-full h-full object-cover" />
-            </div>
-            <div>
-              <p class="font-display text-white font-medium leading-tight">Klaus Borrmann</p>
-              <p class="text-white/55 text-[0.7rem] uppercase tracking-widest mt-1">Inhaber - seit 1989</p>
-            </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-center">
+        <!-- Logo -->
+        <a href="/" class="inline-flex items-center gap-3" aria-label="Route 66 Borrmann Motors KG">
+          <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors KG" width="180" height="180" class="h-14 w-auto" style="filter: brightness(1.05);" />
+          <span class="flex flex-col leading-tight">
+            <span class="font-display text-lg font-medium text-white leading-none">Route 66</span>
+            <span class="text-[0.7rem] text-white/55 leading-none mt-1">Borrmann Motors KG</span>
+          </span>
+        </a>
+
+        <!-- Shelby Cobra Partner Badge -->
+        <div class="flex items-center gap-4 py-3 px-4 rounded-xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);">
+          <div class="w-12 h-12 rounded-lg bg-white flex items-center justify-center flex-shrink-0">
+            <img src="/images/shelby-circle-snake.png" alt="Shelby" class="w-9 h-9 object-contain" />
+          </div>
+          <div>
+            <p class="text-[0.62rem] tracking-[0.16em] uppercase text-white/55 leading-none">Official</p>
+            <p class="font-display text-sm font-medium text-white leading-tight mt-1">Shelby Service Partner</p>
           </div>
         </div>
-        <div class="lg:col-span-5 flex flex-col gap-3">
-          <a href={telLink} class="btn btn-primary btn-lg group !rounded-full">
-            <Icon name="Phone" size={16} strokeWidth={2} />
-            {site.phoneDisplay}
-            <span class="hover-arrow inline-flex"><Icon name="ArrowRight" size={15} strokeWidth={2} /></span>
-          </a>
-          <a href={whatsappLink} target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg !rounded-full">
-            <Icon name="MessageCircle" size={16} strokeWidth={2} />
-            WhatsApp schreiben
-          </a>
+
+        <!-- DMAX Cash für Chrom Badge -->
+        <div class="flex items-center gap-4 py-3 px-4 rounded-xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);">
+          <span class="w-12 h-12 rounded-lg bg-route inline-flex items-center justify-center flex-shrink-0">
+            <Icon name="Tv" size={20} strokeWidth={2} class="text-white" />
+          </span>
+          <div>
+            <p class="text-[0.62rem] tracking-[0.16em] uppercase text-white/55 leading-none">Bekannt aus</p>
+            <p class="font-display text-sm font-medium text-white leading-tight mt-1">Cash für Chrom · DMAX</p>
+          </div>
+        </div>
+
+        <!-- EST. 1989 Badge -->
+        <div class="flex items-center gap-4 py-3 px-4 rounded-xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.10);">
+          <span class="w-12 h-12 rounded-lg inline-flex items-center justify-center flex-shrink-0" style="background: rgba(185,28,28,0.15); border: 1px solid rgba(185,28,28,0.3);">
+            <Icon name="Award" size={20} strokeWidth={1.8} class="text-route" />
+          </span>
+          <div>
+            <p class="text-[0.62rem] tracking-[0.16em] uppercase text-white/55 leading-none">KFZ-Meisterbetrieb</p>
+            <p class="font-display text-sm font-medium text-white leading-tight mt-1">EST. 1989 - Hamburg</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Main Footer -->
+  <!-- Main Footer Grid -->
   <div class="container-r66 relative z-10 pt-16 pb-10">
-    <div class="grid md:grid-cols-12 gap-12 pb-14 border-b border-white/10">
-      <!-- Brand Column -->
+    <div class="grid md:grid-cols-12 gap-10 lg:gap-14 pb-14 border-b border-white/10">
+      <!-- About Column -->
       <div class="md:col-span-4">
-        <a href="/" class="inline-flex items-center gap-3 mb-6" aria-label="Route 66 Borrmann Motors KG">
-          <img src="/images/route66-logo.png" alt="Route 66 Borrmann Motors KG" width="180" height="180" class="h-14 w-auto" style="filter: brightness(1.05);" />
-          <span class="flex flex-col leading-tight">
-            <span class="font-display text-lg font-medium text-white leading-none">Route 66</span>
-            <span class="text-[0.72rem] text-white/55 leading-none mt-1">Borrmann Motors KG</span>
-          </span>
-        </a>
-        <p class="text-white/60 leading-relaxed max-w-sm mb-7">
-          US-Cars, Classic Cars, Oldtimer und Youngtimer. KFZ-Meisterbetrieb in Hamburg-Bahrenfeld. Bekannt aus Cash für Chrom. EST. 1989.
+        <p class="text-white/65 leading-relaxed mb-7">
+          US-Cars, Classic Cars, Oldtimer und Youngtimer. Import, Verkauf und Service-Werkstatt in Hamburg-Bahrenfeld. Zweigstelle in Rendsburg. KFZ-Meisterbetrieb seit 1989.
         </p>
-
-        <!-- Mini-Stats -->
-        <div class="grid grid-cols-3 gap-4 mb-7 max-w-sm">
-          <div>
-            <p class="font-display text-2xl text-white font-medium leading-none">35+</p>
-            <p class="text-white/55 text-[0.62rem] uppercase tracking-widest mt-2">Jahre</p>
-          </div>
-          <div>
-            <p class="font-display text-2xl text-white font-medium leading-none">110+</p>
-            <p class="text-white/55 text-[0.62rem] uppercase tracking-widest mt-2">Team-Jahre</p>
-          </div>
-          <div>
-            <p class="font-display text-2xl text-white font-medium leading-none">4.9★</p>
-            <p class="text-white/55 text-[0.62rem] uppercase tracking-widest mt-2">Google</p>
-          </div>
-        </div>
-
-        <!-- Social Icons -->
         <div class="flex flex-wrap gap-2.5">
           <a href={site.social.instagram} target="_blank" rel="noopener" aria-label="Instagram" class="footer-social">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
@@ -102,50 +94,55 @@ const company = [
           <a href={whatsappLink} target="_blank" rel="noopener" aria-label="WhatsApp" class="footer-social">
             <Icon name="MessageCircle" size={16} />
           </a>
-          <a href={site.external.autoscout24} target="_blank" rel="noopener" aria-label="AutoScout24" class="footer-social-text">
-            AutoScout24 →
-          </a>
         </div>
       </div>
 
       <!-- Services -->
       <div class="md:col-span-2">
-        <h3 class="text-white text-sm font-medium mb-5">Services</h3>
+        <h3 class="text-white text-xs font-medium uppercase tracking-[0.18em] mb-5">Services</h3>
         <ul class="space-y-3">
           {services.map((s) => (<li><a href={s.href} class="nav-link-footer">{s.title}</a></li>))}
         </ul>
       </div>
 
-      <!-- Borrmann Motors -->
+      <!-- Shops + External -->
       <div class="md:col-span-2">
-        <h3 class="text-white text-sm font-medium mb-5">Borrmann Motors</h3>
+        <h3 class="text-white text-xs font-medium uppercase tracking-[0.18em] mb-5">Shops & Verkauf</h3>
+        <ul class="space-y-3">
+          {shops.map((s) => (
+            <li>
+              <a href={s.href} target="_blank" rel="noopener" class="nav-link-footer inline-flex items-center gap-1.5">
+                <span>{s.label}</span>
+                <Icon name="ExternalLink" size={10} strokeWidth={2} />
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <h3 class="text-white text-xs font-medium uppercase tracking-[0.18em] mb-5 mt-7">Über uns</h3>
         <ul class="space-y-3">
           {company.map((i) => (<li><a href={i.href} class="nav-link-footer">{i.label}</a></li>))}
-          {legalNav.map((i) => (<li><a href={i.href} class="nav-link-footer">{i.label}</a></li>))}
         </ul>
       </div>
 
-      <!-- Standort + Hours -->
+      <!-- Standort Karte mit Live-Status -->
       <div class="md:col-span-4">
-        <div class="rounded-xl p-6" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="rounded-xl p-6 mb-4" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
           <div class="flex items-start justify-between gap-3 mb-5">
             <div>
               <p class="text-[0.66rem] tracking-[0.18em] uppercase text-route font-medium mb-1">Hauptstandort</p>
               <h3 class="font-display text-lg font-medium text-white leading-tight">Hamburg-Bahrenfeld</h3>
             </div>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[0.6rem] font-medium uppercase tracking-widest" style="background: rgba(16,185,129,0.15); color: rgb(52 211 153); border: 1px solid rgba(16,185,129,0.3);">
-              <span class="w-1.5 h-1.5 rounded-full bg-green-400" style="background: rgb(52 211 153);"></span>
-              Mo-Do offen
-            </span>
           </div>
-          <address class="not-italic text-white/65 leading-relaxed mb-4 text-sm">
+          <address class="not-italic text-white/65 leading-relaxed mb-5 text-sm">
             {site.address.street}<br />
             {site.address.streetDetail}<br />
             {site.address.postal} {site.address.city}
           </address>
-          <ul class="space-y-2 text-sm mb-5">
+          <ul class="space-y-2.5 text-sm mb-5">
             <li><a href={telLink} class="text-white hover:text-route transition inline-flex items-center gap-2"><Icon name="Phone" size={13} class="text-route" />{site.phoneDisplay}</a></li>
-            <li><a href={mailLink} class="text-white/65 hover:text-route transition inline-flex items-center gap-2"><Icon name="Mail" size={13} class="text-route" />{site.email}</a></li>
+            <li><a href={mailLink} class="text-white/65 hover:text-route transition inline-flex items-center gap-2 break-all"><Icon name="Mail" size={13} class="text-route" />{site.email}</a></li>
+            <li><a href={mailWorkshopLink} class="text-white/65 hover:text-route transition inline-flex items-center gap-2 break-all"><Icon name="Wrench" size={13} class="text-route" />{site.emailWorkshop}</a></li>
           </ul>
           <p class="text-white/55 text-[0.78rem] leading-relaxed pt-4 border-t border-white/10">
             Mo - Do: 8 - 17 Uhr · Fr: 8 - 15 Uhr<br />
@@ -153,25 +150,20 @@ const company = [
           </p>
         </div>
 
-        <div class="mt-4 rounded-xl p-5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
-          <div class="flex items-start justify-between gap-3 mb-2">
-            <div>
-              <p class="text-[0.62rem] tracking-[0.18em] uppercase text-route font-medium mb-1">Zweigstelle</p>
-              <h3 class="font-display text-base font-medium text-white leading-tight">Rendsburg - Björn</h3>
-            </div>
-          </div>
+        <div class="rounded-xl p-5" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);">
+          <p class="text-[0.62rem] tracking-[0.18em] uppercase text-route font-medium mb-1">Zweigstelle</p>
+          <h3 class="font-display text-base font-medium text-white leading-tight mb-2">Rendsburg</h3>
           <p class="text-white/55 text-xs leading-relaxed mb-2">{site.addressRendsburg.street}, {site.addressRendsburg.postal} {site.addressRendsburg.city}</p>
-          <a href={telRendsburgLink} class="text-white text-sm hover:text-route transition">{site.phoneRendsburgDisplay}</a>
+          <a href={telRendsburgLink} class="text-white text-sm hover:text-route transition inline-flex items-center gap-2"><Icon name="Phone" size={12} class="text-route" />{site.phoneRendsburgDisplay}</a>
         </div>
       </div>
     </div>
 
     <!-- Bottom Bar -->
     <div class="pt-8 flex flex-col md:flex-row md:justify-between gap-4 text-xs text-white/45">
-      <p>(c) {year} {site.legalName} - {site.legal.hra} - USt-IdNr. {site.legal.ustIdNr}</p>
+      <p>(c) {year} {site.legalName} · {site.legal.hra} · USt-IdNr. {site.legal.ustIdNr}</p>
       <div class="flex flex-wrap gap-5">
         {legalNav.map((i) => (<a href={i.href} class="hover:text-white transition">{i.label}</a>))}
-        <span class="text-white/30">Cash für Chrom DMAX - Shelby Partner - EST. 1989</span>
       </div>
     </div>
   </div>
@@ -188,25 +180,6 @@ const company = [
     transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
   }
   .footer-social:hover {
-    background: rgb(185 28 28);
-    border-color: rgb(185 28 28);
-    color: #fff;
-    transform: translateY(-2px);
-  }
-  .footer-social-text {
-    display: inline-flex;
-    align-items: center;
-    padding: 0 0.95rem;
-    height: 40px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 0.78rem;
-    font-weight: 500;
-    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-  }
-  .footer-social-text:hover {
     background: rgb(185 28 28);
     border-color: rgb(185 28 28);
     color: #fff;
