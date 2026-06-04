@@ -24,7 +24,7 @@ import { services } from '../../data/services';
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         {services.map((s, i) => (
           <div class={`fade-in stagger-${(i % 3) + 1}`}>
-            <ServiceCard service={s} />
+            <ServiceCard service={s} index={i} />
           </div>
         ))}
       </div>

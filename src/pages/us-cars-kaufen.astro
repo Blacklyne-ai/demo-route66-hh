@@ -134,21 +134,30 @@ const faqs = [
         <p class="mt-5 text-muted leading-relaxed text-lg">Vom Oldtimer-Klassiker bis zum aktuellen Neuwagen - wir kennen den US-Markt aus dem ff.</p>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {categories.map((c, i) => (
-          <div class={`cat-card fade-in stagger-${(i % 3) + 1}`}>
+          <a href={site.external.autoscout24} target="_blank" rel="noopener" class={`cat-card fade-in stagger-${(i % 3) + 1}`}>
             <div class="cat-media">
               <img src={c.image} alt={c.title} loading="lazy" />
               <div class="cat-overlay"></div>
-              <span class="cat-icon">
-                <Icon name={c.icon} size={18} strokeWidth={1.8} />
-              </span>
+              <span class="cat-num">{String(i + 1).padStart(2, '0')}</span>
             </div>
             <div class="cat-body">
-              <h3 class="heading-md mb-2 leading-tight">{c.title}</h3>
-              <p class="text-muted text-sm leading-relaxed">{c.body}</p>
+              <div class="flex items-start gap-4 mb-3">
+                <span class="cat-icon">
+                  <Icon name={c.icon} size={18} strokeWidth={1.8} />
+                </span>
+                <div class="flex-1 min-w-0">
+                  <h3 class="heading-md leading-tight">{c.title}</h3>
+                </div>
+              </div>
+              <p class="text-muted text-sm leading-relaxed flex-1 mb-5">{c.body}</p>
+              <span class="cat-cta">
+                Auf AutoScout24 ansehen
+                <Icon name="ArrowUpRight" size={13} strokeWidth={2} />
+              </span>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
@@ -256,16 +265,30 @@ const faqs = [
     position: relative;
     background: #fff;
     border: 1px solid rgb(229 219 205);
-    border-radius: 14px;
+    border-radius: 16px;
     overflow: hidden;
     isolation: isolate;
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+  }
+  .cat-card::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgb(185 28 28), rgb(220 38 38));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 3;
   }
   .cat-card:hover {
-    transform: translateY(-4px);
-    border-color: rgb(198 187 168);
-    box-shadow: 0 22px 48px -16px rgba(0, 0, 0, 0.18);
+    transform: translateY(-6px);
+    border-color: rgb(185 28 28 / 0.35);
+    box-shadow: 0 32px 64px -20px rgba(0, 0, 0, 0.25);
   }
+  .cat-card:hover::before { transform: scaleX(1); }
   .cat-media {
     position: relative;
     aspect-ratio: 16 / 10;
@@ -274,24 +297,62 @@ const faqs = [
   }
   .cat-media img {
     width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .cat-card:hover .cat-media img { transform: scale(1.05); }
+  .cat-card:hover .cat-media img { transform: scale(1.08); }
   .cat-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
+    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+    opacity: 0.85;
+    transition: opacity 0.4s ease;
   }
+  .cat-card:hover .cat-overlay { opacity: 1; }
+
+  .cat-num {
+    position: absolute; top: 1rem; left: 1.25rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 0.18em;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+
   .cat-icon {
-    position: absolute; bottom: -18px; left: 1.25rem;
-    width: 44px; height: 44px; border-radius: 12px;
-    background: rgb(185 28 28);
-    color: #fff;
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: rgba(185, 28, 28, 0.1);
+    color: rgb(185 28 28);
     display: inline-flex; align-items: center; justify-content: center;
-    border: 2px solid #fff;
-    box-shadow: 0 10px 24px -8px rgba(185, 28, 28, 0.55);
-    z-index: 2;
+    flex-shrink: 0;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .cat-body { padding: 2rem 1.5rem 1.75rem; }
+  .cat-card:hover .cat-icon { background: rgb(185 28 28); color: #fff; transform: rotate(-6deg) scale(1.06); }
+
+  .cat-body {
+    padding: 1.75rem 1.75rem 1.85rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cat-cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgb(17 17 17);
+    font-weight: 500;
+    font-size: 0.88rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(229 219 205);
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+  .cat-card:hover .cat-cta { color: rgb(185 28 28); gap: 0.7rem; }
 
   .step-card:hover .step-num {
     border-color: rgb(185, 28, 28);

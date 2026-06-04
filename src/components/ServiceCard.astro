@@ -4,24 +4,75 @@ import type { Service } from '../data/services';
 
 interface Props {
   service: Service;
+  index?: number;
 }
-const { service } = Astro.props;
+const { service, index = 0 } = Astro.props;
 ---
 <a href={service.href} class="service-card group">
   <div class="service-media">
     <img src={service.image} alt={service.title} loading="lazy" />
+    <span class="service-num">{String(index + 1).padStart(2, '0')}</span>
+    <span class="service-icon-badge">
+      <Icon name={service.icon} size={18} strokeWidth={1.8} />
+    </span>
   </div>
   <div class="service-body">
-    <p class="eyebrow">{service.eyebrow}</p>
-    <h3 class="heading-md mb-3">{service.title}</h3>
+    <p class="eyebrow !mb-3">{service.eyebrow}</p>
+    <h3 class="heading-md mb-3 leading-tight">{service.title}</h3>
     <p class="text-muted leading-relaxed flex-1 mb-5">{service.tagline}</p>
     <div class="flex items-center justify-between pt-4 border-t border-line">
-      <span class="arrow-link">
-        Mehr erfahren <Icon name="ArrowRight" size={14} strokeWidth={2} />
+      <span class="service-cta">
+        Mehr erfahren
+        <Icon name="ArrowUpRight" size={14} strokeWidth={2} />
       </span>
       {service.price && (
-        <span class="text-xs text-muted-light">{service.price}</span>
+        <span class="inline-flex items-center px-2.5 py-1 rounded-md text-[0.7rem] font-medium tracking-wide" style="background: rgba(185,28,28,0.08); color: rgb(185 28 28);">{service.price}</span>
       )}
     </div>
   </div>
 </a>
+
+<style>
+  .service-num {
+    position: absolute; top: 1rem; left: 1.25rem;
+    font-family: "Oswald", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    letter-spacing: 0.18em;
+    padding: 0.35rem 0.7rem;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    z-index: 2;
+  }
+  .service-icon-badge {
+    position: absolute; bottom: 1rem; right: 1rem;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: rgba(255, 254, 251, 0.96);
+    color: rgb(17 17 17);
+    backdrop-filter: blur(10px);
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    z-index: 2;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .service-card:hover .service-icon-badge {
+    background: rgb(185 28 28);
+    color: #fff;
+    transform: rotate(-6deg) scale(1.08);
+  }
+
+  .service-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: rgb(17 17 17);
+    font-weight: 500;
+    font-size: 0.88rem;
+    transition: gap 0.3s ease, color 0.3s ease;
+  }
+  .service-card:hover .service-cta { color: rgb(185 28 28); gap: 0.7rem; }
+</style>

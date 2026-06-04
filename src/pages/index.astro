@@ -264,7 +264,7 @@ const differentiators = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
         {team.map((m, i) => (
           <div class={`fade-in stagger-${i + 1}`}>
-            <TeamCard member={m} />
+            <TeamCard member={m} index={i} />
           </div>
         ))}
       </div>
@@ -292,7 +292,7 @@ const differentiators = [
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((s, i) => (
           <div class={`fade-in stagger-${(i % 3) + 1}`}>
-            <ServiceCard service={s} />
+            <ServiceCard service={s} index={i} />
           </div>
         ))}
       </div>
