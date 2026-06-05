@@ -578,6 +578,86 @@
 }
 .trust-card:hover .trust-link { gap: 0.65rem; }
 
+/* ===== SHOWROOM BENTO GRID ===== */
+.showroom-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  grid-auto-rows: 220px;
+}
+@media (min-width: 640px) {
+  .showroom-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+}
+@media (min-width: 1024px) {
+  .showroom-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 220px;
+    gap: 1.25rem;
+  }
+  .showroom-feature {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+
+.showroom-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgb(245 240 229);
+  isolation: isolate;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.showroom-card img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.showroom-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 26px 56px -18px rgba(0, 0, 0, 0.28);
+}
+.showroom-card:hover img { transform: scale(1.06); }
+
+.showroom-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.85) 100%);
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+.showroom-card:hover .showroom-veil { opacity: 1; }
+
+.showroom-info {
+  position: absolute;
+  left: 1.25rem; right: 1.25rem; bottom: 1.25rem;
+  z-index: 2;
+}
+.showroom-tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  background: rgb(185 28 28);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-bottom: 0.55rem;
+}
+.showroom-title {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #fff;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.55);
+}
+.showroom-feature .showroom-title { font-size: 1.5rem; }
+.showroom-sub {
+  font-size: 0.85rem;
+  color: rgb(255 255 255 / 0.78);
+  margin-top: 0.4rem;
+}
+
 /* ===== VEHICLE CARDS - Showcase ===== */
 .vehicle-card {
   position: relative;

@@ -374,56 +374,69 @@ const differentiators = [
     </div>
   </section>
 
-  <!-- VEHICLES SHOWCASE - aktueller AutoScout24 Bestand teaser -->
+  <!-- SHOWROOM SECTION - echte Bilder aus dem Borrmann Motors Showroom -->
   <section class="section-white section-padding relative overflow-hidden">
     <div class="container-r66 relative">
       <div class="flex flex-wrap items-end justify-between gap-6 mb-14">
         <div class="max-w-xl fade-in">
-          <p class="eyebrow">Aktueller Bestand</p>
-          <h2 class="heading-xl text-balance">US-Cars zum Verkauf.</h2>
-          <p class="mt-5 text-muted leading-relaxed text-lg">Unser kompletter Bestand mit Bildern, Spec-Sheets und Preisen lebt auf AutoScout24 - immer aktuell, immer verifiziert.</p>
+          <p class="eyebrow">Aus dem Showroom</p>
+          <h2 class="heading-xl text-balance">Echte US-Cars. Echte Werkstatt.</h2>
+          <p class="mt-5 text-muted leading-relaxed text-lg">Eindrücke aus unserem Showroom in Hamburg-Bahrenfeld. Den aktuellen Verkaufs-Bestand mit Preisen und Spec-Sheets pflegen wir auf AutoScout24.</p>
         </div>
         <a href={site.external.autoscout24} target="_blank" rel="noopener" class="btn btn-primary btn-lg group fade-in stagger-1">
           <Icon name="Car" size={16} strokeWidth={2} />
-          Alle Fahrzeuge auf AutoScout24
+          Aktueller Bestand auf AutoScout24
           <Icon name="ExternalLink" size={13} strokeWidth={2} />
         </a>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {[
-          { name: 'Ford Mustang', subtitle: 'GT Coupé', tag: 'Oldtimer', image: '/images/team-header.jpg', year: '1968', accent: 'Klassiker' },
-          { name: 'Chevrolet Camaro', subtitle: 'SS', tag: 'Muscle Car', image: '/images/car-design-1.jpg', year: '1971', accent: 'Restauriert' },
-          { name: 'Dodge Charger', subtitle: 'R/T', tag: 'Muscle Car', image: '/images/car-design-2.jpg', year: '1970', accent: 'Original' },
-          { name: 'Shelby GT500', subtitle: 'Cobra', tag: 'Shelby', image: '/images/team-header.jpg', year: '2020', accent: 'Werks-Zustand' },
-          { name: 'Cadillac DeVille', subtitle: 'Convertible', tag: 'Cruiser', image: '/images/car-design-2.jpg', year: '1964', accent: 'Sammlerstück' },
-          { name: 'Chevrolet Corvette', subtitle: 'C2 Sting Ray', tag: 'Oldtimer', image: '/images/car-design-1.jpg', year: '1966', accent: 'Concours' },
-        ].map((v, i) => (
-          <a href={site.external.autoscout24} target="_blank" rel="noopener" class={`vehicle-card fade-in stagger-${(i % 3) + 1}`}>
-            <div class="vehicle-media">
-              <img src={v.image} alt={v.name} loading="lazy" />
-              <div class="vehicle-overlay"></div>
-              <span class="vehicle-year">{v.year}</span>
-              <span class="vehicle-tag">{v.tag}</span>
-            </div>
-            <div class="vehicle-body">
-              <p class="text-[0.66rem] tracking-[0.16em] uppercase text-route font-medium mb-2">{v.accent}</p>
-              <h3 class="font-display text-xl text-onyx font-medium leading-tight">{v.name}</h3>
-              <p class="text-muted text-sm mt-1">{v.subtitle}</p>
-              <div class="mt-5 pt-4 border-t border-line flex items-center justify-between">
-                <span class="vehicle-cta">
-                  Auf AutoScout24
-                  <Icon name="ArrowUpRight" size={13} strokeWidth={2} />
-                </span>
-                <Icon name="Heart" size={15} strokeWidth={1.8} class="text-muted-light" />
-              </div>
-            </div>
-          </a>
-        ))}
+      <!-- Bento-Grid: 1 big + 4 small -->
+      <div class="showroom-grid">
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="showroom-card showroom-feature fade-in">
+          <img src="/images/klaus-red-uscar.png" alt="Klaus mit klassischem US-Car" loading="lazy" />
+          <div class="showroom-veil"></div>
+          <div class="showroom-info">
+            <span class="showroom-tag">Klassiker</span>
+            <h3 class="showroom-title">Roter Klassiker im Showroom</h3>
+            <p class="showroom-sub">Klaus prüft Zustand und Preis</p>
+          </div>
+        </a>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="showroom-card fade-in stagger-1">
+          <img src="/images/us-cars-workshop.png" alt="US-Cars vor Werkstatt" loading="lazy" />
+          <div class="showroom-veil"></div>
+          <div class="showroom-info">
+            <span class="showroom-tag">Werkstatt</span>
+            <h3 class="showroom-title">Cadillac Klassiker</h3>
+          </div>
+        </a>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="showroom-card fade-in stagger-2">
+          <img src="/images/classic-headlights.png" alt="Classic Car Headlights" loading="lazy" />
+          <div class="showroom-veil"></div>
+          <div class="showroom-info">
+            <span class="showroom-tag">Detail</span>
+            <h3 class="showroom-title">Klassiker-Fronten</h3>
+          </div>
+        </a>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="showroom-card fade-in stagger-3">
+          <img src="/images/car-design-1.jpg" alt="Borrmann Motors Racing Build" loading="lazy" />
+          <div class="showroom-veil"></div>
+          <div class="showroom-info">
+            <span class="showroom-tag">Custom Build</span>
+            <h3 class="showroom-title">Borrmann Motors Racing</h3>
+          </div>
+        </a>
+        <a href={site.external.autoscout24} target="_blank" rel="noopener" class="showroom-card fade-in stagger-4">
+          <img src="/images/team-header.jpg" alt="Mustang im Showroom" loading="lazy" />
+          <div class="showroom-veil"></div>
+          <div class="showroom-info">
+            <span class="showroom-tag">Mustang</span>
+            <h3 class="showroom-title">Showroom-Highlight</h3>
+          </div>
+        </a>
       </div>
 
       <p class="text-center mt-10 text-sm text-muted-light">
-        Beispielhafte Auswahl. Aktueller Bestand und Preise auf AutoScout24.
+        Auswahl aus dem Showroom. Aktueller Bestand und Preise auf AutoScout24.
       </p>
     </div>
   </section>
