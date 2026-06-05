@@ -138,14 +138,14 @@ export const services: Service[] = [
     navLabel: 'Werkstattführung',
     icon: 'Compass',
     image: '/images/team-group.jpg',
-    eyebrow: 'Neu - Ein Erlebnis für Enthusiasten',
+    eyebrow: 'Ein Erlebnis für Enthusiasten',
     tagline: 'Ein Blick hinter die Kulissen - dort, wo Leidenschaft auf Motoren trifft.',
     lead:
       'Exklusive Führung durch unsere Werkstatt und unsere Ausstellungsräume. Persönliche Einblicke in unsere Projekte und Fahrzeuge. Zeit für Deine Fragen und Diskussionen. Kaffee und Wasser sind inklusive. Ein Erlebnis für echte Automobil-Enthusiasten und alle, die einen Blick hinter die Kulissen werfen möchten.',
     features: [
       { title: 'Max. 3-4 Personen', body: 'Klein und persönlich, damit jeder Zeit für seine Fragen hat.', icon: 'Users' },
       { title: 'Ca. 45 Minuten', body: 'Genug Zeit für Projekte, Anekdoten und Cash-für-Chrom-Geschichten.', icon: 'Clock' },
-      { title: 'Ab Mai 2026 buchbar', body: 'Termine nach Verfügbarkeit - melde Dich am besten früh.', icon: 'Calendar' },
+      { title: 'Seit Mai 2026 buchbar', body: 'Termine nach Verfügbarkeit - melde Dich am besten früh.', icon: 'Calendar' },
       { title: '300 EUR pro Führung', body: 'Inkl. MwSt., Kaffee und Wasser für die ganze Gruppe.', icon: 'Euro' },
     ],
     includes: [
