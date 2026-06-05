@@ -299,20 +299,21 @@ const differentiators = [
     </div>
   </section>
 
-  <!-- SERVICES GRID -->
+  <!-- SERVICES GRID - 4 Services in symmetrischem 2x2 / 4x1 Layout -->
   <section class="section-white section-padding">
     <div class="container-r66">
       <div class="flex flex-wrap items-end justify-between gap-6 mb-16">
         <div class="max-w-2xl fade-in">
           <p class="eyebrow">Services & Beratung</p>
-          <h2 class="heading-xl text-balance">Vom Call a Mechanic bis Werkstattführung.</h2>
+          <h2 class="heading-xl text-balance">Von der Mechaniker-Beratung bis zur Werkstattführung.</h2>
         </div>
         <a href="/services" class="arrow-link fade-in stagger-1">Alle Services <Icon name="ArrowRight" size={14} strokeWidth={2} class="hover-arrow" /></a>
       </div>
 
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((s, i) => (
-          <div class={`fade-in stagger-${(i % 3) + 1}`}>
+      <!-- Erste 4 Services im symmetrischen 2x2 / 4-Spalten Grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {services.slice(0, 4).map((s, i) => (
+          <div class={`fade-in stagger-${(i % 4) + 1}`}>
             <ServiceCard service={s} index={i} />
           </div>
         ))}
